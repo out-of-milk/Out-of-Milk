@@ -13,7 +13,7 @@ public class UserController {
     public String showProfileForm(Model model){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        System.out.println("hey");
         if (user == null) {
             return "/login";
         }
