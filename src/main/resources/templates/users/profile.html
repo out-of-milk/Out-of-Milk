@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partial/partials :: head">
     <title>Profile</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" rel="stylesheet">
 </head>
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
@@ -9,18 +11,19 @@
 <div class="container-fluid p-3">
     <h2 class="d-flex justify-content-between">Profile<i class="fa-solid fa-gear"></i></h2>
     <div class="row">
-        <img class="rounded-circle col-3" alt="avatar1" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" />
+        <img alt="avatar1" class="rounded-circle col-3" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp"/>
         <div class="col-7">
             <div class="form-floating" style="width: 30rem;">
-                <input type="username" class="form-control  mb-3 g-col-4" id="floatingUsername" placeholder="username">
+                <input class="form-control  mb-3 g-col-4" id="floatingUsername" placeholder="username" type="username">
                 <label for="floatingUsername">Username</label>
             </div>
             <div class="form-floating mb-3" style="width: 30rem;">
-                <input type="email" class="form-control  mb-3 g-col-4" id="floatingEmail" placeholder="name@example.com">
+                <input class="form-control  mb-3 g-col-4" id="floatingEmail" placeholder="name@example.com"
+                       type="email">
                 <label for="floatingEmail">Email address</label>
             </div>
             <div class="form-floating mb-3" style="width: 30rem;">
-                <input type="password" class="form-control  mb-3 g-col-4" id="floatingPassword" placeholder="Password">
+                <input class="form-control  mb-3 g-col-4" id="floatingPassword" placeholder="Password" type="password">
                 <label for="floatingPassword">Password</label>
             </div>
         </div>
@@ -29,15 +32,21 @@
     <nav class="m-3">
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <!--            the tabs-->
-            <button class="nav-link active" id="nav-pantry-tab" data-bs-toggle="tab" data-bs-target="#nav-pantry" type="button" role="tab">Pantry List</button>
-            <button class="nav-link" id="nav-grocery-tab" data-bs-toggle="tab" data-bs-target="#nav-grocery" type="button" role="tab">Grocery List</button>
-            <button class="nav-link" id="nav-recipe-tab" data-bs-toggle="tab" data-bs-target="#nav-recipe" type="button" role="tab">Favorite Recipe</button>
+            <button class="nav-link active" data-bs-target="#nav-pantry" data-bs-toggle="tab" id="nav-pantry-tab"
+                    role="tab" type="button">Pantry List
+            </button>
+            <button class="nav-link" data-bs-target="#nav-grocery" data-bs-toggle="tab" id="nav-grocery-tab"
+                    role="tab" type="button">Grocery List
+            </button>
+            <button class="nav-link" data-bs-target="#nav-recipe" data-bs-toggle="tab" id="nav-recipe-tab" role="tab"
+                    type="button">Favorite Recipe
+            </button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
         <!--        inside the tabs-->
         <!--        pantry-->
-        <div class="tab-pane fade show active" id="nav-pantry" role="tabpanel" aria-labelledby="nav-pantry-tab">
+        <div aria-labelledby="nav-pantry-tab" class="tab-pane fade show active" id="nav-pantry" role="tabpanel">
             <div class="d-flex justify-content-between">
                 <input class="btn btn-primary" type="button" value="Add New Item">
                 <input class="btn btn-primary" type="button" value="Delete Item">
@@ -47,14 +56,14 @@
             <div class="form-check d-flex justify-content-center">
                 <ul>
                     <li style="list-style-type: none;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <input class="form-check-input" id="ingredientCheck1" type="checkbox" value="">
+                        <label class="form-check-label" for="ingredientCheck1">
                             List Ingredient
                         </label>
                     </li>
                     <li style="list-style-type: none;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <input class="form-check-input" id="ingredientCheck2" type="checkbox" value="">
+                        <label class="form-check-label" for="ingredientCheck2">
                             List Ingredient
                         </label>
                     </li>
@@ -63,7 +72,7 @@
         </div>
 
         <!--grocery -->
-        <div class="tab-pane fade" id="nav-grocery" role="tabpanel" aria-labelledby="nav-grocery-tab">
+        <div aria-labelledby="nav-grocery-tab" class="tab-pane fade" id="nav-grocery" role="tabpanel">
             <div class="d-flex justify-content-between">
                 <input class="btn btn-primary" type="button" value="Add New Item">
                 <input class="btn btn-primary" type="button" value="Delete Item">
@@ -73,14 +82,14 @@
             <div class="form-check d-flex justify-content-center">
                 <ul>
                     <li style="list-style-type: none;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <input class="form-check-input" id="ingredientCheck3" type="checkbox" value="">
+                        <label class="form-check-label" for="ingredientCheck3">
                             List Ingredient
                         </label>
                     </li>
                     <li style="list-style-type: none;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <input class="form-check-input" id="ingredientCheck4" type="checkbox" value="">
+                        <label class="form-check-label" for="ingredientCheck4">
                             List Ingredient
                         </label>
                     </li>
@@ -89,15 +98,16 @@
         </div>
 
         <!--        favorite recipe-->
-        <div class="tab-pane fade" id="nav-recipe" role="tabpanel" aria-labelledby="nav-recipe-tab">
+        <div aria-labelledby="nav-recipe-tab" class="tab-pane fade" id="nav-recipe" role="tabpanel">
             <div class="d-flex justify-content-between row">
                 <form class="d-flex col-6">
-                    <input class="form-control" style="width: 20rem; height:4rem;" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit" style="height:4rem;">Search</button>
+                    <input aria-label="Search" class="form-control" placeholder="Search" style="width: 20rem; height:4rem;"
+                           type="search">
+                    <button class="btn btn-outline-success" style="height:4rem;" type="submit">Search</button>
                 </form>
                 <div class="col-6">
-                    <select class=" mb-3 form-select" style="width: 30rem; height: 4rem" id="category" multiple>
-                        <option value="0" selected>Show All</option>
+                    <select class=" mb-3 form-select" id="category" multiple style="width: 30rem; height: 4rem">
+                        <option selected value="0">Show All</option>
                         <option value="1">Beef</option>
                         <option value="2">Breakfast</option>
                         <option value="3">Chicken</option>
@@ -117,49 +127,116 @@
             </div>
             <h4 style="text-align: center;">Favorite Recipe</h4>
             <hr>
-            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselExampleDark">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button aria-current="true" aria-label="Slide 1" class="active" data-bs-slide-to="0"
+                            data-bs-target="#carouselExampleDark" type="button"></button>
+                    <button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carouselExampleDark"
+                            type="button"></button>
+                    <button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carouselExampleDark"
+                            type="button"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="d-block w-100" alt="...">
+                        <img alt="..." class="d-block w-100" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="d-block w-100" alt="...">
+                        <img alt="..." class="d-block w-100" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Second slide label</h5>
                             <p>Some representative placeholder content for the second slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="d-block w-100" alt="...">
+                        <img alt="..." class="d-block w-100" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Third slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleDark"
+                        type="button">
+                    <span aria-hidden="true" class="carousel-control-prev-icon"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselExampleDark"
+                        type="button">
+                    <span aria-hidden="true" class="carousel-control-next-icon"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+        </div>
+        <!-- Button trigger modal -->
+        <button class="btn btn-primary" data-bs-target="#settings" data-bs-toggle="modal" type="button">
+            Settings
+        </button>
 
+        <!-- Modal -->
+        <div class="modal fade" id="settings" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="settingsLabel">Settings</h1>
+                        <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="name">Change Name:</span>
+                            <input class="form-control" placeholder="name" type="text">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="email">Change Email: </span>
+                            <input class="form-control" placeholder="email" type="text">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="password">Change Password: </span>
+                            <input class="form-control" placeholder="password" type="text">
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                                    type="button">
+                                Blocked Recipes
+                            </button>
+                            <ul class="dropdown-menu">
+                                <div class="container">
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="flexCheckDefault" type="checkbox"
+                                               value="">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Default checkbox
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="form-check">
+                                        <input checked class="form-check-input" id="flexCheckChecked"
+                                               type="checkbox" value="">
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Checked checkbox
+                                        </label>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
+                        <button class="btn btn-primary" type="button">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <footer th:insert="partial/partials :: footer"></footer>
+<script crossorigin="anonymous"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
