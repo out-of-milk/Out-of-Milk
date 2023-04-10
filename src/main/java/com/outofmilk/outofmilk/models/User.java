@@ -19,14 +19,15 @@ public class User {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false, length = 100)
     private String password;
+//    private String matchingPassword;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @ToString.Exclude

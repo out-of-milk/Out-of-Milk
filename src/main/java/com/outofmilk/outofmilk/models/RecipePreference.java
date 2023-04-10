@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "grocery_items")
+@Table(name = "recipe_preferences")
 public class RecipePreference {
 
     @Id
