@@ -17,7 +17,7 @@ public class GroceryItem {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "INT(10) UNSIGNED")
     private String ingredient_id;
 
     @ManyToOne
