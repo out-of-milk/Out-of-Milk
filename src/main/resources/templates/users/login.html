@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <header th:insert="partials/partials :: header"/>
-    <title>Log In</title>
+<head th:insert="partial/partials :: head">
+    <meta charset="UTF-8">
+    <title>Login</title>
 </head>
 <body>
 
-<nav th:replace="partials/partials :: navbar"/>
+<nav th:insert="partial/partials :: navbar"></nav>
 
 <div class="container">
 
@@ -40,7 +40,7 @@
 
 </div>
 
-<footer th:replace="partials/partials.html :: footer"/>
+<footer th:insert="partial/partials :: footer"></footer>
 
 </body>
 </html>
