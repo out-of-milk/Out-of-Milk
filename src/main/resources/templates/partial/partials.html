@@ -17,6 +17,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <!--          when we switch between user and vistor
                       Vistor-->
+
       <!--          <ul class="navbar-nav" style="margin-right:5%;">-->
       <!--              <li class="nav-item">-->
       <!--                  <a class="nav-link active" href="#">Login</a>-->
@@ -25,7 +26,9 @@
       <!--                  <a class="nav-link active pl-10" href="#">Register</a>-->
       <!--              </li>-->
       <!--          </ul>-->
+
       <!--          user-->
+
       <ul class="navbar-nav" style="margin-right:5%;">
         <li class="nav-item">
           <a class="nav-link active" href="#">Recipes</a>
@@ -35,6 +38,13 @@
             <i class="fa-solid fa-user"></i>
             User
           </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active pl-10" href="#">Logout</a>
+          <!--        <li class="nav-item" sec:authorize="isAuthenticated()">-->
+          <!--          <form th:action="@{/logout}" th:method="post">-->
+          <!--            <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
+          <!--          </form>-->
         </li>
       </ul>
     </div>
