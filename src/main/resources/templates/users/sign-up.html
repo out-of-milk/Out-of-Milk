@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <header th:insert="partials/partials :: header"/>
-    <title>Sign up</title>
+<head th:insert="partial/partials :: head">
+    <meta charset="UTF-8">
+    <title>Registration</title>
 </head>
 <body>
 
-<nav th:replace="partials/partials :: navbar"/>
+<nav th:insert="partial/partials :: navbar"></nav>
 
 <div class="container">
     <h1>Create an account</h1>
@@ -28,10 +28,10 @@
             <input id="password" class="form-control" type="password" th:field="*{password}"/>
         </div>
 
-        <div class="col-md-4">
-            <label for="confirm_password" class="form-label">Confirm password</label>
-            <input id="confirm_password" class="form-control" type="password" th:field="*{matchingPassword}"/>
-        </div>
+<!--        <div class="col-md-4">-->
+<!--            <label for="confirm_password" class="form-label">Confirm password</label>-->
+<!--            <input id="confirm_password" class="form-control" type="password" th:field="*{matchingPassword}"/>-->
+<!--        </div>-->
 
         <br>
 
@@ -41,7 +41,7 @@
 
 </div>
 
-<footer th:replace="partials/partials.html :: footer"/>
+<footer th:insert="partial/partials :: footer"></footer>
 
 </body>
 </html>
