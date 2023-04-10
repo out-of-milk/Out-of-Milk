@@ -41,11 +41,11 @@ public class User {
     @ToString.Exclude
     private List<RecipePreference> recipePreferences;
 
-//    public User(User copy) {
-//        id = copy.id;
-//        username = copy.username;
-//        email = copy.email;
-//        password = copy.password;
-//    }
+    public User(User copy) {
+        id = copy.id;
+        username = copy.username;
+        email = copy.email;
+        password = copy.password;
+    }
 
 }
