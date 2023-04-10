@@ -3,27 +3,96 @@
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" rel="stylesheet">
 </head>
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
 
 <div class="container-fluid p-3">
     <h2>Profile</h2>
-
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <button class="nav-link active" id="nav-pantry-tab" data-bs-toggle="tab" data-bs-target="#nav-pantry" type="button" role="tab">Pantry List</button>
-            <button class="nav-link" id="nav-grocery-tab" data-bs-toggle="tab" data-bs-target="#nav-grocery" type="button" role="tab">Grocery List</button>
-            <button class="nav-link" id="nav-recipe-tab" data-bs-toggle="tab" data-bs-target="#nav-recipe" type="button" role="tab">Favorite Recipe</button>
+            <button class="nav-link active" data-bs-target="#nav-pantry" data-bs-toggle="tab" id="nav-pantry-tab"
+                    role="tab" type="button">Pantry List
+            </button>
+            <button class="nav-link" data-bs-target="#nav-grocery" data-bs-toggle="tab" id="nav-grocery-tab"
+                    role="tab" type="button">Grocery List
+            </button>
+            <button class="nav-link" data-bs-target="#nav-recipe" data-bs-toggle="tab" id="nav-recipe-tab" role="tab"
+                    type="button">Favorite Recipe
+            </button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-pantry" role="tabpanel" aria-labelledby="nav-pantry-tab">Pantry</div>
-        <div class="tab-pane fade" id="nav-grocery" role="tabpanel" aria-labelledby="nav-grocery-tab">Grocery</div>
-        <div class="tab-pane fade" id="nav-recipe" role="tabpanel" aria-labelledby="nav-recipe-tab">Fav Recipe</div>
+        <div aria-labelledby="nav-pantry-tab" class="tab-pane fade show active" id="nav-pantry" role="tabpanel">Pantry
+        </div>
+        <div aria-labelledby="nav-grocery-tab" class="tab-pane fade" id="nav-grocery" role="tabpanel">Grocery</div>
+        <div aria-labelledby="nav-recipe-tab" class="tab-pane fade" id="nav-recipe" role="tabpanel">Fav Recipe</div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary" data-bs-target="#settings" data-bs-toggle="modal" type="button">
+    Settings
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="settings" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="settingsLabel">Settings</h1>
+                <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="name">Change Name:</span>
+                    <input class="form-control" placeholder="name" type="text">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="email">Change Email: </span>
+                    <input class="form-control" placeholder="email" type="text">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="password">Change Password: </span>
+                    <input class="form-control" placeholder="password" type="text">
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" type="button">
+                        Blocked Recipes
+                    </button>
+                    <ul class="dropdown-menu">
+                        <div class="container">
+                            <div class="form-check">
+                                <input class="form-check-input" id="flexCheckDefault" type="checkbox" value="">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Default checkbox
+                                </label>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="form-check">
+                                <input checked class="form-check-input" id="flexCheckChecked" type="checkbox" value="">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Checked checkbox
+                                </label>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+            </div>
+        </div>
     </div>
 </div>
 
 <footer th:insert="partial/partials :: footer"></footer>
+<script crossorigin="anonymous"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
