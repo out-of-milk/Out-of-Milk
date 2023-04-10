@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partial/partials :: head">
+  <title>Profile</title>
+</head>
+<body>
+<nav th:insert="partial/partials :: navbar"></nav>
+
+<div class="container-fluid p-3">
+  <div class="grid" style="--bs-columns: 18; --bs-gap: .5rem;">
+    <h2 style="grid-column: span 5;">Profile<i class="fa-solid fa-gear d-flex justify-content-end"></i></h2>
+    <img class="rounded-circle col" alt="avatar1" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" />
+    <div class="form-floating mb-3 col" style="width: 20rem;">
+      <input type="username" class="form-control" id="floatingUsername" placeholder="username">
+      <label for="floatingUsername">Username</label>
+    </div>
+    <div class="form-floating mb-3 col" style="width: 20rem;">
+      <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+      <label for="floatingEmail">Email address</label>
+    </div>
+    <div class="form-floating mb-3 col" style="width: 20rem;">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+  </div>
+
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-pantry-tab" data-bs-toggle="tab" data-bs-target="#nav-pantry" type="button" role="tab">Pantry List</button>
+      <button class="nav-link" id="nav-grocery-tab" data-bs-toggle="tab" data-bs-target="#nav-grocery" type="button" role="tab">Grocery List</button>
+      <button class="nav-link" id="nav-recipe-tab" data-bs-toggle="tab" data-bs-target="#nav-recipe" type="button" role="tab">Favorite Recipe</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-pantry" role="tabpanel" aria-labelledby="nav-pantry-tab">
+      <input class="btn btn-primary" type="button" value="Add New Item">
+      <h4 style="text-align: center;">Ingredients</h4>
+    </div>
+    <div class="tab-pane fade" id="nav-grocery" role="tabpanel" aria-labelledby="nav-grocery-tab">Grocery</div>
+    <div class="tab-pane fade" id="nav-recipe" role="tabpanel" aria-labelledby="nav-recipe-tab">Fav Recipe</div>
+  </div>
+</div>
+
+<footer th:insert="partial/partials :: footer"></footer>
+</body>
+</html>
