@@ -19,10 +19,10 @@ public class User {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false, length = 100)

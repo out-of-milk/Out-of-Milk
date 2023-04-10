@@ -1,46 +1,74 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partial/partials :: head">
-  <title>Profile</title>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/WEB-INF/css/style.css">
+  <style>
+    *{
+      clear:both;
+    }
+  </style>
 </head>
 <body>
-<nav th:insert="partial/partials :: navbar"></nav>
 
-<div class="container-fluid p-3">
-  <div class="grid" style="--bs-columns: 18; --bs-gap: .5rem;">
-    <h2 style="grid-column: span 5;">Profile<i class="fa-solid fa-gear d-flex justify-content-end"></i></h2>
-    <img class="rounded-circle col" alt="avatar1" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" />
-    <div class="form-floating mb-3 col" style="width: 20rem;">
-      <input type="username" class="form-control" id="floatingUsername" placeholder="username">
-      <label for="floatingUsername">Username</label>
-    </div>
-    <div class="form-floating mb-3 col" style="width: 20rem;">
-      <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
-      <label for="floatingEmail">Email address</label>
-    </div>
-    <div class="form-floating mb-3 col" style="width: 20rem;">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light d-flex">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="margin-left:5%;">Out of Milk</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <!--          when we switch between user and vistor
+                      Vistor-->
+
+      <!--          <ul class="navbar-nav" style="margin-right:5%;">-->
+      <!--              <li class="nav-item">-->
+      <!--                  <a class="nav-link active" href="#">Login</a>-->
+      <!--              </li>-->
+      <!--              <li class="nav-item">-->
+      <!--                  <a class="nav-link active pl-10" href="#">Register</a>-->
+      <!--              </li>-->
+      <!--          </ul>-->
+
+      <!--          user-->
+
+      <ul class="navbar-nav" style="margin-right:5%;">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Recipes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active pl-10" href="#">
+            <i class="fa-solid fa-user"></i>
+            User
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active pl-10" href="#">Logout</a>
+          <!--        <li class="nav-item" sec:authorize="isAuthenticated()">-->
+          <!--          <form th:action="@{/logout}" th:method="post">-->
+          <!--            <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
+          <!--          </form>-->
+        </li>
+      </ul>
     </div>
   </div>
+</nav>
 
-  <nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="nav-pantry-tab" data-bs-toggle="tab" data-bs-target="#nav-pantry" type="button" role="tab">Pantry List</button>
-      <button class="nav-link" id="nav-grocery-tab" data-bs-toggle="tab" data-bs-target="#nav-grocery" type="button" role="tab">Grocery List</button>
-      <button class="nav-link" id="nav-recipe-tab" data-bs-toggle="tab" data-bs-target="#nav-recipe" type="button" role="tab">Favorite Recipe</button>
+<footer th:fragment="footer" class="bg-light py-3 mt-4 fixed-bottom">
+  <div class="container text-center">
+    <!--    <p class="display-5 mb-3">title</p>-->
+    <div>
+      <i class="fa-brands fa-twitter" style="margin: 0% 1%;"></i>
+      <i class="fa-brands fa-instagram" style="margin: 0% 1%;"></i>
+      <i class="fa-brands fa-facebook" style="margin: 0% 1%;"></i>
     </div>
-  </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-pantry" role="tabpanel" aria-labelledby="nav-pantry-tab">
-      <input class="btn btn-primary" type="button" value="Add New Item">
-      <h4 style="text-align: center;">Ingredients</h4>
-    </div>
-    <div class="tab-pane fade" id="nav-grocery" role="tabpanel" aria-labelledby="nav-grocery-tab">Grocery</div>
-    <div class="tab-pane fade" id="nav-recipe" role="tabpanel" aria-labelledby="nav-recipe-tab">Fav Recipe</div>
+    <small class="text-50">Copyright &copy; 2023 InSync</small>
   </div>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/225426762d.js" crossorigin="anonymous"></script>
+</footer>
 
-<footer th:insert="partial/partials :: footer"></footer>
 </body>
 </html>
