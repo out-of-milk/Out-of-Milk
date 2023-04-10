@@ -14,7 +14,7 @@
         <div class="col-7">
             <div class="form-floating" style="width: 30rem;">
                 <input class="form-control  mb-3 g-col-4" id="floatingUsername" placeholder="username" type="username">
-                <label for="floatingUsername">Username</label>
+                <label for="floatingUsername" th:text="${user.username}">Username</label>
             </div>
             <div class="form-floating mb-3" style="width: 30rem;">
                 <input class="form-control  mb-3 g-col-4" id="floatingEmail" placeholder="name@example.com"

@@ -15,7 +15,7 @@ public class RegistrationController {
     private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
 
-        public RegistrationController(UserRepository userDao, PasswordEncoder passwordEncoder){
+    public RegistrationController(UserRepository userDao, PasswordEncoder passwordEncoder){
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
     }
