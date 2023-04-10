@@ -15,23 +15,33 @@
 
         <div class="col-md-4">
             <label for="username" class="form-label">Username</label>
-            <input id="username" class="form-control" th:field="*{username}"/>
+            <div class="input-group has-validation">
+                <input id="username" th:class="${userExists} ? 'form-control is-invalid' : 'form-control'" th:field="*{username}" placeholder="Username" required/>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Username already exists.
+                </div>
+            </div>
         </div>
 
         <div class="col-md-4">
             <label for="email" class="form-label">Email</label>
-            <input id="email" class="form-control" th:field="*{email}"/>
+            <div class="input-group has-validation">
+                <input id="email" type="text" th:class="${userEmailExists} ? 'form-control is-invalid' : 'form-control'" th:field="*{email}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="example@domain.com" required/>
+                <div id="validationServerEmailFeedback" class="invalid-feedback">
+                    Email address already exists.
+                </div>
+            </div>
         </div>
 
         <div class="col-md-4">
             <label for="password" class="form-label">Password</label>
-            <input id="password" class="form-control" type="password" th:field="*{password}"/>
+            <input id="password" class="form-control" type="password" th:field="*{password}" placeholder="Must have at least 8 characters" required/>
         </div>
 
-<!--        <div class="col-md-4">-->
-<!--            <label for="confirm_password" class="form-label">Confirm password</label>-->
-<!--            <input id="confirm_password" class="form-control" type="password" th:field="*{matchingPassword}"/>-->
-<!--        </div>-->
+        <div class="col-md-4">
+            <label for="confirm_password" class="form-label">Confirm password</label>
+            <input id="confirm_password" class="form-control" type="password"required/>
+        </div>
 
         <br>
 
@@ -43,5 +53,21 @@
 
 <footer th:insert="partial/partials :: footer"></footer>
 
+
+<script>
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
 </body>
 </html>
