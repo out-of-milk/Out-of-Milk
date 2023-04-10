@@ -27,7 +27,25 @@ public class RegistrationController {
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user, Model model){
+
+        System.out.println(user);
+
+        User userNameCheck = userDao.findByUsername(user.getUsername());
+        User userEmailCheck = userDao.findByEmail(user.getEmail());
+
+        if (userNameCheck != null) {
+            model.addAttribute("userExists", true);
+        }
+
+        if (userEmailCheck != null) {
+            model.addAttribute("userEmailExists", true);
+        }
+
+        if ((userNameCheck != null) || (userEmailCheck != null)) {
+            return "users/sign-up";
+        }
+
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
