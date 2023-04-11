@@ -24,12 +24,12 @@
                       Vistor-->
 
       <ul class="navbar-nav" style="margin-right:5%;">
-          <li class="nav-item" sec:authorize="!isAuthenticated()">
-            <a class="nav-link active" th:href="@{/login}">Login</a>
-          </li>
-          <li class="nav-item" sec:authorize="!isAuthenticated()">
-              <a class="nav-link active pl-10" th:href="@{/sign-up}">Register</a>
-          </li>
+        <li class="nav-item" sec:authorize="!isAuthenticated()">
+          <a class="nav-link active" th:href="@{/login}">Login</a>
+        </li>
+        <li class="nav-item" sec:authorize="!isAuthenticated()">
+          <a class="nav-link active pl-10" th:href="@{/sign-up}">Register</a>
+        </li>
       </ul>
 
       <!--          user-->
@@ -43,16 +43,16 @@
             <i class="fa-solid fa-user"></i>
             User
           </a>
-<!--          <span th:remove="tag" sec:authentication="name">thymeleaf</span>-->
+          <!--          <span th:remove="tag" sec:authentication="name">thymeleaf</span>-->
         </li>
         <li class="nav-item" sec:authorize="isAuthenticated()" sec:authentication="name">
           <form th:action="@{/logout}" method="post">
-              <input type="submit" class="nav-link btn" value="Logout"/>
+            <input type="submit" class="nav-link btn" value="Logout"/>
           </form>
         </li>
-<!--        <li class="nav-item" >-->
-<!--          <a class="nav-link active" th:href="@{/login}">Logout</a>-->
-<!--        </li>-->
+        <!--        <li class="nav-item" >-->
+        <!--          <a class="nav-link active" th:href="@{/login}">Logout</a>-->
+        <!--        </li>-->
       </ul>
     </div>
   </div>

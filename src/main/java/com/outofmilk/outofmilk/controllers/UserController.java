@@ -1,13 +1,25 @@
 package com.outofmilk.outofmilk.controllers;
 
+import com.outofmilk.outofmilk.models.Ingredient;
 import com.outofmilk.outofmilk.models.User;
+import com.outofmilk.outofmilk.repositories.IngredientRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class UserController {
+
+    // just testing getting ingredients
+    private final IngredientRepository ingredientDao;
+
+    // just testing getting ingredients
+    public UserController(IngredientRepository ingredientDao) {
+        this.ingredientDao = ingredientDao;
+    }
 
     @GetMapping("/user")
     public String showProfileForm(Model model){
@@ -17,6 +29,15 @@ public class UserController {
         if (user == null) {
             return "/login";
         }
+
+        // just testing getting ingredients
+        List<Ingredient> ingredients = ingredientDao.findAll();
+        model.addAttribute("ingredients", ingredients);
+
+        System.out.println("****************");
+        System.out.println(ingredients);
+        System.out.println("****************");
+
 
         model.addAttribute("user", new User());
 
