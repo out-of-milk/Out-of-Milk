@@ -34,3 +34,4 @@ build/
 
 src/main/resources/application.properties
 src/main/resources/js/keys.js
+src/main/java/com/outofmilk/outofmilk/controllers/RestController.java
