@@ -15,8 +15,8 @@
 
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light d-flex">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" style="margin-left:5%;">Out of Milk</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#" style="margin-left:5%;" th:href="@{/}">Out of Milk</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -37,11 +37,8 @@
       <ul class="navbar-nav" style="margin-right:5%;">
         <li class="nav-item" sec:authorize="isAuthenticated()">
           <a class="nav-link active" th:href="@{/}" >Recipes</a>
-        </li>
         <li class="nav-item" sec:authorize="isAuthenticated()">
-          <i class="fa-solid fa-user"></i>
           <a class="nav-link active pl-10" th:href="@{/user}" sec:authentication="name">
-
             User
           </a>
           <!--          <span th:remove="tag" sec:authentication="name">thymeleaf</span>-->
