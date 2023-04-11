@@ -15,7 +15,7 @@ public class RecipeController {
     // logged-in user
     @GetMapping("/recipe")
     public String showRecipeForm(){
-        return "recipe";
+        return "showRecipe";
     }
 
 }
