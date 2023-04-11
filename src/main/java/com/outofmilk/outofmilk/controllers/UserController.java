@@ -30,15 +30,9 @@ public class UserController {
             return "/login";
         }
 
-        // just testing getting ingredients
         List<Ingredient> ingredients = ingredientDao.findAll();
+
         model.addAttribute("ingredients", ingredients);
-
-        System.out.println("****************");
-        System.out.println(ingredients);
-        System.out.println("****************");
-
-
         model.addAttribute("user", new User());
 
         return "users/profile";
