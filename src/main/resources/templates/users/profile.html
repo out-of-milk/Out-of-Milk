@@ -16,6 +16,9 @@
                 <input class="form-control  mb-3 g-col-4" id="floatingUsername" placeholder="username" type="username">
                 <label for="floatingUsername" th:text="${user.username}">Username</label>
             </div>
+            <div style="float: right">
+                <button class="btn btn-primary" data-bs-target="#settings" data-bs-toggle="modal" type="button">Settings</button>
+            </div>
             <div class="form-floating mb-3" style="width: 30rem;">
                 <input class="form-control  mb-3 g-col-4" id="floatingEmail" placeholder="name@example.com"
                        type="email">
@@ -47,7 +50,7 @@
         <!--        pantry-->
         <div aria-labelledby="nav-pantry-tab" class="tab-pane fade show active" id="nav-pantry" role="tabpanel">
             <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pantryModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-bs-target="#addItemModal">
                     Add item
                 </button>
                 <input class="btn btn-primary" type="button" value="Delete Item">
@@ -75,7 +78,7 @@
         <!--grocery -->
         <div aria-labelledby="nav-grocery-tab" class="tab-pane fade" id="nav-grocery" role="tabpanel">
             <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pantryModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-bs-target="#addItemModal">
                     Add item
                 </button>
                 <input class="btn btn-primary" type="button" value="Delete Item">
@@ -174,82 +177,76 @@
                 </button>
             </div>
         </div>
-        <!-- Button trigger modal -->
-        <button class="btn btn-primary" data-bs-target="#settings" data-bs-toggle="modal" type="button">
-            Settings
-        </button>
-        <!-- Add item modal -->
-        <div class="modal fade" id="pantryModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="pantryModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Add Item Here
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+    </div>
+    <!-- Add item modal -->
+    <div class="modal fade" id="addItemModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addItemModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    Add item here.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
-        <!-- Settings Modal -->
-        <div class="modal fade" id="settings" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="settingsLabel">Settings</h1>
-                        <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+    </div>
+    <!-- Settings Modal -->
+    <div class="modal fade" id="settings" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="settingsLabel">Settings</h1>
+                    <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="name">Change Name:</span>
+                        <input class="form-control" placeholder="name" type="text">
                     </div>
-                    <div class="modal-body">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="name">Change Name:</span>
-                            <input class="form-control" placeholder="name" type="text">
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="email">Change Email: </span>
-                            <input class="form-control" placeholder="email" type="text">
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="password">Change Password: </span>
-                            <input class="form-control" placeholder="password" type="text">
-                        </div>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                                    type="button">
-                                Blocked Recipes
-                            </button>
-                            <ul class="dropdown-menu">
-                                <div class="container">
-                                    <div class="form-check">
-                                        <input class="form-check-input" id="flexCheckDefault" type="checkbox"
-                                               value="">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            Default checkbox
-                                        </label>
-                                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="email">Change Email: </span>
+                        <input class="form-control" placeholder="email" type="text">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="password">Change Password: </span>
+                        <input class="form-control" placeholder="password" type="text">
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                                type="button">
+                            Blocked Recipes
+                        </button>
+                        <ul class="dropdown-menu">
+                            <div class="container">
+                                <div class="form-check">
+                                    <input class="form-check-input" id="flexCheckDefault" type="checkbox"
+                                           value="">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
                                 </div>
-                                <div class="container">
-                                    <div class="form-check">
-                                        <input checked class="form-check-input" id="flexCheckChecked"
-                                               type="checkbox" value="">
-                                        <label class="form-check-label" for="flexCheckChecked">
-                                            Checked checkbox
-                                        </label>
-                                    </div>
+                            </div>
+                            <div class="container">
+                                <div class="form-check">
+                                    <input checked class="form-check-input" id="flexCheckChecked"
+                                           type="checkbox" value="">
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Checked checkbox
+                                    </label>
                                 </div>
-                            </ul>
-                        </div>
+                            </div>
+                        </ul>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
-                        <button class="btn btn-primary" type="button">Save changes</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
+                    <button class="btn btn-primary" type="button">Save changes</button>
                 </div>
             </div>
         </div>
