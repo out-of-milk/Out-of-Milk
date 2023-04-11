@@ -15,7 +15,7 @@
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
+            <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
                 <a th:href="@{/recipe}">
                     <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY=" class="d-block w-100" alt="...">
                 </a>
@@ -31,6 +31,29 @@
             </div>
             <div class="carousel-item">
                 <a th:href="@{/recipe}">
+                    <img src="https://media.istockphoto.com/id/96991311/photo/traditional-caesar-salad.jpg?s=612x612&w=0&k=20&c=r4PiEy8B8FzCibJ6mhj4Bf_X28cQMEmSnC4WocWzBxw=" class="d-block w-100" alt="...">
+                </a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                <div class="carousel-caption d-none d-md-block"></div>
+            </div>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active " data-bs-interval="10000" sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">
+                    <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY=" class="d-block w-100" alt="...">
+                </a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                <div class="carousel-caption d-none d-md-block"></div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000" sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">
+                    <img src="https://media.istockphoto.com/id/491996179/photo/fried-chicken-pile-in-a-basket-on-table.jpg?s=612x612&w=0&k=20&c=hQTkpvCYRx4nJ2KxRgjDpmmbJgDNWj4QBp3aRFKwFTc=" class="d-block w-100" alt="...">
+                </a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                <div class="carousel-caption d-none d-md-block"></div>
+            </div>
+            <div class="carousel-item" sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">
                     <img src="https://media.istockphoto.com/id/96991311/photo/traditional-caesar-salad.jpg?s=612x612&w=0&k=20&c=r4PiEy8B8FzCibJ6mhj4Bf_X28cQMEmSnC4WocWzBxw=" class="d-block w-100" alt="...">
                 </a>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
