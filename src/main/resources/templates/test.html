@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Categories</title>
+  <script>
+    fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+            .then(response => response.json())
+            .then(data => {
+              const categories = data.categories;
+              const categoriesList = document.getElementById('categoriesList');
+              categories.forEach(category => {
+                const categoryItem = document.createElement('li');
+                categoryItem.textContent = category.strCategory;
+                categoriesList.appendChild(categoryItem);
+              });
+            })
+            .catch(error => console.error(error));
+  </script>
+</head>
+<body>
+<h1>Categories</h1>
+<ul id="categoriesList"></ul>
+</body>
+</html>
