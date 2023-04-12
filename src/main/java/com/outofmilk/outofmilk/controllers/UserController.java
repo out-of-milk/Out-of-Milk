@@ -2,10 +2,7 @@ package com.outofmilk.outofmilk.controllers;
 
 import com.outofmilk.outofmilk.models.User;
 
-import com.outofmilk.outofmilk.repositories.IngredientRepository;
 import com.outofmilk.outofmilk.repositories.UserRepository;
-
-
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,23 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @AllArgsConstructor
 @Controller
 public class UserController {
 
     // just testing getting ingredients
-    private final IngredientRepository ingredientDao;
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
-
-    // just testing getting ingredients
-    public UserController(IngredientRepository ingredientDao, UserRepository userDao, PasswordEncoder passwordEncoder) {
-        this.ingredientDao = ingredientDao;
-        this.userDao = userDao;
-        this.passwordEncoder = passwordEncoder;
-    }
 
 
     @GetMapping("/user")
@@ -48,7 +35,6 @@ public class UserController {
         }
 
 
-        model.addAttribute("ingredients", ingredients);
         model.addAttribute("user", user);
 
 
