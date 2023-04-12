@@ -8,16 +8,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @Controller
 public class UserController {
 
-    // just testing getting ingredients
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
 
@@ -28,15 +26,11 @@ public class UserController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
 
-        System.out.println("hey");
-
         if (user == null) {
             return "/login";
         }
 
-
         model.addAttribute("user", user);
-
 
         return "users/profile";
     }
@@ -62,4 +56,27 @@ public class UserController {
         userDao.save(user);
         return "users/login";
     }
+
+    @GetMapping("/user/{id}/dpi")
+    @Transactional
+    public String deletePantryItemFromList(@PathVariable long id, Model model){
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+
+        if (user == null) {
+            return "/login";
+        }
+
+        model.addAttribute("user", user);
+
+        if (loggedInUser.getId() == user.getId()) {
+            userDao.deleteIngredientById(user.getId(), Long.valueOf(id));
+        }
+
+        return "redirect:/user";
+
+    }
+
+
 }

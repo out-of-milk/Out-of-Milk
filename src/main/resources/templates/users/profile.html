@@ -75,7 +75,10 @@
             </div>
 
             <div th:each="ingredient : ${user.getPantryItems()}">
+
                 <p th:text="${ingredient.name}">help</p>
+                <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dpi'" role="button">Delete</a>
+
             </div>
         </div>
 
@@ -109,6 +112,7 @@
             <div th:each="ingredient : ${user.getGroceryItems()}">
 
                 <p th:class="${user.getPantryItems().contains(ingredient)} ? 'green' : 'red'" th:text="${ingredient.name}" >No ingredients in list</p>
+                <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dgl'" role="button">Delete</a>
 
             </div>
         </div>
