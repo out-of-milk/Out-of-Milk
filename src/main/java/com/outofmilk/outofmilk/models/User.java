@@ -27,15 +27,22 @@ public class User {
 
     @Column(nullable = false, length = 100)
     private String password;
-//    private String matchingPassword;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    @ToString.Exclude
-    private List<PantryItem> pantryItems;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name="pantry_items",
+            joinColumns={@JoinColumn(name="user_id")},
+            inverseJoinColumns={@JoinColumn(name="ingredient_id")}
+    )
+    private List<Ingredient> pantryItems;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    @ToString.Exclude
-    private List<GroceryItem> groceryItems;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name="grocery_items",
+            joinColumns={@JoinColumn(name="user_id")},
+            inverseJoinColumns={@JoinColumn(name="ingredient_id")}
+    )
+    private List<Ingredient> groceryItems;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @ToString.Exclude

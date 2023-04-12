@@ -70,6 +70,10 @@
                     </li>
                 </ul>
             </div>
+
+            <div th:each="ingredient : ${user.getPantryItems()}">
+                <p th:text="${ingredient.name}">help</p>
+            </div>
         </div>
 
         <!--grocery -->
@@ -97,6 +101,12 @@
                         </label>
                     </li>
                 </ul>
+            </div>
+
+            <div th:each="ingredient : ${user.getGroceryItems()}">
+
+                <p th:class="${user.getPantryItems().contains(ingredient)} ? 'green' : 'red'" th:text="${ingredient.name}" >No ingredients in list</p>
+
             </div>
         </div>
 
