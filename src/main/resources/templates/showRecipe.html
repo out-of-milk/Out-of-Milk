@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:insert="partial/partials :: head">
-  <meta charset="UTF-8">
-  <title>Recipe</title>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
 </head>
 <body>
 
@@ -44,50 +44,61 @@
 <!--          })-->
 <!--          .catch(error => console.error(error));-->
 <!--</script>-->
-<div class="d-flex justify-content-center">
 <div class="container-fluid content">
-  <div class="card" >
-    <div class="card-body">
-      <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY=" class="card-img-top" alt="pic of food">
-<!--      <div id="displayMealThumb"></div>-->
-      <h5 class="card-title">test Burger</h5>
-        <ul id="displayMealTitle"></ul>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-       <div class="btn-group" role="group" aria-label="Basic example">
-         <button type="button" class="btn btn-primary">❤️</button>
-         <button type="button" class="btn btn-primary"> X </button>
-         <button type="button" class="btn btn-primary">Add all</button>
-       </div>
-     </div>
+    <div class="d-flex justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY="
+                     class="card-img-top" alt="pic of food">
+                <!--      <div id="displayMealThumb"></div>-->
+                <h5 class="card-title">test Burger</h5>
+                <ul id="displayMealTitle"></ul>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary">❤️</button>
+                    <button type="button" class="btn btn-primary"> X</button>
+                    <button type="button" class="btn btn-primary">Add all</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <br>
-<div>
-  <h1>ingredients</h1>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>
-  </ul>
+    <br>
+    <div>
+        <h1>ingredients</h1>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">An item</li>
+            <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+            <li class="list-group-item">A fourth item</li>
+            <li class="list-group-item">And a fifth one</li>
+            <li class="list-group-item">An item</li>
+            <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+            <li class="list-group-item">A fourth item</li>
+            <li class="list-group-item">And a fifth one</li>
+        </ul>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <div class="card border-info mb-3 d-flex justify-content-center" style="max-width: 18rem;">
+            <div class="card-header d-flex justify-content-center">How to cook</div>
+            <div class="card-body ">
+                <h5 class="card-title">Steps</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium
+                    delectus eius et facilis hic quisquam repudiandae rerum tenetur. Accusantium at beatae distinctio
+                    dolore fugit impedit iure temporibus ullam vel voluptatum. Accusantium alias culpa dicta eaque illo
+                    itaque iusto libero nesciunt nihil odit optio pariatur quidem recusandae rem repellat repudiandae
+                    saepe, similique sit sunt, totam ut velit vero, voluptatum. Accusantium aliquid assumenda, explicabo
+                    iusto laudantium libero maiores natus obcaecati quam, quo quos, voluptate. Accusamus accusantium
+                    alias asperiores autem, cum ducimus eligendi esse fugit in laudantium libero magnam nam natus nemo
+                    odio officiis pariatur rem repellat saepe, sapiente similique unde voluptate..</p>
+                <!--      <ul id="displayMeal"></ul>-->
+            </div>
+        </div>
+    </div>
 </div>
-<br>
-<div class="d-flex justify-content-center">
-<div class="card border-info mb-3 d-flex justify-content-center" style="max-width: 18rem;">
-  <div class="card-header d-flex justify-content-center">How to cook</div>
-  <div class="card-body ">
-    <h5 class="card-title">Steps</h5>
-    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium delectus eius et facilis hic quisquam repudiandae rerum tenetur. Accusantium at beatae distinctio dolore fugit impedit iure temporibus ullam vel voluptatum. Accusantium alias culpa dicta eaque illo itaque iusto libero nesciunt nihil odit optio pariatur quidem recusandae rem repellat repudiandae saepe, similique sit sunt, totam ut velit vero, voluptatum. Accusantium aliquid assumenda, explicabo iusto laudantium libero maiores natus obcaecati quam, quo quos, voluptate. Accusamus accusantium alias asperiores autem, cum ducimus eligendi esse fugit in laudantium libero magnam nam natus nemo odio officiis pariatur rem repellat saepe, sapiente similique unde voluptate..</p>
-<!--      <ul id="displayMeal"></ul>-->
-  </div>
-</div>
-</div>
-<footer class="footer"  th:insert="partial/partials :: footer"></footer>
+<footer class="footer" th:insert="partial/partials :: footer"></footer>
+
 </body>
 </html>
