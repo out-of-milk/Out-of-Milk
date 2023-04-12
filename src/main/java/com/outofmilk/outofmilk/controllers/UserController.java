@@ -25,11 +25,13 @@ public class UserController {
             return "/login";
         }
 
+
         model.addAttribute("user", user);
 
         System.out.println("*********************");
         System.out.println(user);
         System.out.println("*********************");
+
 
         return "users/profile";
     }
