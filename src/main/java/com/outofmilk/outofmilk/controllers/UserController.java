@@ -54,7 +54,7 @@ public class UserController {
         user.setUsername(username);
         user.setEmail(email);
 
-        if(password.equals(confirmPass)){
+        if(password.equals(confirmPass) && !password.equals("")){
             String hash = passwordEncoder.encode(password);
             user.setPassword(hash);
         }

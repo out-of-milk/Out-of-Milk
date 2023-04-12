@@ -5,6 +5,80 @@
     <title>Find Recipe</title>
 </head>
 <body>
+<script>
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(response => response.json())
+        .then(data => {
+            const meals = data.meals;
+            const displayMealThumb1 = document.getElementById('displayMealThumb1');
+            meals.forEach(meal => {
+                const img = document.createElement('img');
+                img.src = meal.strMealThumb;
+                displayMealThumb1.appendChild(img);
+            });
+        })
+        .catch(error => console.error(error));
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(response => response.json())
+        .then(data => {
+            const meals = data.meals;
+            const displayMealThumb2 = document.getElementById('displayMealThumb2');
+            meals.forEach(meal => {
+                const img = document.createElement('img');
+                img.src = meal.strMealThumb;
+                displayMealThumb2.appendChild(img);
+            });
+        })
+        .catch(error => console.error(error));
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(response => response.json())
+        .then(data => {
+            const meals = data.meals;
+            const displayMealThumb3 = document.getElementById('displayMealThumb3');
+            meals.forEach(meal => {
+                const img = document.createElement('img');
+                img.src = meal.strMealThumb;
+                displayMealThumb3.appendChild(img);
+            });
+        })
+        .catch(error => console.error(error));
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(response => response.json())
+        .then(data => {
+            const meals = data.meals;
+            const displayMealThumb4 = document.getElementById('displayMealThumb4');
+            meals.forEach(meal => {
+                const img = document.createElement('img');
+                img.src = meal.strMealThumb;
+                displayMealThumb4.appendChild(img);
+            });
+        })
+        .catch(error => console.error(error));
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(response => response.json())
+        .then(data => {
+            const meals = data.meals;
+            const displayMealThumb5 = document.getElementById('displayMealThumb5');
+            meals.forEach(meal => {
+                const img = document.createElement('img');
+                img.src = meal.strMealThumb;
+                displayMealThumb5.appendChild(img);
+            });
+        })
+        .catch(error => console.error(error));
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(response => response.json())
+        .then(data => {
+            const meals = data.meals;
+            const displayMealThumb6 = document.getElementById('displayMealThumb6');
+            meals.forEach(meal => {
+                const img = document.createElement('img');
+                img.src = meal.strMealThumb;
+                displayMealThumb6.appendChild(img);
+            });
+        })
+        .catch(error => console.error(error));
+</script>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="container-fluid content">
     <h2 style="text-align: center;" sec:authorize="!isAuthenticated()">Search for Recipes</h2>
@@ -48,21 +122,21 @@
             <div class="carousel-inner">
                 <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
                     <a th:href="@{/recipe}">
-                        <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY=" class="d-block w-100" alt="...">
+                        <div id="displayMealThumb1"></div>
                     </a>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
                     <a th:href="@{/recipe}">
-                        <img src="https://media.istockphoto.com/id/491996179/photo/fried-chicken-pile-in-a-basket-on-table.jpg?s=612x612&w=0&k=20&c=hQTkpvCYRx4nJ2KxRgjDpmmbJgDNWj4QBp3aRFKwFTc=" class="d-block w-100" alt="...">
+                        <div id="displayMealThumb2"></div>
                     </a>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item">
                     <a th:href="@{/recipe}">
-                        <img src="https://media.istockphoto.com/id/96991311/photo/traditional-caesar-salad.jpg?s=612x612&w=0&k=20&c=r4PiEy8B8FzCibJ6mhj4Bf_X28cQMEmSnC4WocWzBxw=" class="d-block w-100" alt="...">
+                        <div id="displayMealThumb3"></div>
                     </a>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
                     <div class="carousel-caption d-none d-md-block"></div>
@@ -71,21 +145,21 @@
             <div class="carousel-inner">
                 <div class="carousel-item active " data-bs-interval="10000" sec:authorize="!isAuthenticated()">
                     <a th:href="@{/login}">
-                        <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY=" class="d-block w-100" alt="...">
+                        <div id="displayMealThumb4"></div>
                     </a>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item" data-bs-interval="2000" sec:authorize="!isAuthenticated()">
                     <a th:href="@{/login}">
-                        <img src="https://media.istockphoto.com/id/491996179/photo/fried-chicken-pile-in-a-basket-on-table.jpg?s=612x612&w=0&k=20&c=hQTkpvCYRx4nJ2KxRgjDpmmbJgDNWj4QBp3aRFKwFTc=" class="d-block w-100" alt="...">
+                        <div id="displayMealThumb5"></div>
                     </a>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item" sec:authorize="!isAuthenticated()">
                     <a th:href="@{/login}">
-                        <img src="https://media.istockphoto.com/id/96991311/photo/traditional-caesar-salad.jpg?s=612x612&w=0&k=20&c=r4PiEy8B8FzCibJ6mhj4Bf_X28cQMEmSnC4WocWzBxw=" class="d-block w-100" alt="...">
+                        <div id="displayMealThumb6"></div>
                     </a>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
                     <div class="carousel-caption d-none d-md-block"></div>
