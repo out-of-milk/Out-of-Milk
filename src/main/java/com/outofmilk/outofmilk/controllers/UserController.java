@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String showProfileForm(Model model){
+    public String showProfileForm(Model model) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
@@ -51,14 +51,20 @@ public class UserController {
     @PostMapping("/user")
     public String changeUserSettings(
             @RequestParam(name = "username") String username,
-            @RequestParam(name = "email") String email
-    ){
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "password") String password,
+            @RequestParam(name = "confirmPassword") String confirmPass
+    ) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findById(loggedInUser.getId()).get();
 
-
         user.setUsername(username);
         user.setEmail(email);
+
+        if(password.equals(confirmPass)){
+            String hash = passwordEncoder.encode(password);
+            user.setPassword(hash);
+        }
 
         userDao.save(user);
         return "users/login";
