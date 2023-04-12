@@ -12,21 +12,14 @@
     <div class="row">
         <img alt="avatar1" class="rounded-circle col-3" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp"/>
         <div class="col-7">
-            <div class="form-floating" style="width: 30rem;">
-                <input class="form-control  mb-3 g-col-4" id="floatingUsername" placeholder="username" type="username">
-                <label for="floatingUsername" th:text="${user.username}">Username</label>
+            <div class="container" style="width: 30rem;">
+                <h3 th:text="${user.username}"></h3>
             </div>
             <button class="btn btn-primary" data-bs-target="#settings" data-bs-toggle="modal" style="float: right"
                     type="button">Settings
             </button>
-            <div class="form-floating mb-3" style="width: 30rem;">
-                <input class="form-control  mb-3 g-col-4" id="floatingEmail" placeholder="name@example.com"
-                       type="email">
-                <label for="floatingEmail">Email address</label>
-            </div>
-            <div class="form-floating mb-3" style="width: 30rem;">
-                <input class="form-control  mb-3 g-col-4" id="floatingPassword" placeholder="Password" type="password">
-                <label for="floatingPassword">Password</label>
+            <div class="container" style="width: 30rem;">
+                <h6 th:text="${user.email}"></h6>
             </div>
         </div>
     </div>
