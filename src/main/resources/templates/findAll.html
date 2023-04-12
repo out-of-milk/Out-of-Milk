@@ -9,73 +9,109 @@
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(response => response.json())
         .then(data => {
-            const meals = data.meals;
-            const displayMealThumb1 = document.getElementById('displayMealThumb1');
-            meals.forEach(meal => {
-                const img = document.createElement('img');
-                img.src = meal.strMealThumb;
-                displayMealThumb1.appendChild(img);
-            });
+            const meal = data.meals[0];
+            const img = document.createElement('img');
+            img.src = meal.strMealThumb;
+            const displayMealThumb = document.getElementById('displayMealThumb1');
+            displayMealThumb.appendChild(img);
+            const displayMealTitle = document.getElementById('displayMealTitle1');
+            const mealTitle = document.createElement('h2');
+            mealTitle.textContent = meal.strMeal;
+            displayMealTitle.appendChild(mealTitle);
+            const displayMeal = document.getElementById('displayMeal');
+            const mealInstructions = document.createElement('p');
+            mealInstructions.textContent = meal.strInstructions;
+            displayMeal.appendChild(mealInstructions);
         })
         .catch(error => console.error(error));
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(response => response.json())
         .then(data => {
-            const meals = data.meals;
-            const displayMealThumb2 = document.getElementById('displayMealThumb2');
-            meals.forEach(meal => {
-                const img = document.createElement('img');
-                img.src = meal.strMealThumb;
-                displayMealThumb2.appendChild(img);
-            });
+            const meal = data.meals[0];
+            const img = document.createElement('img');
+            img.src = meal.strMealThumb;
+            const displayMealThumb = document.getElementById('displayMealThumb2');
+            displayMealThumb.appendChild(img);
+            const displayMealTitle = document.getElementById('displayMealTitle2');
+            const mealTitle = document.createElement('h2');
+            mealTitle.textContent = meal.strMeal;
+            displayMealTitle.appendChild(mealTitle);
+            const displayMeal = document.getElementById('displayMeal');
+            const mealInstructions = document.createElement('p');
+            mealInstructions.textContent = meal.strInstructions;
+            displayMeal.appendChild(mealInstructions);
         })
         .catch(error => console.error(error));
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(response => response.json())
         .then(data => {
-            const meals = data.meals;
-            const displayMealThumb3 = document.getElementById('displayMealThumb3');
-            meals.forEach(meal => {
-                const img = document.createElement('img');
-                img.src = meal.strMealThumb;
-                displayMealThumb3.appendChild(img);
-            });
+            const meal = data.meals[0];
+            const img = document.createElement('img');
+            img.src = meal.strMealThumb;
+            const displayMealThumb = document.getElementById('displayMealThumb3');
+            displayMealThumb.appendChild(img);
+            const displayMealTitle = document.getElementById('displayMealTitle3');
+            const mealTitle = document.createElement('h2');
+            mealTitle.textContent = meal.strMeal;
+            displayMealTitle.appendChild(mealTitle);
+            const displayMeal = document.getElementById('displayMeal');
+            const mealInstructions = document.createElement('p');
+            mealInstructions.textContent = meal.strInstructions;
+            displayMeal.appendChild(mealInstructions);
         })
         .catch(error => console.error(error));
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(response => response.json())
         .then(data => {
-            const meals = data.meals;
-            const displayMealThumb4 = document.getElementById('displayMealThumb4');
-            meals.forEach(meal => {
-                const img = document.createElement('img');
-                img.src = meal.strMealThumb;
-                displayMealThumb4.appendChild(img);
-            });
+            const meal = data.meals[0];
+            const img = document.createElement('img');
+            img.src = meal.strMealThumb;
+            const displayMealThumb = document.getElementById('displayMealThumb4');
+            displayMealThumb.appendChild(img);
+            const displayMealTitle = document.getElementById('displayMealTitle4');
+            const mealTitle = document.createElement('h2');
+            mealTitle.textContent = meal.strMeal;
+            displayMealTitle.appendChild(mealTitle);
+            const displayMeal = document.getElementById('displayMeal');
+            const mealInstructions = document.createElement('p');
+            mealInstructions.textContent = meal.strInstructions;
+            displayMeal.appendChild(mealInstructions);
         })
         .catch(error => console.error(error));
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(response => response.json())
         .then(data => {
-            const meals = data.meals;
-            const displayMealThumb5 = document.getElementById('displayMealThumb5');
-            meals.forEach(meal => {
-                const img = document.createElement('img');
-                img.src = meal.strMealThumb;
-                displayMealThumb5.appendChild(img);
-            });
+            const meal = data.meals[0];
+            const img = document.createElement('img');
+            img.src = meal.strMealThumb;
+            const displayMealThumb = document.getElementById('displayMealThumb5');
+            displayMealThumb.appendChild(img);
+            const displayMealTitle = document.getElementById('displayMealTitle5');
+            const mealTitle = document.createElement('h2');
+            mealTitle.textContent = meal.strMeal;
+            displayMealTitle.appendChild(mealTitle);
+            const displayMeal = document.getElementById('displayMeal');
+            const mealInstructions = document.createElement('p');
+            mealInstructions.textContent = meal.strInstructions;
+            displayMeal.appendChild(mealInstructions);
         })
         .catch(error => console.error(error));
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(response => response.json())
         .then(data => {
-            const meals = data.meals;
-            const displayMealThumb6 = document.getElementById('displayMealThumb6');
-            meals.forEach(meal => {
-                const img = document.createElement('img');
-                img.src = meal.strMealThumb;
-                displayMealThumb6.appendChild(img);
-            });
+            const meal = data.meals[0];
+            const img = document.createElement('img');
+            img.src = meal.strMealThumb;
+            const displayMealThumb = document.getElementById('displayMealThumb6');
+            displayMealThumb.appendChild(img);
+            const displayMealTitle = document.getElementById('displayMealTitle6');
+            const mealTitle = document.createElement('h2');
+            mealTitle.textContent = meal.strMeal;
+            displayMealTitle.appendChild(mealTitle);
+            const displayMeal = document.getElementById('displayMeal');
+            const mealInstructions = document.createElement('p');
+            mealInstructions.textContent = meal.strInstructions;
+            displayMeal.appendChild(mealInstructions);
         })
         .catch(error => console.error(error));
 </script>
@@ -125,21 +161,21 @@
                     <a th:href="@{/recipe}">
                         <div id="displayMealThumb1"></div>
                     </a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                    <h2 id="displayMealTitle1"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
                     <a th:href="@{/recipe}">
                         <div id="displayMealThumb2"></div>
                     </a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                    <h2 id="displayMealTitle2"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item">
                     <a th:href="@{/recipe}">
                         <div id="displayMealThumb3"></div>
                     </a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                    <h2 id="displayMealTitle3"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
             </div>
@@ -148,21 +184,21 @@
                     <a th:href="@{/login}">
                         <div id="displayMealThumb4"></div>
                     </a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                    <h2 id="displayMealTitle4"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item" data-bs-interval="2000" sec:authorize="!isAuthenticated()">
                     <a th:href="@{/login}">
                         <div id="displayMealThumb5"></div>
                     </a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                    <h2 id="displayMealTitle5"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item" sec:authorize="!isAuthenticated()">
                     <a th:href="@{/login}">
                         <div id="displayMealThumb6"></div>
                     </a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                    <h2 id="displayMealTitle6"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
             </div>
@@ -179,7 +215,7 @@
 </div>
 
 <br>
-<p class="fw-lighter">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus ad aliquid architecto autem corporis cumque deserunt dignissimos eligendi est et eveniet ipsa minus molestias nesciunt officiis omnis optio perspiciatis provident quasi quis quos repudiandae sed tempora ullam vel, velit veritatis vitae voluptate voluptatibus. Adipisci cum dolor et fugiat iste laboriosam molestiae officia, qui similique. Consequatur consequuntur culpa dolor dolorum ducimus eius eos ex illo illum in labore libero minus, nobis odio possimus provident quasi sunt tempora tempore temporibus tenetur totam voluptas! Animi architecto assumenda at culpa cupiditate eligendi error eveniet fuga fugiat illo inventore ipsam ipsum, itaque laboriosam magnam magni maiores nam, necessitatibus nobis nostrum obcaecati provident quam quas sed vel. Aliquid, non, tempora. Aliquam error facilis sunt? Aliquam.</p>
+<p class="fw-lighter">Outofmilk is a Grocery List is a website that helps you make your grocery list in a more organized and convenient way. It allows you to create a list and categorize your items. You can also search for recipes and add the ingredients needed for those recipes directly to your list. If you have some ingredients at home already, you can also add them to a pantry tracker to help you avoid buying duplicates. The website may also have some extra features, like showing pricing and nutrition information, letting users share their own recipes, and helping users find stores nearby.</p>
 <footer th:insert="partial/partials :: footer"></footer>
 </body>
 </html>
