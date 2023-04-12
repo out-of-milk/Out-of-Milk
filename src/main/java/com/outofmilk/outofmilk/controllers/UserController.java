@@ -1,9 +1,13 @@
 package com.outofmilk.outofmilk.controllers;
 
-import com.outofmilk.outofmilk.models.Ingredient;
 import com.outofmilk.outofmilk.models.User;
+
 import com.outofmilk.outofmilk.repositories.IngredientRepository;
 import com.outofmilk.outofmilk.repositories.UserRepository;
+
+
+import lombok.AllArgsConstructor;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Controller
 public class UserController {
 
@@ -29,6 +34,7 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
+
     @GetMapping("/user")
     public String showProfileForm(Model model) {
 
@@ -36,14 +42,15 @@ public class UserController {
         User user = userDao.getReferenceById(loggedInUser.getId());
 
         System.out.println("hey");
+
         if (user == null) {
             return "/login";
         }
 
-        List<Ingredient> ingredients = ingredientDao.findAll();
 
         model.addAttribute("ingredients", ingredients);
         model.addAttribute("user", user);
+
 
         return "users/profile";
     }
