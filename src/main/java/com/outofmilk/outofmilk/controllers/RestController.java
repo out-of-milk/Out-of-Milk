@@ -1,5 +1,6 @@
 package com.outofmilk.outofmilk.controllers;
 
+import com.google.gson.*;
 import com.outofmilk.outofmilk.models.Meal;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -35,10 +36,21 @@ public class RestController {
             jsonResponse = new String(connection.getInputStream().readAllBytes());
             System.out.println("HTTP response code is " + connection.getResponseCode());
             System.out.println(jsonResponse);
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            jsonResponse = gson.toJson(jsonResponse);
+            System.out.println(jsonResponse);
+
+//            JsonParser parser = new JsonParser();
+//            JsonElement rootNode = parser.parse(jsonResponse);
+//            if (rootNode.isJsonObject()) {
+//                JsonObject details = rootNode.getAsJsonObject();
+//                JsonElement nameNode = details.get("strMeal");
+//                System.out.println("Name/strMeal: " +nameNode.getAsString());
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         return jsonResponse;
 
