@@ -1,58 +1,111 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
     <title>Recipe</title>
 </head>
 <body>
-<nav th:insert="partial/partials :: navbar"></nav>
-<!--<script>-->
-<!--  fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')-->
-<!--          .then(response => response.json())-->
-<!--          .then(data => {-->
-<!--            const meals = data.meals;-->
-<!--            const displayMeal = document.getElementById('displayMeal');-->
-<!--            meals.forEach(meal => {-->
-<!--              const mealsItem = document.createElement('li');-->
-<!--              mealsItem.textContent = meal.strInstructions;-->
-<!--              displayMeal.appendChild(mealsItem);-->
-<!--            });-->
-<!--          })-->
-<!--          .catch(error => console.error(error));-->
-<!--  fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')-->
-<!--          .then(response => response.json())-->
-<!--          .then(data => {-->
-<!--            const meals = data.meals;-->
-<!--            const displayMeal = document.getElementById('displayMealTitle');-->
-<!--            meals.forEach(meal => {-->
-<!--              const mealsItem = document.createElement('li');-->
-<!--              mealsItem.textContent = meal.strMeal;-->
-<!--              displayMeal.appendChild(mealsItem);-->
-<!--            });-->
-<!--          })-->
-<!--          .catch(error => console.error(error));-->
-<!--  fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')-->
-<!--          .then(response => response.json())-->
-<!--          .then(data => {-->
-<!--            const meals = data.meals;-->
-<!--            const displayMealThumb = document.getElementById('displayMealThumb');-->
-<!--            meals.forEach(meal => {-->
-<!--              const img = document.createElement('img');-->
-<!--              img.src = meal.strMealThumb;-->
-<!--              displayMealThumb.appendChild(img);-->
-<!--            });-->
-<!--          })-->
-<!--          .catch(error => console.error(error));-->
-<!--</script>-->
+
+<script>
+<!--    ingredients-->
+const displayMeal = document.getElementById('displayMealIngredients');
+
+    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
+        .then(response => response.json())
+        .then(data => {
+            const meals = data.meals;
+            const displayMeal = document.getElementById('displayMealIngredients');
+            let arrayList = [];
+            meals.forEach(meal => {
+                //put ingredients into list
+                const mealsItem = document.createElement('li');
+                for (let i = 0; i < 21; i++) {
+                    mealsItem.textContent = meal.strIngredient + i;
+                    console.log(meal.strIngredient + i);
+                    //if item is null don't append
+                    if((meal.strIngredient + i) !== null){
+                        arrayList.push(mealsItem.textContent);
+                    }
+                }
+                //cycle through list and append each item
+                displayMeal.appendChild(arrayList);
+
+            });
+
+
+
+            console.log(arrayList);
+            mealsItem.textContent = meal.strMeal;
+            displayMeal.appendChild(mealsItem);
+            // data.forEach(meal => {
+            //     listEl.insertAdjacentHTML('beforeend', `<li>${meal.strIngredient1}</li>`)
+            // })
+        })
+        .catch(error => console.error(error));
+  // fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
+  //         .then(response => response.json())
+  //         .then(data => {
+  //           const meals = data.meals;
+  //           const displayMeal = document.getElementById('displayMealIngredients');
+  //           meals.forEach(meal => {
+  //         const mealsItem = document.createElement('li');
+  //             mealsItem1.textContent = meal.strIngredient1;
+  //             mealsItem2.textContent = meal.strIngredient2;
+  //             displayMeal.appendChild(mealsItem);
+  //           });
+  //         })
+  //         .catch(error => console.error(error));
+  //meal title/name
+  fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
+          .then(response => response.json())
+          .then(data => {
+            const meals = data.meals;
+            const displayMeal = document.getElementById('displayMealTitle');
+            meals.forEach(meal => {
+              const mealsItem = document.createElement('h5');
+              mealsItem.textContent = meal.strMeal;
+              displayMeal.appendChild(mealsItem);
+            });
+          })
+          .catch(error => console.error(error));
+  //meal pic
+  fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
+          .then(response => response.json())
+          .then(data => {
+            const meals = data.meals;
+            const displayMealThumb = document.getElementById('displayMealThumb');
+            meals.forEach(meal => {
+              const img = document.createElement('img');
+              img.src = meal.strMealThumb;
+              displayMealThumb.appendChild(img);
+            });
+          })
+          .catch(error => console.error(error));
+    //meal instructions
+    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
+        .then(response => response.json())
+        .then(data => {
+            const meals = data.meals;
+            const displayMeal = document.getElementById('displayMealInstructions');
+            meals.forEach(meal => {
+                const mealsItem = document.createElement('p');
+                mealsItem.textContent = meal.strInstructions;
+                displayMeal.appendChild(mealsItem);
+            });
+        })
+        .catch(error => console.error(error));
+
+</script>
+
 <div class="container-fluid content">
     <div class="d-flex justify-content-center">
         <div class="card">
             <div class="card-body">
-                <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY="
-                     class="card-img-top" alt="pic of food">
-                <!--      <div id="displayMealThumb"></div>-->
-                <h5 class="card-title">test Burger</h5>
-                <ul id="displayMealTitle"></ul>
+<!--                <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY="-->
+<!--                     class="card-img-top" alt="pic of food">-->
+                <div id="displayMealThumb"></div>
+<!--                <h5 class="card-title">test Burger</h5>-->
+                <h5 id="displayMealTitle"></h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -67,38 +120,27 @@
     <div>
         <h1>ingredients</h1>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-            <li class="list-group-item">A fourth item</li>
-            <li class="list-group-item">And a fifth one</li>
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-            <li class="list-group-item">A fourth item</li>
-            <li class="list-group-item">And a fifth one</li>
+            <li class="list-group-item" id="displayMealIngredients"></li>
+<!--            <li class="list-group-item">A fourth item</li>-->
+<!--            <li class="list-group-item">And a fifth one</li>-->
+<!--            <li class="list-group-item">An item</li>-->
+<!--            <li class="list-group-item">A second item</li>-->
+<!--            <li class="list-group-item">A third item</li>-->
+<!--            <li class="list-group-item">A fourth item</li>-->
+<!--            <li class="list-group-item">And a fifth one</li>-->
         </ul>
     </div>
     <br>
     <div class="d-flex justify-content-center">
-        <div class="card border-info mb-3 d-flex justify-content-center" style="max-width: 18rem;">
+        <div class="card border-info mb-3 d-flex justify-content-center" style="width: 70%;">
             <div class="card-header d-flex justify-content-center">How to cook</div>
-            <div class="card-body ">
+            <div class="card-body">
                 <h5 class="card-title">Steps</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium
-                    delectus eius et facilis hic quisquam repudiandae rerum tenetur. Accusantium at beatae distinctio
-                    dolore fugit impedit iure temporibus ullam vel voluptatum. Accusantium alias culpa dicta eaque illo
-                    itaque iusto libero nesciunt nihil odit optio pariatur quidem recusandae rem repellat repudiandae
-                    saepe, similique sit sunt, totam ut velit vero, voluptatum. Accusantium aliquid assumenda, explicabo
-                    iusto laudantium libero maiores natus obcaecati quam, quo quos, voluptate. Accusamus accusantium
-                    alias asperiores autem, cum ducimus eligendi esse fugit in laudantium libero magnam nam natus nemo
-                    odio officiis pariatur rem repellat saepe, sapiente similique unde voluptate..</p>
-                <!--      <ul id="displayMeal"></ul>-->
+                <p class="card-text" id="displayMealInstructions"></p>
             </div>
         </div>
     </div>
 </div>
 <footer class="footer" th:insert="partial/partials :: footer"></footer>
-
 </body>
 </html>
