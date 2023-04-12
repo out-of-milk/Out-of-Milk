@@ -3,42 +3,62 @@
 <head>
   <title>Categories</title>
   <script>
-    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-            .then(response => response.json())
-            .then(data => {
-              const meals = data.meals;
-              const displayMeal = document.getElementById('displayMeal');
-              meals.forEach(meal => {
-                const mealsItem = document.createElement('li');
-                mealsItem.textContent = meal.strInstructions;
-                displayMeal.appendChild(mealsItem);
-              });
-            })
-            .catch(error => console.error(error));
-    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-            .then(response => response.json())
-            .then(data => {
-              const meals = data.meals;
-              const displayMeal = document.getElementById('displayMealTitle');
-              meals.forEach(meal => {
-                const mealsItem = document.createElement('li');
-                mealsItem.textContent = meal.strMeal;
-                displayMeal.appendChild(mealsItem);
-              });
-            })
-            .catch(error => console.error(error));
-    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-            .then(response => response.json())
-            .then(data => {
-              const meals = data.meals;
-              const displayMealThumb = document.getElementById('displayMealThumb');
-              meals.forEach(meal => {
+      // fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
+      //         .then(response => response.json())
+      //         .then(data => {
+      //           const meals = data.meals;
+      //           const displayMeal = document.getElementById('displayMeal');
+      //           meals.forEach(meal => {
+      //             const mealsItem = document.createElement('li');
+      //             mealsItem.textContent = meal.strInstructions;
+      //             displayMeal.appendChild(mealsItem);
+      //           });
+      //         })
+      //         .catch(error => console.error(error));
+      // fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
+      //         .then(response => response.json())
+      //         .then(data => {
+      //           const meals = data.meals;
+      //           const displayMeal = document.getElementById('displayMealTitle');
+      //           meals.forEach(meal => {
+      //             const mealsItem = document.createElement('li');
+      //             mealsItem.textContent = meal.strMeal;
+      //             displayMeal.appendChild(mealsItem);
+      //           });
+      //         })
+      //         .catch(error => console.error(error));
+      // fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
+      //         .then(response => response.json())
+      //         .then(data => {
+      //           const meals = data.meals;
+      //           const displayMealThumb = document.getElementById('displayMealThumb');
+      //           meals.forEach(meal => {
+      //             const img = document.createElement('img');
+      //             img.src = meal.strMealThumb;
+      //             displayMealThumb.appendChild(img);
+      //           });
+      //         })
+      //         .catch(error => console.error(error));
+      //-------------------------------------------------------------------//
+      fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+              .then(response => response.json())
+              .then(data => {
+                const meal = data.meals[0];
                 const img = document.createElement('img');
                 img.src = meal.strMealThumb;
+                const displayMealThumb = document.getElementById('displayMealThumb');
                 displayMealThumb.appendChild(img);
-              });
-            })
-            .catch(error => console.error(error));
+                const displayMealTitle = document.getElementById('displayMealTitle');
+                const mealTitle = document.createElement('h2');
+                mealTitle.textContent = meal.strMeal;
+                displayMealTitle.appendChild(mealTitle);
+                const displayMeal = document.getElementById('displayMeal');
+                const mealInstructions = document.createElement('p');
+                mealInstructions.textContent = meal.strInstructions;
+                displayMeal.appendChild(mealInstructions);
+              })
+              .catch(error => console.error(error));
+
   </script>
 </head>
 <body>
