@@ -3,10 +3,14 @@ package com.outofmilk.outofmilk.controllers;
 import com.outofmilk.outofmilk.models.Ingredient;
 import com.outofmilk.outofmilk.models.User;
 import com.outofmilk.outofmilk.repositories.IngredientRepository;
+import com.outofmilk.outofmilk.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -15,10 +19,12 @@ public class UserController {
 
     // just testing getting ingredients
     private final IngredientRepository ingredientDao;
+    private final UserRepository userDao;
 
     // just testing getting ingredients
-    public UserController(IngredientRepository ingredientDao) {
+    public UserController(IngredientRepository ingredientDao, UserRepository userDao) {
         this.ingredientDao = ingredientDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/user")
@@ -35,6 +41,20 @@ public class UserController {
         model.addAttribute("ingredients", ingredients);
         model.addAttribute("user", new User());
 
+        return "users/profile";
+    }
+
+    @PostMapping("/user")
+    public String changeUserSettings(
+            @RequestParam(name = "username") String username
+    ){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findById(loggedInUser.getId()).get();
+
+
+        user.setUsername(username);
+
+        userDao.save(user);
         return "users/profile";
     }
 }

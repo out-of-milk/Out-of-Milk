@@ -175,44 +175,15 @@
                     <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="name">Change Name:</span>
-                        <input class="form-control" placeholder="name" type="text">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="email">Change Email: </span>
-                        <input class="form-control" placeholder="email" type="text">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="password">Change Password: </span>
-                        <input class="form-control" placeholder="password" type="text">
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                                type="button">
-                            Blocked Recipes
-                        </button>
-                        <ul class="dropdown-menu">
-                            <div class="container">
-                                <div class="form-check">
-                                    <input class="form-check-input" id="flexCheckDefault" type="checkbox"
-                                           value="">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Default checkbox
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="container">
-                                <div class="form-check">
-                                    <input checked class="form-check-input" id="flexCheckChecked"
-                                           type="checkbox" value="">
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Checked checkbox
-                                    </label>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
+                    <form th:action="@{/user}" th:method="post" th:object="${user}">
+                        Change Username:
+                        <input type="text" name="username" id="username" class="field" />
+                        <br />
+                        Change Email:
+                        <input th:field="*{email}" th:placeholder="*{email}" />
+                        <br />
+                        <input id="submit" name="submit" type="submit" />
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
