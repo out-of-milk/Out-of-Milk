@@ -32,7 +32,9 @@ public class UserController {
     @GetMapping("/user")
     public String showProfileForm(Model model){
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+
         System.out.println("hey");
         if (user == null) {
             return "/login";
@@ -41,7 +43,7 @@ public class UserController {
         List<Ingredient> ingredients = ingredientDao.findAll();
 
         model.addAttribute("ingredients", ingredients);
-        model.addAttribute("user", new User());
+        model.addAttribute("user", user);
 
         return "users/profile";
     }

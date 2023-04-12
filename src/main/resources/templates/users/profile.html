@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -16,7 +16,9 @@
                 <input class="form-control  mb-3 g-col-4" id="floatingUsername" placeholder="username" type="username">
                 <label for="floatingUsername" th:text="${user.username}">Username</label>
             </div>
-            <button class="btn btn-primary" style="float: right" data-bs-target="#settings" data-bs-toggle="modal" type="button">Settings</button>
+            <button class="btn btn-primary" data-bs-target="#settings" data-bs-toggle="modal" style="float: right"
+                    type="button">Settings
+            </button>
             <div class="form-floating mb-3" style="width: 30rem;">
                 <input class="form-control  mb-3 g-col-4" id="floatingEmail" placeholder="name@example.com"
                        type="email">
@@ -48,7 +50,9 @@
         <!--        pantry-->
         <div aria-labelledby="nav-pantry-tab" class="tab-pane fade show active" id="nav-pantry" role="tabpanel">
             <div class="d-flex justify-content-between">
-                <button class="btn btn-primary" style="float: right" data-bs-target="#addItem" data-bs-toggle="modal" type="button">Add New Item</button>
+                <button class="btn btn-primary" data-bs-target="#addItem" data-bs-toggle="modal" style="float: right"
+                        type="button">Add New Item
+                </button>
                 <input class="btn btn-primary" type="button" value="Delete Item">
             </div>
             <h4 style="text-align: center;">Ingredients</h4>
@@ -74,7 +78,9 @@
         <!--grocery -->
         <div aria-labelledby="nav-grocery-tab" class="tab-pane fade" id="nav-grocery" role="tabpanel">
             <div class="d-flex justify-content-between">
-                <button class="btn btn-primary" style="float: right" data-bs-target="#addItem" data-bs-toggle="modal" type="button">Add New Item</button>
+                <button class="btn btn-primary" data-bs-target="#addItem" data-bs-toggle="modal" style="float: right"
+                        type="button">Add New Item
+                </button>
                 <input class="btn btn-primary" type="button" value="Delete Item">
             </div>
             <h4 style="text-align: center;">Ingredients</h4>
@@ -101,7 +107,8 @@
         <div aria-labelledby="nav-recipe-tab" class="tab-pane fade" id="nav-recipe" role="tabpanel">
             <div class="d-flex justify-content-between row">
                 <form class="d-flex col-6">
-                    <input aria-label="Search" class="form-control" placeholder="Search" style="width: 20rem; height:4rem;"
+                    <input aria-label="Search" class="form-control" placeholder="Search"
+                           style="width: 20rem; height:4rem;"
                            type="search">
                     <button class="btn btn-outline-success" style="height:4rem;" type="submit">Search</button>
                 </form>
@@ -127,49 +134,60 @@
             </div>
             <h4 style="text-align: center;">Favorite Recipe</h4>
             <hr>
-            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselExampleDark">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button aria-current="true" aria-label="Slide 1" class="active" data-bs-slide-to="0"
+                            data-bs-target="#carouselExampleDark" type="button"></button>
+                    <button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carouselExampleDark"
+                            type="button"></button>
+                    <button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carouselExampleDark"
+                            type="button"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
                         <a th:href="@{/recipe}">
-                            <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY=" class="d-block w-100" alt="...">
+                            <img alt="..."
+                                 class="d-block w-100" src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY=">
                         </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique.
+                            Laudantium.</p>
                         <div class="carousel-caption d-none d-md-block"></div>
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
                         <a th:href="@{/recipe}">
-                            <img src="https://media.istockphoto.com/id/491996179/photo/fried-chicken-pile-in-a-basket-on-table.jpg?s=612x612&w=0&k=20&c=hQTkpvCYRx4nJ2KxRgjDpmmbJgDNWj4QBp3aRFKwFTc=" class="d-block w-100" alt="...">
+                            <img alt="..."
+                                 class="d-block w-100" src="https://media.istockphoto.com/id/491996179/photo/fried-chicken-pile-in-a-basket-on-table.jpg?s=612x612&w=0&k=20&c=hQTkpvCYRx4nJ2KxRgjDpmmbJgDNWj4QBp3aRFKwFTc=">
                         </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique.
+                            Laudantium.</p>
                         <div class="carousel-caption d-none d-md-block"></div>
                     </div>
                     <div class="carousel-item">
                         <a th:href="@{/recipe}">
-                            <img src="https://media.istockphoto.com/id/96991311/photo/traditional-caesar-salad.jpg?s=612x612&w=0&k=20&c=r4PiEy8B8FzCibJ6mhj4Bf_X28cQMEmSnC4WocWzBxw=" class="d-block w-100" alt="...">
+                            <img alt="..."
+                                 class="d-block w-100" src="https://media.istockphoto.com/id/96991311/photo/traditional-caesar-salad.jpg?s=612x612&w=0&k=20&c=r4PiEy8B8FzCibJ6mhj4Bf_X28cQMEmSnC4WocWzBxw=">
                         </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique.
+                            Laudantium.</p>
                         <div class="carousel-caption d-none d-md-block"></div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleDark"
+                        type="button">
+                    <span aria-hidden="true" class="carousel-control-prev-icon"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselExampleDark"
+                        type="button">
+                    <span aria-hidden="true" class="carousel-control-next-icon"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
         <!-- Settings Modal -->
-    <div class="modal fade" id="settings" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <div class="modal fade" id="settings" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="settingsLabel">Settings</h1>
                         <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
@@ -177,42 +195,44 @@
                     <div class="modal-body">
                         <form th:action="@{/user}" th:method="post" th:object="${user}">
                             <div class="form-floating" style="width: 30rem;">
-                                <input class="form-control mb-3 g-col-4 field" id="username" name="username" th:value="*{username}" type="text">
+                                <input class="form-control mb-3 g-col-4 field" id="username" name="username"
+                                       th:value="*{username}" type="text">
                                 <label for="username">Change Username:</label>
                             </div>
-                            <br />
+                            <br/>
                             <div class="form-floating" style="width: 30rem;">
-                                <input class="form-control mb-3 g-col-4 field" id="email" name="email" th:value="*{email}" type="text">
+                                <input class="form-control mb-3 g-col-4 field" id="email" name="email"
+                                       th:value="*{email}" type="text">
                                 <label for="username">Change Email:</label>
                             </div>
-                            <br />
-                            <input class="form-control" type="submit" />
+                            <br/>
+                            <input class="form-control" type="submit"/>
                         </form>
                     </div>
-            </div>
-        </div>
-    </div>
-    <!-- Add item Modal -->
-    <div class="modal fade" id="addItem" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="addItemLabel">Add Item</h1>
-                    <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <ul th:each="ingredient : ${ingredients}">
-                        <li><input type="checkbox" th:text="*{ingredient.name}"></li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
-                    <button class="btn btn-primary" type="button">Add</button>
                 </div>
             </div>
         </div>
+        <!-- Add item Modal -->
+        <div class="modal fade" id="addItem" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="addItemLabel">Add Item</h1>
+                        <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul th:each="ingredient : ${ingredients}">
+                            <li><input th:text="*{ingredient.name}" type="checkbox"></li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
+                        <button class="btn btn-primary" type="button">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 </div>
 <footer th:insert="partial/partials :: footer"></footer>
 <script crossorigin="anonymous"
