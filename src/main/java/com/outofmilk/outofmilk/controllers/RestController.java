@@ -135,16 +135,6 @@ public class RestController {
                 }
                 String strMeasure1 = mealObject.get("strMeasure1").getAsString();
 
-                System.out.println(idMeal);
-                System.out.println(strMeal);
-                System.out.println(strCategory);
-                System.out.println(strInstructions);
-                System.out.println(strMealThumb);
-//                System.out.println(strIngredient1);
-//                System.out.println(strIngredient2);
-//                System.out.println(strIngredient3);
-//                System.out.println(strIngredient20);
-                System.out.println(strMeasure1);
                 model.addAttribute("idmeal", idMeal);
                 model.addAttribute("strMeal", strMeal);
                 model.addAttribute("strCategory", strCategory);
