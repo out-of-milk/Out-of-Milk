@@ -1,6 +1,6 @@
 package com.outofmilk.outofmilk;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import com.outofmilk.outofmilk.models.Meal;
 import com.outofmilk.outofmilk.models.Simple;
 import net.minidev.json.JSONUtil;
@@ -277,7 +277,15 @@ public class gsonTest {
                   }
                 """;
         Gson gson = new Gson();
-        Meal[] meals = gson.fromJson(json, Meal[].class);
+        JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
+        System.out.println(jsonObject);
+        JsonArray mealsArray = JsonParser.parseString(json).getAsJsonObject().getAsJsonArray("meals");
+
+        for (JsonElement mealElement : mealsArray) {
+            JsonObject mealObject = mealElement.getAsJsonObject();
+            String idMeal = mealObject.get("idMeal").getAsString();
+            System.out.println(idMeal);
+        }
     }
 
 }

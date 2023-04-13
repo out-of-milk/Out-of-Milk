@@ -15,13 +15,13 @@ class OutOfMilkApplicationTests {
     void contextLoads() {
     }
 
-    @Test
-    public void deletePantryItem() {
-        userDao.deleteIngredientById(2L, 10L);
-    }
-    @Test
-    public void deletePantryItemId() {
-        userDao.deletePantryIngredientById(47L);
-    }
+//    @Test
+//    public void deletePantryItem() {
+//        userDao.deleteIngredientById(2L, 10L);
+//    }
+//    @Test
+//    public void deletePantryItemId() {
+//        userDao.deletePantryIngredientById(47L);
+//    }
 
 }
