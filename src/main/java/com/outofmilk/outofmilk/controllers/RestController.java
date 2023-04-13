@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.swing.text.html.ImageView;
+import java.awt.*;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -47,6 +49,13 @@ public class RestController {
                 String strCategory = mealObject.get("strCategory").getAsString();
                 String strInstructions = mealObject.get("strInstructions").getAsString();
                 String strMealThumb = mealObject.get("strMealThumb").getAsString();
+
+//                Image image = new Image(strMealThumb);
+//                ImageView imageView = new ImageView();
+//                ImageView.setImage(strMealThumb);
+//                VBox vBox = VBox (imageView);
+
+
 
                 String strIngredient1 = "";
                 if(mealObject.get("strIngredient1").isJsonNull() == false){
