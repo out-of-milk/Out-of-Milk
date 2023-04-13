@@ -70,7 +70,7 @@
             <div th:each="ingredient : ${user.getPantryItems()}">
 
                 <p th:text="${ingredient.name}">help</p>
-                <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dpi'" role="button">Delete</a>
+                <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dpi'" role="button">Remove</a>
 
             </div>
         </div>
@@ -105,7 +105,7 @@
             <div th:each="ingredient : ${user.getGroceryItems()}">
 
                 <p th:class="${user.getPantryItems().contains(ingredient)} ? 'green' : 'red'" th:text="${ingredient.name}" >No ingredients in list</p>
-                <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dgl'" role="button">Delete</a>
+                <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dgl'" role="button">Remove</a>
 
             </div>
         </div>
@@ -151,32 +151,14 @@
                             type="button"></button>
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
-                        <a th:href="@{/recipe}">
-                            <img alt="..."
-                                 class="d-block w-100" src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY=">
-                        </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique.
-                            Laudantium.</p>
-                        <div class="carousel-caption d-none d-md-block"></div>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="2000">
-                        <a th:href="@{/recipe}">
-                            <img alt="..."
-                                 class="d-block w-100" src="https://media.istockphoto.com/id/491996179/photo/fried-chicken-pile-in-a-basket-on-table.jpg?s=612x612&w=0&k=20&c=hQTkpvCYRx4nJ2KxRgjDpmmbJgDNWj4QBp3aRFKwFTc=">
-                        </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique.
-                            Laudantium.</p>
-                        <div class="carousel-caption d-none d-md-block"></div>
-                    </div>
-                    <div class="carousel-item">
-                        <a th:href="@{/recipe}">
-                            <img alt="..."
-                                 class="d-block w-100" src="https://media.istockphoto.com/id/96991311/photo/traditional-caesar-salad.jpg?s=612x612&w=0&k=20&c=r4PiEy8B8FzCibJ6mhj4Bf_X28cQMEmSnC4WocWzBxw=">
-                        </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique.
-                            Laudantium.</p>
-                        <div class="carousel-caption d-none d-md-block"></div>
+                    <div th:each="recipePreferenceFavorite : ${recipePreferencesFavorites}">
+                        <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
+                            <p th:text="${recipePreferenceFavorite.getRecipe_name()}"></p>
+                            <a th:href="@{/recipe}">
+                                <img alt="..." class="d-block w-100" th:src="${recipePreferenceFavorite.getRecipe_image()}">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block"></div>
+                        </div>
                     </div>
                 </div>
                 <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleDark"
@@ -222,6 +204,14 @@
                                 <label for="password">Confirm Password:</label>
                             </div>
                             <br/>
+
+                            <ul class="no-bullets">
+                                <li th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
+                                    <p th:text="${recipePreferenceHidden.getRecipe_name()}"></p>
+                                    <a class="btn btn-danger" th:href="@{/user/} + ${recipePreferenceHidden.recipe_id} + '/dhr'" role="button">Remove</a>
+                                </li>
+                            </ul>
+
                             <input class="form-control" type="submit"/>
                         </form>
                     </div>
