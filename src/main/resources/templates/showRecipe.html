@@ -12,7 +12,7 @@
             <div class="card-body">
 <!--                <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY="-->
 <!--                     class="card-img-top" alt="pic of food">-->
-                <div id="displayMealThumb" th:text="${strMealThumb}"></div>
+                <img id="displayMealThumb" th:src="${strMealThumb}">
                 <h5 class="card-title" th:text="${strMeal}">title/name</h5>
                 <p th:text="${idmeal}"></p>
                 <p class="card-text" th:text="${strCategory}">recipe category</p>
