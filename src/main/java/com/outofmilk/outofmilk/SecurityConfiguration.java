@@ -49,8 +49,10 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/users/profile", "/user" // only authenticated users can create posts
-                        // only authenticated users can edit posts
+                        "/users/profile", // only authenticated users can create posts
+                        "/user", // only authenticated users can view user profile
+                        "/user/{id}/dpi", // only authenticated users can remove ingredients
+                        "/user/{id}/dgl" // only authenticated users can remove ingredients
                 )
                 .authenticated()
 
