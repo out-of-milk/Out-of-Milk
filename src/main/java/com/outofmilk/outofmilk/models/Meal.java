@@ -4,6 +4,8 @@ package com.outofmilk.outofmilk.models;
 import jakarta.persistence.Entity;
 import lombok.*;
 
+import java.util.ArrayList;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
