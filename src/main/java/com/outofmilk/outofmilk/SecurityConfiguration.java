@@ -49,7 +49,7 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/users/profile", "/user" // only authenticated users can create posts
+                        "/users/profile","/user"// only authenticated users can create posts
                         // only authenticated users can edit posts
                 )
                 .authenticated()
@@ -57,7 +57,7 @@ public class SecurityConfiguration {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/recipe", "/recipe/{id}", "/login", "/sign-up", "/css/**", "/images/**", "/js/**") // anyone can see the home and the posts pages
+                .requestMatchers("/", "/recipe","/recipe/{id}", "/login", "/sign-up", "/css/**", "/images/**", "/js/**","/AboutUs") // anyone can see the home and the posts pages
                 .permitAll()
         ;
         return http.build();
