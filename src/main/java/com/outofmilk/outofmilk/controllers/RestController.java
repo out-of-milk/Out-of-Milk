@@ -135,7 +135,87 @@ public class RestController {
                 if(mealObject.get("strIngredient20").isJsonNull() == false){
                     strIngredient20 = mealObject.get("strIngredient20").getAsString();
                 }
-                String strMeasure1 = mealObject.get("strMeasure1").getAsString();
+
+                String strMeasure1 = "";
+                if(mealObject.get("strMeasure1").isJsonNull() == false){
+                    strMeasure1 = mealObject.get("strMeasure1").getAsString();
+                }
+                String strMeasure2 = "";
+                if(mealObject.get("strMeasure2").isJsonNull() == false){
+                    strMeasure2 = mealObject.get("strMeasure2").getAsString();
+                }
+                String strMeasure3 = "";
+                if(mealObject.get("strMeasure3").isJsonNull() == false){
+                    strMeasure3 = mealObject.get("strMeasure3").getAsString();
+                }
+                String strMeasure4 = "";
+                if(mealObject.get("strMeasure4").isJsonNull() == false){
+                    strMeasure4 = mealObject.get("strMeasure4").getAsString();
+                }
+                String strMeasure5 = "";
+                if(mealObject.get("strMeasure5").isJsonNull() == false){
+                    strMeasure5 = mealObject.get("strMeasure5").getAsString();
+                }
+                String strMeasure6 = "";
+                if(mealObject.get("strMeasure6").isJsonNull() == false){
+                    strMeasure6 = mealObject.get("strMeasure6").getAsString();
+                }
+                String strMeasure7 = "";
+                if(mealObject.get("strMeasure7").isJsonNull() == false){
+                    strMeasure7 = mealObject.get("strMeasure7").getAsString();
+                }
+                String strMeasure8 = "";
+                if(mealObject.get("strMeasure8").isJsonNull() == false){
+                    strMeasure8 = mealObject.get("strMeasure8").getAsString();
+                }
+                String strMeasure9 = "";
+                if(mealObject.get("strMeasure9").isJsonNull() == false){
+                    strMeasure9 = mealObject.get("strMeasure9").getAsString();
+                }
+                String strMeasure10 = "";
+                if(mealObject.get("strMeasure10").isJsonNull() == false){
+                    strMeasure10 = mealObject.get("strMeasure10").getAsString();
+                }
+                String strMeasure11 = "";
+                if(mealObject.get("strMeasure11").isJsonNull() == false){
+                    strMeasure11 = mealObject.get("strMeasure11").getAsString();
+                }
+                String strMeasure12 = "";
+                if(mealObject.get("strMeasure12").isJsonNull() == false){
+                    strMeasure12 = mealObject.get("strMeasure12").getAsString();
+                }
+                String strMeasure13 = "";
+                if(mealObject.get("strMeasure13").isJsonNull() == false){
+                    strMeasure13 = mealObject.get("strMeasure13").getAsString();
+                }
+                String strMeasure14 = "";
+                if(mealObject.get("strMeasure14").isJsonNull() == false){
+                    strMeasure14 = mealObject.get("strMeasure14").getAsString();
+                }
+                String strMeasure15 = "";
+                if(mealObject.get("strMeasure15").isJsonNull() == false){
+                    strMeasure15 = mealObject.get("strMeasure15").getAsString();
+                }
+                String strMeasure16 = "";
+                if(mealObject.get("strMeasure16").isJsonNull() == false){
+                    strMeasure16 = mealObject.get("strMeasure16").getAsString();
+                }
+                String strMeasure17 = "";
+                if(mealObject.get("strMeasure17").isJsonNull() == false){
+                    strMeasure17 = mealObject.get("strMeasure17").getAsString();
+                }
+                String strMeasure18 = "";
+                if(mealObject.get("strMeasure18").isJsonNull() == false){
+                    strMeasure18 = mealObject.get("strMeasure18").getAsString();
+                }
+                String strMeasure19 = "";
+                if(mealObject.get("strMeasure19").isJsonNull() == false){
+                    strMeasure19 = mealObject.get("strMeasure19").getAsString();
+                }
+                String strMeasure20 = "";
+                if(mealObject.get("strMeasure20").isJsonNull() == false){
+                    strMeasure20 = mealObject.get("strMeasure20").getAsString();
+                }
 
                 model.addAttribute("idmeal", idMeal);
                 model.addAttribute("strMeal", strMeal);
@@ -163,6 +243,25 @@ public class RestController {
                 model.addAttribute("strIngredient19", strIngredient19);
                 model.addAttribute("strIngredient20", strIngredient20);
                 model.addAttribute("strMeasure1", strMeasure1);
+                model.addAttribute("strMeasure2", strMeasure2);
+                model.addAttribute("strMeasure3", strMeasure3);
+                model.addAttribute("strMeasure4", strMeasure4);
+                model.addAttribute("strMeasure5", strMeasure5);
+                model.addAttribute("strMeasure6", strMeasure6);
+                model.addAttribute("strMeasure7", strMeasure7);
+                model.addAttribute("strMeasure8", strMeasure8);
+                model.addAttribute("strMeasure9", strMeasure9);
+                model.addAttribute("strMeasure10", strMeasure10);
+                model.addAttribute("strMeasure11", strMeasure11);
+                model.addAttribute("strMeasure12", strMeasure12);
+                model.addAttribute("strMeasure13", strMeasure13);
+                model.addAttribute("strMeasure14", strMeasure14);
+                model.addAttribute("strMeasure15", strMeasure15);
+                model.addAttribute("strMeasure16", strMeasure16);
+                model.addAttribute("strMeasure17", strMeasure17);
+                model.addAttribute("strMeasure18", strMeasure18);
+                model.addAttribute("strMeasure19", strMeasure19);
+                model.addAttribute("strMeasure20", strMeasure20);
             }
 
         } catch (Exception e) {
