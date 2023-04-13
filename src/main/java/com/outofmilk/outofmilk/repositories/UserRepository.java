@@ -14,12 +14,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
 
     @Modifying
-    @Query(value = "delete from pantry_items where id = :pantryItemId", nativeQuery = true)
-    void deletePantryIngredientById(@Param("pantryItemId") Long pantryItemId);
+    @Query(value = "delete from pantry_items where user_id = :pantryItemUserId and ingredient_id = :pantryItemIngredientId", nativeQuery = true)
+    void deletePantryItemIngredientById(@Param("pantryItemUserId") Long pantryItemUserId,
+                                        @Param("pantryItemIngredientId") Long pantryItemIngredientId);
 
     @Modifying
-    @Query(value = "delete from pantry_items where user_id = :pantryUserId and ingredient_id = :pantryItemId", nativeQuery = true)
-    void deleteIngredientById(@Param("pantryUserId") Long pantryUserId,
-                              @Param("pantryItemId") Long pantryItemId);
+    @Query(value = "delete from grocery_items where user_id = :groceryListUserId and ingredient_id = :groceryListIngredientId", nativeQuery = true)
+    void deleteGroceryListIngredientById(@Param("groceryListUserId") Long groceryListUserId,
+                                         @Param("groceryListIngredientId") Long groceryListIngredientId);
 
 }

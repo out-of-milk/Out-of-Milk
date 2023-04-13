@@ -59,7 +59,7 @@ public class UserController {
 
     @GetMapping("/user/{id}/dpi")
     @Transactional
-    public String deletePantryItemFromList(@PathVariable long id, Model model){
+    public String deletePantryIngredientItemFromList(@PathVariable long id, Model model){
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
@@ -71,12 +71,32 @@ public class UserController {
         model.addAttribute("user", user);
 
         if (loggedInUser.getId() == user.getId()) {
-            userDao.deleteIngredientById(user.getId(), Long.valueOf(id));
+            userDao.deletePantryItemIngredientById(user.getId(), Long.valueOf(id));
         }
 
         return "redirect:/user";
 
     }
 
+    @GetMapping("/user/{id}/dgl")
+    @Transactional
+    public String deleteGroceryListIngredientFromList(@PathVariable long id, Model model){
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+
+        if (user == null) {
+            return "/login";
+        }
+
+        model.addAttribute("user", user);
+
+        if (loggedInUser.getId() == user.getId()) {
+            userDao.deleteGroceryListIngredientById(user.getId(), Long.valueOf(id));
+        }
+
+        return "redirect:/user";
+
+    }
 
 }
