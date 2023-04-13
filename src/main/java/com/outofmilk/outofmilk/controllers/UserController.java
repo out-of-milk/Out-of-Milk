@@ -1,7 +1,9 @@
 package com.outofmilk.outofmilk.controllers;
 
+import com.outofmilk.outofmilk.models.RecipePreference;
 import com.outofmilk.outofmilk.models.User;
 
+import com.outofmilk.outofmilk.repositories.RecipePreferenceRepository;
 import com.outofmilk.outofmilk.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 
@@ -12,11 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Controller
 public class UserController {
 
     private final UserRepository userDao;
+    private final RecipePreferenceRepository recipePreferenceDao;
     private final PasswordEncoder passwordEncoder;
 
 
@@ -25,12 +30,16 @@ public class UserController {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
+        List<RecipePreference> recipePreferencesFavorites = (List<RecipePreference>) recipePreferenceDao.findFavoritesById(user);
+        List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
 
         if (user == null) {
             return "/login";
         }
 
         model.addAttribute("user", user);
+        model.addAttribute("recipePreferencesFavorites", recipePreferencesFavorites);
+        model.addAttribute("recipePreferencesHidden", recipePreferencesHidden);
 
         return "users/profile";
     }
@@ -93,6 +102,36 @@ public class UserController {
 
         if (loggedInUser.getId() == user.getId()) {
             userDao.deleteGroceryListIngredientById(user.getId(), Long.valueOf(id));
+        }
+
+        return "redirect:/user";
+
+    }
+
+    @GetMapping("/user/{id}/dhr")
+    @Transactional
+    public String deleteHiddenRecipeFromList(@PathVariable long id, Model model){
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+        List<RecipePreference> recipePreferencesFavorites = (List<RecipePreference>) recipePreferenceDao.findFavoritesById(user);
+        List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
+
+        if (user == null) {
+            return "/login";
+        }
+
+        model.addAttribute("user", user);
+        model.addAttribute("recipePreferencesFavorites", recipePreferencesFavorites);
+        model.addAttribute("recipePreferencesHidden", recipePreferencesHidden);
+
+        if (loggedInUser.getId() == user.getId()) {
+            System.out.println("*******************************");
+            System.out.println(Long.valueOf(id));
+            System.out.println(user.getId());
+            System.out.println("*******************************");
+            recipePreferenceDao.deleteHiddenRecipeById(user.getId(), Long.valueOf(id));
+//            userDao.deleteGroceryListIngredientById(user.getId(), Long.valueOf(id));
         }
 
         return "redirect:/user";
