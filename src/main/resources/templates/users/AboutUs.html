@@ -4,40 +4,10 @@
     <meta charset="UTF-8">
     <title>Recipe</title>
 </head>
-<script>fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
-    .then(response => response.json())
-    .then(data => {
-        // Get the list of meals
-        const meals = data.meals;
 
-        // Create an unordered list element
-        const list = document.createElement('ul');
-
-        // Loop through each meal and add it to the list
-        meals.forEach(meal => {
-            const listItem = document.createElement('li');
-            listItem.innerText = meal.strMeal;
-            list.appendChild(listItem);
-        });
-
-        // Add the list to the page
-        document.body.appendChild(list);
-    })
-    .catch(error => console.error(error));
-</script>
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselExampleDark">
-    <div class="carousel-indicators">
-        <button aria-current="true" aria-label="Slide 1" class="active" data-bs-slide-to="0"
-                data-bs-target="#carouselExampleDark" type="button"></button>
-        <button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carouselExampleDark"
-                type="button"></button>
-        <button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carouselExampleDark"
-                type="button"></button>
-        <button aria-label="Slide 4" data-bs-slide-to="3" data-bs-target="#carouselExampleDark"
-                type="button"></button>
-    </div>
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
             <h1>Jennie Smith</h1>
@@ -75,7 +45,6 @@
         <span aria-hidden="true" class="carousel-control-next-icon"></span>
         <span class="visually-hidden">Next</span>
     </button>
-</div>
 </div>
 <footer class="footer" th:insert="partial/partials :: footer"></footer>
 </body>
