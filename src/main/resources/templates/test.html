@@ -1,70 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Categories</title>
-  <script>
-      // fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-      //         .then(response => response.json())
-      //         .then(data => {
-      //           const meals = data.meals;
-      //           const displayMeal = document.getElementById('displayMeal');
-      //           meals.forEach(meal => {
-      //             const mealsItem = document.createElement('li');
-      //             mealsItem.textContent = meal.strInstructions;
-      //             displayMeal.appendChild(mealsItem);
-      //           });
-      //         })
-      //         .catch(error => console.error(error));
-      // fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-      //         .then(response => response.json())
-      //         .then(data => {
-      //           const meals = data.meals;
-      //           const displayMeal = document.getElementById('displayMealTitle');
-      //           meals.forEach(meal => {
-      //             const mealsItem = document.createElement('li');
-      //             mealsItem.textContent = meal.strMeal;
-      //             displayMeal.appendChild(mealsItem);
-      //           });
-      //         })
-      //         .catch(error => console.error(error));
-      // fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-      //         .then(response => response.json())
-      //         .then(data => {
-      //           const meals = data.meals;
-      //           const displayMealThumb = document.getElementById('displayMealThumb');
-      //           meals.forEach(meal => {
-      //             const img = document.createElement('img');
-      //             img.src = meal.strMealThumb;
-      //             displayMealThumb.appendChild(img);
-      //           });
-      //         })
-      //         .catch(error => console.error(error));
-      //-------------------------------------------------------------------//
-      fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-              .then(response => response.json())
-              .then(data => {
-                const meal = data.meals[0];
-                const img = document.createElement('img');
-                img.src = meal.strMealThumb;
-                const displayMealThumb = document.getElementById('displayMealThumb');
-                displayMealThumb.appendChild(img);
-                const displayMealTitle = document.getElementById('displayMealTitle');
-                const mealTitle = document.createElement('h2');
-                mealTitle.textContent = meal.strMeal;
-                displayMealTitle.appendChild(mealTitle);
-                const displayMeal = document.getElementById('displayMeal');
-                const mealInstructions = document.createElement('p');
-                mealInstructions.textContent = meal.strInstructions;
-                displayMeal.appendChild(mealInstructions);
-              })
-              .catch(error => console.error(error));
-
-  </script>
+  <meta charset="utf-8">
+  <title>Recipes List</title>
 </head>
 <body>
-<h1>meal</h1>
-<h2 id="displayMealTitle"></h2>
-<ul id="displayMeal"></ul>
-<div id="displayMealThumb"></div>
+<h1>Recipes List</h1>
+<div id="recipes"></div>
+<script>
+  // Define the alphabet array
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
+  // Get the recipes container
+  const recipesContainer = document.getElementById('recipes');
+
+  // Loop through each letter of the alphabet
+  alphabet.forEach(letter => {
+    // Fetch the meals starting with the current letter
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+            .then(response => response.json())
+            .then(data => {
+              const meals = data.meals;
+              meals.forEach(meal => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                const image = document.createElement('img');
+                image.src = meal.strMealThumb;
+                image.alt = meal.strMeal;
+                const heading = document.createElement('h2');
+                heading.innerText = meal.strMeal;
+                const ID = document.createElement('h3');
+                ID.innerText = meal.idMeal;
+                const ingredients = document.createElement('ul');
+                for (let i = 1; i <= 20; i++) {const ingredient = meal[`strIngredient${i}`] ;if (ingredient) {
+                    const listItem = document.createElement('li');
+                    listItem.innerText = ingredient;
+                    ingredients.appendChild(listItem);
+                  }
+                }
+                const instructions = document.createElement('p');
+                instructions.innerText = meal.strInstructions;
+
+
+                card.appendChild(ID);
+                card.appendChild(heading);
+                // card.appendChild(image);
+
+
+                recipesContainer.appendChild(card);
+              });
+            })
+            .catch(error => console.error(error));
+  });
+</script>
 </body>
 </html>

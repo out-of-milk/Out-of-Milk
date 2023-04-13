@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partial/partials :: head">
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+</head>
+<script>fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
+    .then(response => response.json())
+    .then(data => {
+        // Get the list of meals
+        const meals = data.meals;
+
+        // Create an unordered list element
+        const list = document.createElement('ul');
+
+        // Loop through each meal and add it to the list
+        meals.forEach(meal => {
+            const listItem = document.createElement('li');
+            listItem.innerText = meal.strMeal;
+            list.appendChild(listItem);
+        });
+
+        // Add the list to the page
+        document.body.appendChild(list);
+    })
+    .catch(error => console.error(error));
+</script>
+<body>
+<nav th:insert="partial/partials :: navbar"></nav>
+<div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselExampleDark">
+    <div class="carousel-indicators">
+        <button aria-current="true" aria-label="Slide 1" class="active" data-bs-slide-to="0"
+                data-bs-target="#carouselExampleDark" type="button"></button>
+        <button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carouselExampleDark"
+                type="button"></button>
+        <button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carouselExampleDark"
+                type="button"></button>
+        <button aria-label="Slide 4" data-bs-slide-to="3" data-bs-target="#carouselExampleDark"
+                type="button"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <h1>Jennie Smith</h1>
+            <img alt="..." class="d-block w-100" src="https://static.wikia.nocookie.net/f04a450c-711f-4a70-9fd2-2a4e63ca9dc1/scale-to-width/755">
+            <p> I'm from the small state of Kansas, where I have returned from traveling the world of Oz after defeating the wicked witch of the waste. Now that I have returned to back to normal society, I have taken up coding by recommendation of my older brother. With my newfound coding skills, I hope to make a long lasting career and hope to return to Oz one day to make it an technologic empire.</p>
+            <div class="carousel-caption d-none d-md-block"></div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <h1>Mitchell (Emi) Campbell</h1>
+            <img alt="..." class="d-block w-100" src="https://images.sr.roku.com/idType/roku/context/global/id/4be944e089c59be47a4cdac5e26d986f/images/partner/files/styles/feed-240x360/public/a8wn4hw/im/f4/09/c8883fde675594b2c5375f9bf69dc794.jpg/magic/396x0/filters:quality(70)">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, libero similique. Laudantium.</p>
+            <div class="carousel-caption d-none d-md-block"></div>
+        </div>
+        <div class="carousel-item">
+            <h1>Kevin Fowler</h1>
+            <img alt="..." class="d-block w-100" src="https://reviewed-com-res.cloudinary.com/image/fetch/s--gdwBkHt0--/b_white,c_limit,cs_srgb,f_auto,fl_progressive.strip_profile,g_center,q_auto,w_972/https://reviewed-production.s3.amazonaws.com/1599835372365/bluey.png">
+            <p>a self-motivated software developer with experience in HTML, CSS, Bootstrap, JavaScript, Java, Spring, and more. Recent Codeup graduate with a proven track record of delivering high-quality results. Strong interpersonal skills and technical abilities.</p>
+            <div class="carousel-caption d-none d-md-block"></div>
+        </div>
+        <div class="carousel-item">
+            <h1>Shawn Hardin</h1>
+            <img alt="..." class="d-block w-100" src="https://i.stack.imgur.com/IgfQ1.jpg">
+            <p>My name is Shawn, and I was born and raised in San Antonio. Throughout my life, I've held onto the belief that, "No matter how hard life pulls you down, you must keep your head above water, or you'll sink." I'm a firm believer in the power of positivity and the importance of always moving forward, even if the path isn't always clear-cut. Sometimes, it requires taking a zigzag route, but as long as you're making progress, you're headed in the right direction.That's precisely why I transitioned into my current career field, which has given me the chance to grow and continue moving forward. I'm excited to see where this new opportunity takes me and to learn from the challenges and experiences it offers.In conclusion, I'm grateful for the chance to pursue a career that aligns with my values and allows me to keep moving forward. I look forward to the challenges and growth that lie ahead, and I'm confident that with a positive attitude and a commitment to learning and adapting, I'll continue to thrive.
+            </p>
+                <div class="carousel-caption d-none d-md-block"></div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleDark"
+            type="button">
+        <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselExampleDark"
+            type="button">
+        <span aria-hidden="true" class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+</div>
+<footer class="footer" th:insert="partial/partials :: footer"></footer>
+</body>
+</html>
