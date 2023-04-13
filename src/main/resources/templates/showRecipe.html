@@ -6,108 +6,16 @@
 </head>
 <body>
 
-<script>
-<!--    ingredients-->
-const displayMeal = document.getElementById('displayMealIngredients');
-
-    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-        .then(response => response.json())
-        .then(data => {
-            const meals = data.meals;
-            const displayMeal = document.getElementById('displayMealIngredients');
-            let arrayList = [];
-            meals.forEach(meal => {
-                //put ingredients into list
-                const mealsItem = document.createElement('li');
-                for (let i = 0; i < 21; i++) {
-                    mealsItem.textContent = meal.strIngredient + i;
-                    console.log(meal.strIngredient + i);
-                    //if item is null don't append
-                    if((meal.strIngredient + i) !== null){
-                        arrayList.push(mealsItem.textContent);
-                    }
-                }
-                //cycle through list and append each item
-                displayMeal.appendChild(arrayList);
-
-            });
-
-
-
-            console.log(arrayList);
-            mealsItem.textContent = meal.strMeal;
-            displayMeal.appendChild(mealsItem);
-            // data.forEach(meal => {
-            //     listEl.insertAdjacentHTML('beforeend', `<li>${meal.strIngredient1}</li>`)
-            // })
-        })
-        .catch(error => console.error(error));
-  // fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-  //         .then(response => response.json())
-  //         .then(data => {
-  //           const meals = data.meals;
-  //           const displayMeal = document.getElementById('displayMealIngredients');
-  //           meals.forEach(meal => {
-  //         const mealsItem = document.createElement('li');
-  //             mealsItem1.textContent = meal.strIngredient1;
-  //             mealsItem2.textContent = meal.strIngredient2;
-  //             displayMeal.appendChild(mealsItem);
-  //           });
-  //         })
-  //         .catch(error => console.error(error));
-  //meal title/name
-  fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-          .then(response => response.json())
-          .then(data => {
-            const meals = data.meals;
-            const displayMeal = document.getElementById('displayMealTitle');
-            meals.forEach(meal => {
-              const mealsItem = document.createElement('h5');
-              mealsItem.textContent = meal.strMeal;
-              displayMeal.appendChild(mealsItem);
-            });
-          })
-          .catch(error => console.error(error));
-  //meal pic
-  fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-          .then(response => response.json())
-          .then(data => {
-            const meals = data.meals;
-            const displayMealThumb = document.getElementById('displayMealThumb');
-            meals.forEach(meal => {
-              const img = document.createElement('img');
-              img.src = meal.strMealThumb;
-              displayMealThumb.appendChild(img);
-            });
-          })
-          .catch(error => console.error(error));
-    //meal instructions
-    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53065')
-        .then(response => response.json())
-        .then(data => {
-            const meals = data.meals;
-            const displayMeal = document.getElementById('displayMealInstructions');
-            meals.forEach(meal => {
-                const mealsItem = document.createElement('p');
-                mealsItem.textContent = meal.strInstructions;
-                displayMeal.appendChild(mealsItem);
-            });
-        })
-        .catch(error => console.error(error));
-
-</script>
-
 <div class="container-fluid content">
     <div class="d-flex justify-content-center">
         <div class="card">
             <div class="card-body">
 <!--                <img src="https://media.istockphoto.com/id/1065484168/photo/meal-with-burger-and-fried-potatoes.jpg?s=612x612&w=0&k=20&c=WdKp7P8DkRM9tSMEhOixYAn_SOjq5IgEYf3PvVMf0GY="-->
 <!--                     class="card-img-top" alt="pic of food">-->
-                <div id="displayMealThumb"></div>
-<!--                <h5 class="card-title">test Burger</h5>-->
-                <h5 id="displayMealTitle"></h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                <div id="displayMealThumb" th:text="${strMealThumb}"></div>
+                <h5 class="card-title" th:text="${strMeal}">title/name</h5>
+                <p th:text="${idmeal}"></p>
+                <p class="card-text" th:text="${strCategory}">recipe category</p>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-primary">❤️</button>
                     <button type="button" class="btn btn-primary"> X</button>
@@ -120,14 +28,26 @@ const displayMeal = document.getElementById('displayMealIngredients');
     <div>
         <h1>ingredients</h1>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item" id="displayMealIngredients"></li>
-<!--            <li class="list-group-item">A fourth item</li>-->
-<!--            <li class="list-group-item">And a fifth one</li>-->
-<!--            <li class="list-group-item">An item</li>-->
-<!--            <li class="list-group-item">A second item</li>-->
-<!--            <li class="list-group-item">A third item</li>-->
-<!--            <li class="list-group-item">A fourth item</li>-->
-<!--            <li class="list-group-item">And a fifth one</li>-->
+            <li class="list-group-item" th:text="${strIngredient1}">item</li>
+            <li class="list-group-item" th:text="${strIngredient2}">item</li>
+            <li class="list-group-item" th:text="${strIngredient3}">item</li>
+            <li class="list-group-item" th:text="${strIngredient4}">item</li>
+            <li class="list-group-item" th:text="${strIngredient5}">item</li>
+            <li class="list-group-item" th:text="${strIngredient6}">item</li>
+            <li class="list-group-item" th:text="${strIngredient7}">item</li>
+            <li class="list-group-item" th:text="${strIngredient8}">item</li>
+            <li class="list-group-item" th:text="${strIngredient9}">item</li>
+            <li class="list-group-item" th:text="${strIngredient10}">item</li>
+            <li class="list-group-item" th:text="${strIngredient11}">item</li>
+            <li class="list-group-item" th:text="${strIngredient12}">item</li>
+            <li class="list-group-item" th:text="${strIngredient13}">item</li>
+            <li class="list-group-item" th:text="${strIngredient14}">item</li>
+            <li class="list-group-item" th:text="${strIngredient15}">item</li>
+            <li class="list-group-item" th:text="${strIngredient16}">item</li>
+            <li class="list-group-item" th:text="${strIngredient17}">item</li>
+            <li class="list-group-item" th:text="${strIngredient19}">item</li>
+            <li class="list-group-item" th:text="${strIngredient19}">item</li>
+            <li class="list-group-item" th:text="${strIngredient20}">item</li>
         </ul>
     </div>
     <br>
@@ -136,7 +56,7 @@ const displayMeal = document.getElementById('displayMealIngredients');
             <div class="card-header d-flex justify-content-center">How to cook</div>
             <div class="card-body">
                 <h5 class="card-title">Steps</h5>
-                <p class="card-text" id="displayMealInstructions"></p>
+                <p class="card-text" th:text="${strInstructions}"></p>
             </div>
         </div>
     </div>
