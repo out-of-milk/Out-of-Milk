@@ -50,13 +50,6 @@ public class RestController {
                 String strInstructions = mealObject.get("strInstructions").getAsString();
                 String strMealThumb = mealObject.get("strMealThumb").getAsString();
 
-//                Image image = new Image(strMealThumb);
-//                ImageView imageView = new ImageView();
-//                ImageView.setImage(strMealThumb);
-//                VBox vBox = VBox (imageView);
-
-
-
                 String strIngredient1 = "";
                 if(mealObject.get("strIngredient1").isJsonNull() == false){
                     strIngredient1 = mealObject.get("strIngredient1").getAsString();
