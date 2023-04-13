@@ -22,10 +22,10 @@ public class RecipeController {
     }
 
     // logged-in user
-    @GetMapping("/recipe")
-    public String showRecipeForm(){
-        return "showRecipe";
-    }
+//    @GetMapping("/recipe")
+//    public String showRecipeForm(){
+//        return "showRecipe";
+//    }
 
 
 
