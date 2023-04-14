@@ -152,23 +152,28 @@
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
-                    <a th:href="@{/recipe/53065}">
-                        <div id="displayMealThumb1" ></div>
+                    <a th:href="@{'/recipe/' + ${idmeal}}">
+                        <img th:src="${strMealThumb}">
                     </a>
                     <h2 id="displayMealTitle1"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
+<<<<<<< HEAD
+                    <a th:href="@{/recipe/{id}(id=${idmeal})}">
+                        <img th:src="${strMealThumb}">
+=======
                     <a th:href="@{/recipe/52772}">
 
                         <div id="displayMealThumb2"></div>
+>>>>>>> 3aa5d9836a24528ce2176f718f68e15710dd8b98
                     </a>
                     <h2 id="displayMealTitle2"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item">
-                    <a th:href="@{/recipe/52780}">
-                        <div id="displayMealThumb3"></div>
+                    <a th:href="@{'/recipe/' + ${idmeal}}">
+                        <img  th:src="${strMealThumb}">
                     </a>
                     <h2 id="displayMealTitle3"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
