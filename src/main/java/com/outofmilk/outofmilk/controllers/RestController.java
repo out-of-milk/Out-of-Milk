@@ -31,7 +31,6 @@ public class RestController {
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "text/plain");
             connection.setRequestMethod("GET");
-//            connection.getOutputStream().write(pic);
             connection.getResponseCode();
             jsonResponse = new String(connection.getInputStream().readAllBytes());
             System.out.println("HTTP response code is " + connection.getResponseCode());
