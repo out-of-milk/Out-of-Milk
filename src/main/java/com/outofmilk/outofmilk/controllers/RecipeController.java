@@ -21,8 +21,8 @@ public class RecipeController {
         return "findAll";
     }
 
-    // logged-in user
-//    @GetMapping("/recipe")
+//     logged-in user
+//    @GetMapping("/recipe/{id}")
 //    public String showRecipeForm(){
 //        return "showRecipe";
 //    }

@@ -7,16 +7,12 @@
 <body>
 <h1>Recipes List</h1>
 <div id="recipes"></div>
+
 <script>
-  // Define the alphabet array
-  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
-  // Get the recipes container
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
   const recipesContainer = document.getElementById('recipes');
-
-  // Loop through each letter of the alphabet
   alphabet.forEach(letter => {
-    // Fetch the meals starting with the current letter
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
             .then(response => response.json())
             .then(data => {
@@ -41,10 +37,9 @@
                 const instructions = document.createElement('p');
                 instructions.innerText = meal.strInstructions;
 
-
                 card.appendChild(ID);
                 card.appendChild(heading);
-                // card.appendChild(image);
+                card.appendChild(image);
 
 
                 recipesContainer.appendChild(card);

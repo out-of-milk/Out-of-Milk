@@ -150,11 +150,6 @@
     <hr>
     <div class="body d-flex justify-content-evenly">
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
             <div class="carousel-inner">
                 <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
                     <a th:href="@{/recipe/53065}">
@@ -165,6 +160,7 @@
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
                     <a th:href="@{/recipe/52772}">
+
                         <div id="displayMealThumb2"></div>
                     </a>
                     <h2 id="displayMealTitle2"></h2>

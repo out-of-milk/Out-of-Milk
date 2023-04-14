@@ -20,11 +20,17 @@ public class RecipePreference {
     @Column(nullable = false, columnDefinition = "INT(100)")
     private long recipe_id;
 
-    @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    private long favorite;
+    @Column(nullable = false)
+    private String recipe_name;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String recipe_image;
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    private long hidden;
+    private boolean favorite;
+
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private boolean hidden;
 
     @ManyToOne
     @JoinColumn (nullable = false, name = "user_id")
