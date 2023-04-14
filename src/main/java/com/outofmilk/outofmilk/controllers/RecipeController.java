@@ -64,15 +64,13 @@ public class RecipeController {
         return "findAll";
     }
 
-<<<<<<< HEAD
 
-=======
 //     logged-in user
 //    @GetMapping("/recipe/{id}")
 //    public String showRecipeForm(){
 //        return "showRecipe";
 //    }
->>>>>>> 3aa5d9836a24528ce2176f718f68e15710dd8b98
+
 
 
 
