@@ -19,11 +19,7 @@ import java.net.URL;
 @Controller
 public class RecipeController {
 
-    // guest user
-//    @GetMapping("/")
-//    public String showFindAllForm(){
-//        return "findAll";
-//    }
+
     @GetMapping("/")
     public String showFindAllForm(Model model){
         String jsonResponse = null;
@@ -64,15 +60,6 @@ public class RecipeController {
         return "findAll";
     }
 
-<<<<<<< HEAD
-
-=======
-//     logged-in user
-//    @GetMapping("/recipe/{id}")
-//    public String showRecipeForm(){
-//        return "showRecipe";
-//    }
->>>>>>> 3aa5d9836a24528ce2176f718f68e15710dd8b98
 
 
 
