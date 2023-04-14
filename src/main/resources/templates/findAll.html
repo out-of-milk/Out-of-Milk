@@ -150,11 +150,6 @@
     <hr>
     <div class="body d-flex justify-content-evenly">
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
             <div class="carousel-inner">
                 <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
                     <a th:href="@{'/recipe/' + ${idmeal}}">
@@ -164,8 +159,14 @@
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
+<<<<<<< HEAD
                     <a th:href="@{/recipe/{id}(id=${idmeal})}">
                         <img th:src="${strMealThumb}">
+=======
+                    <a th:href="@{/recipe/52772}">
+
+                        <div id="displayMealThumb2"></div>
+>>>>>>> 3aa5d9836a24528ce2176f718f68e15710dd8b98
                     </a>
                     <h2 id="displayMealTitle2"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
