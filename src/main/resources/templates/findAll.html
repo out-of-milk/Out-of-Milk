@@ -120,7 +120,7 @@
     <h2 style="text-align: center;" sec:authorize="!isAuthenticated()">Search for Recipes</h2>
     <h2 style="text-align: center;" sec:authorize="isAuthenticated()">Recommended Recipes for You</h2>
 
-        <div class="d-flex justify-content-between row">
+        <div sec:authorize="isAuthenticated()" class="d-flex justify-content-between row">
             <form class="d-flex col-6">
                 <input aria-label="Search" class="form-control" placeholder="Search" style="width: 20rem; height:4rem;"
                        type="search">
