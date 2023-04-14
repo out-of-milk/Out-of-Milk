@@ -170,7 +170,6 @@
                     </a>
                     <h2 id="displayMealTitle2"></h2>
                     <div class="carousel-caption d-none d-md-block"></div>
-                </div>
                 <div class="carousel-item">
                     <a th:href="@{'/recipe/' + ${idmeal}}">
                         <img  th:src="${strMealThumb}">
@@ -179,6 +178,7 @@
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
             </div>
+                
             <div class="carousel-inner">
                 <div class="carousel-item active " data-bs-interval="10000" sec:authorize="!isAuthenticated()">
                     <a th:href="@{/login}">
