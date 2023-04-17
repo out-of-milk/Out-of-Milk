@@ -11,7 +11,7 @@ import java.util.List;
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     List<Ingredient> findById(long id);
 
-    @Query("from Ingredient i where i.id = ?1 and i.favorite = true")
-    List<Ingredient> findUserPantryById(User user);
+//    @Query("from Ingredient i where i.id = ?1 and i.favorite = true")
+//    List<Ingredient> findUserPantryById(User user);
 
 }

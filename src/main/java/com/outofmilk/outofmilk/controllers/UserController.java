@@ -4,6 +4,7 @@ import com.outofmilk.outofmilk.models.Ingredient;
 import com.outofmilk.outofmilk.models.RecipePreference;
 import com.outofmilk.outofmilk.models.User;
 
+import com.outofmilk.outofmilk.repositories.IngredientRepository;
 import com.outofmilk.outofmilk.repositories.RecipePreferenceRepository;
 import com.outofmilk.outofmilk.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -24,16 +25,23 @@ public class UserController {
     private final UserRepository userDao;
     private final RecipePreferenceRepository recipePreferenceDao;
     private final PasswordEncoder passwordEncoder;
+    private final IngredientRepository ingredientDao;
 
 
     @GetMapping("/user")
+    @Transactional
     public String showProfileForm(Model model) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
         List<RecipePreference> recipePreferencesFavorites = (List<RecipePreference>) recipePreferenceDao.findFavoritesById(user);
         List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
+        System.out.println("User Pantry Iems!!!!" + user.getPantryItems());
+//        List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findById(4);
+//        System.out.println(ingredients);
+        List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findAll();
 
+        model.addAttribute("ingredient", ingredients);
         System.out.println("********* Favorites ************");
         System.out.println(recipePreferencesFavorites);
         System.out.println("********* Hidden ************");
@@ -149,7 +157,27 @@ public class UserController {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
-        List<Ingredient> pantryItems = (List<Ingredient>)
+        if (user == null) {
+            return "/login";
+        }
+//        grab ingredient by id
+        List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findById(id);
+//        add ingredient to User's pantry list
+        user.getPantryItems().add((Ingredient) ingredients);
+
+        model.addAttribute("user", user);
+        model.addAttribute("ingredients", ingredients);
+//        save to ingredients dao?
+        if (loggedInUser.getId() == user.getId()) {
+            userDao.addPantryListIngredientById(user, ingredients);
+        }
+
+
+        return "redirect:/user";
+        //        ingredientDao.save(ingredients);
+
+//        add ingredient to pantryitem list
+//        List<Ingredient> pantryItems = (List<Ingredient>);
 //        Ingredient ingredient = ingredient.getById(id);
 //        user.getPantryItems().add(ingredient);
 
@@ -160,21 +188,6 @@ public class UserController {
 //        List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
 
 
-        if (user == null) {
-            return "/login";
-        }
-
-
-        return "redirect:/user";
     }
-//    @PostMapping("/tasks/{id}/transfer")
-//    public String transferTaskToDepartment(@PathVariable long id, @RequestParam(name="department") long deptId) {
-//        Department department = departmentDao.getById(deptId);
-//        Task task = taskDao.getById(id);
-//        department.getTasks().add(task);
-//        task.setDepartment(department);
-//        taskDao.save(task);
-//        return "redirect:/tasks/" + id;
-//    }
 
 }
