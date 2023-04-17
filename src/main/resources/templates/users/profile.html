@@ -163,7 +163,7 @@
                     <div th:each="recipePreferenceFavorite : ${recipePreferencesFavorites}">
                         <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
                             <p th:text="${recipePreferenceFavorite.getRecipe().getStrMeal()}"></p>
-                            <a th:href="@{/recipe}">
+                            <a th:href="@{/recipe/} + ${recipePreferenceFavorite.getRecipe().getIdMeal()}">
                                 <img alt="..." class="d-block w-100" th:src="${recipePreferenceFavorite.getRecipe().getStrMealThumb()}">
                             </a>
                             <div class="carousel-caption d-none d-md-block"></div>
