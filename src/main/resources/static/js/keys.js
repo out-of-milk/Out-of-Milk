@@ -1,0 +1,1 @@
+const MEALDB_API_KEY = '';
