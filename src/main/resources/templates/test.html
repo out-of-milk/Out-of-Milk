@@ -6,8 +6,9 @@
 </head>
 <body>
 <h1>Recipes List</h1>
+<a th:href="@{'/recipe/' + ${idmeal}}">
 <div id="recipes"></div>
-
+</a>
 <script>
 
   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
