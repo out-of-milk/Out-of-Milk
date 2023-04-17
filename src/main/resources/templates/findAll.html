@@ -211,7 +211,10 @@
 <div>
     <input type="text" id="search" placeholder="Search meals...">
 </div>
-<a th:href="@{'/recipe/' + ${idmeal}}">
+<a th:href="@{/login}" sec:authorize="!isAuthenticated()">
+    <div id="recipes"></div>
+</a>
+<a th:href="@{'/recipe/' + ${idmeal}}" sec:authorize="isAuthenticated()">
     <div id="recipes"></div>
 </a>
 <script>
@@ -227,15 +230,27 @@
                 meals.forEach(meal => {
                     const card = document.createElement('div');
                     card.classList.add('card');
+
+                    const cardHeader = document.createElement('div');
+                    cardHeader.classList.add('card-header');
+
+                    const ID = document.createElement('a');
+                    ID.innerText = meal.strMeal;
+                    ID.setAttribute('href', `/recipe/${meal.idMeal}`); // Add the href attribute with the meal id
+                    ID.setAttribute('id', meal.idMeal); // Set the id attribute to the meal id
+                    const cat = document.createElement('p');
+                    cat.innerText = meal.strCategory;
+                    const heading = document.createElement('h1');
+                    heading.innerText = meal.strMeal;
+
+                    cardHeader.appendChild(ID);
+                    cardHeader.appendChild(cat);
+                    // cardHeader.appendChild(heading);
+                    card.appendChild(cardHeader);
+
                     const image = document.createElement('img');
                     image.src = meal.strMealThumb;
                     image.alt = meal.strMeal;
-                    const heading = document.createElement('h1');
-                    heading.innerText = meal.strMeal;
-                    const ID = document.createElement('h3');
-                    ID.innerText = meal.idMeal;
-                    const cat = document.createElement('p');
-                    cat.innerText = meal.strCategory;
                     const ingredients = document.createElement('ul');
                     for (let i = 1; i <= 20; i++) {
                         const ingredient = meal[`strIngredient${i}`];
@@ -249,8 +264,8 @@
                     instructions.innerText = meal.strInstructions;
 
                     // card.appendChild(ID);
-                    card.appendChild(cat);
-                    card.appendChild(heading);
+                    // card.appendChild(cat);
+                    // card.appendChild(heading);
                     // card.appendChild(image);
                     // card.appendChild(ingredients);
                     // card.appendChild(instructions);
@@ -265,7 +280,7 @@
         const searchValue = searchInput.value.toLowerCase();
         const cards = recipesContainer.querySelectorAll('.card');
         cards.forEach(card => {
-            const title = card.querySelector('h1').innerText.toLowerCase();
+            const title = card.querySelector('div').innerText.toLowerCase();
             if (title.includes(searchValue)) {
                 card.style.display = '';
             } else {
@@ -274,7 +289,14 @@
         });
     });
 </script>
-<p class="fw-lighter">Outofmilk is a Grocery List is a website that helps you make your grocery list in a more organized and convenient way. It allows you to create a list and categorize your items. You can also search for recipes and add the ingredients needed for those recipes directly to your list. If you have some ingredients at home already, you can also add them to a pantry tracker to help you avoid buying duplicates. The website may also have some extra features, like showing pricing and nutrition information, letting users share their own recipes, and helping users find stores nearby.</p>
+<p class="fw-lighter">Outofmilk is a Grocery List is a website that helps you make
+    your grocery list in a more organized and convenient way. It allows you to create
+    a list and categorize your items. You can also search for recipes and add the
+    ingredients needed for those recipes directly to your list. If you have some
+    ingredients at home already, you can also add them to a pantry tracker to
+    help you avoid buying duplicates. The website may also have some extra features,
+    like showing pricing and nutrition information, letting users share their own
+    recipes, and helping users find stores nearby.</p>
 <footer th:insert="partial/partials :: footer"></footer>
 </body>
 </html>
