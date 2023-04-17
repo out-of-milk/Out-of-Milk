@@ -6,13 +6,17 @@
 </head>
 <body>
 <h1>Recipes List</h1>
-<a th:href="@{'/recipe/' + ${idmeal}}">
-<div id="recipes"></div>
+<div>
+  <input type="text" id="search" placeholder="Search meals...">
+</div>
+<a th:href="@{/recipe/{id}(id=${idmeal})}">
+  <div id="recipes"></div>
 </a>
 <script>
-
   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
   const recipesContainer = document.getElementById('recipes');
+  const searchInput = document.getElementById('search');
+
   alphabet.forEach(letter => {
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
             .then(response => response.json())
@@ -28,8 +32,12 @@
                 heading.innerText = meal.strMeal;
                 const ID = document.createElement('h3');
                 ID.innerText = meal.idMeal;
+                const cat = document.createElement('h3');
+                cat.innerText = meal.strCategory;
                 const ingredients = document.createElement('ul');
-                for (let i = 1; i <= 20; i++) {const ingredient = meal[`strIngredient${i}`] ;if (ingredient) {
+                for (let i = 1; i <= 20; i++) {
+                  const ingredient = meal[`strIngredient${i}`];
+                  if (ingredient) {
                     const listItem = document.createElement('li');
                     listItem.innerText = ingredient;
                     ingredients.appendChild(listItem);
@@ -38,15 +46,30 @@
                 const instructions = document.createElement('p');
                 instructions.innerText = meal.strInstructions;
 
-                card.appendChild(ID);
+                // card.appendChild(ID);
+                card.appendChild(cat);
                 card.appendChild(heading);
                 card.appendChild(image);
-
+                // card.appendChild(ingredients);
+                // card.appendChild(instructions);
 
                 recipesContainer.appendChild(card);
               });
             })
             .catch(error => console.error(error));
+  });
+
+  searchInput.addEventListener('input', () => {
+    const searchValue = searchInput.value.toLowerCase();
+    const cards = recipesContainer.querySelectorAll('.card');
+    cards.forEach(card => {
+      const title = card.querySelector('h2').innerText.toLowerCase();
+      if (title.includes(searchValue)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
   });
 </script>
 </body>

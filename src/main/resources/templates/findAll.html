@@ -146,7 +146,6 @@
                 </select>
             </div>
         </div>
-
     <hr>
     <div class="body d-flex justify-content-evenly">
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -155,21 +154,21 @@
                     <a th:href="@{'/recipe/' + ${idmeal}}">
                         <img th:src="${strMealThumb}">
                     </a>
-                    <h2 id="displayMealTitle1"></h2>
+                    <h1 id="displayMealTitle1"></h1>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
                     <a th:href="@{/recipe/{id}(id=${idmeal})}">
                         <img th:src="${strMealThumb}">
                     </a>
-                    <h2 id="displayMealTitle2"></h2>
+                    <h1 id="displayMealTitle2"></h1>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item">
                     <a th:href="@{'/recipe/' + ${idmeal}}">
                         <img  th:src="${strMealThumb}">
                     </a>
-                    <h2 id="displayMealTitle3"></h2>
+                    <h1 id="displayMealTitle3"></h1>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
             </div>
@@ -208,8 +207,73 @@
         </div>
     </div>
 </div>
-
 <br>
+<div>
+    <input type="text" id="search" placeholder="Search meals...">
+</div>
+<a th:href="@{'/recipe/' + ${idmeal}}">
+    <div id="recipes"></div>
+</a>
+<script>
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
+    const recipesContainer = document.getElementById('recipes');
+    const searchInput = document.getElementById('search');
+
+    alphabet.forEach(letter => {
+        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+            .then(response => response.json())
+            .then(data => {
+                const meals = data.meals;
+                meals.forEach(meal => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    const image = document.createElement('img');
+                    image.src = meal.strMealThumb;
+                    image.alt = meal.strMeal;
+                    const heading = document.createElement('h1');
+                    heading.innerText = meal.strMeal;
+                    const ID = document.createElement('h3');
+                    ID.innerText = meal.idMeal;
+                    const cat = document.createElement('p');
+                    cat.innerText = meal.strCategory;
+                    const ingredients = document.createElement('ul');
+                    for (let i = 1; i <= 20; i++) {
+                        const ingredient = meal[`strIngredient${i}`];
+                        if (ingredient) {
+                            const listItem = document.createElement('li');
+                            listItem.innerText = ingredient;
+                            ingredients.appendChild(listItem);
+                        }
+                    }
+                    const instructions = document.createElement('p');
+                    instructions.innerText = meal.strInstructions;
+
+                    // card.appendChild(ID);
+                    card.appendChild(cat);
+                    card.appendChild(heading);
+                    // card.appendChild(image);
+                    // card.appendChild(ingredients);
+                    // card.appendChild(instructions);
+
+                    recipesContainer.appendChild(card);
+                });
+            })
+            .catch(error => console.error(error));
+    });
+
+    searchInput.addEventListener('input', () => {
+        const searchValue = searchInput.value.toLowerCase();
+        const cards = recipesContainer.querySelectorAll('.card');
+        cards.forEach(card => {
+            const title = card.querySelector('h1').innerText.toLowerCase();
+            if (title.includes(searchValue)) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+</script>
 <p class="fw-lighter">Outofmilk is a Grocery List is a website that helps you make your grocery list in a more organized and convenient way. It allows you to create a list and categorize your items. You can also search for recipes and add the ingredients needed for those recipes directly to your list. If you have some ingredients at home already, you can also add them to a pantry tracker to help you avoid buying duplicates. The website may also have some extra features, like showing pricing and nutrition information, letting users share their own recipes, and helping users find stores nearby.</p>
 <footer th:insert="partial/partials :: footer"></footer>
 </body>
