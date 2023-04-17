@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,9 +27,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     void deleteGroceryListIngredientById(@Param("groceryListUserId") Long groceryListUserId,
                                          @Param("groceryListIngredientId") Long groceryListIngredientId);
 
-    @Modifying(clearAutomatically = true)
-    @Query(value = "INSERT INTO pantry_items (ingredient_id, user_id) VALUES ( 1, 2)", nativeQuery = true)
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO pantry_items (ingredient_id, user_id) VALUES ( :pantryItemIngredientId, :pantryItemUserId)", nativeQuery = true)
     void addPantryListIngredientById(@Param("pantryItemUserId") User pantryItemUserId,
-                                     @Param("pantryItemIngredientId") List<Ingredient> pantryItemIngredientId);
+                                     @Param("pantryItemIngredientId") Ingredient pantryItemIngredientId);
 
 }

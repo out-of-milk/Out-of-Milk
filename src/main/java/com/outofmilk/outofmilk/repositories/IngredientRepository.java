@@ -9,7 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
-    List<Ingredient> findById(long id);
+    Ingredient findById(long id);
+
+    Ingredient findByName(String name);
 
 //    @Query("from Ingredient i where i.id = ?1 and i.favorite = true")
 //    List<Ingredient> findUserPantryById(User user);

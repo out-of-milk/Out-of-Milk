@@ -41,7 +41,7 @@ public class UserController {
 //        System.out.println(ingredients);
         List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findAll();
 
-        model.addAttribute("ingredient", ingredients);
+        model.addAttribute("ingredients", ingredients);
         System.out.println("********* Favorites ************");
         System.out.println(recipePreferencesFavorites);
         System.out.println("********* Hidden ************");
@@ -152,24 +152,32 @@ public class UserController {
 
     }
 
-    @PostMapping("/user/{id}/addItemPantry")
-    public String addItemToPantry(@PathVariable long id, Model model){
+    @GetMapping("/user/addItemPantry")
+    public String addItemToPantry(@RequestParam String selectedIngredient, Model model){
+        System.out.println(selectedIngredient);
+        Ingredient newIngredient = ingredientDao.findByName(selectedIngredient);
+        long id = newIngredient.getId();
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
         if (user == null) {
-            return "/login";
+            return "redirect:/login";
         }
+        System.out.println("help!!!");
 //        grab ingredient by id
-        List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findById(id);
+//        List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findById(id);
+        Ingredient ingredient =  ingredientDao.findById(id);
+        System.out.println(ingredient);
 //        add ingredient to User's pantry list
-        user.getPantryItems().add((Ingredient) ingredients);
+        user.getPantryItems().add(ingredient);
 
         model.addAttribute("user", user);
-        model.addAttribute("ingredients", ingredients);
+        model.addAttribute("ingredients", ingredientDao.findAll());
+//        model.addAttribute("ingredient", ingredient);
 //        save to ingredients dao?
         if (loggedInUser.getId() == user.getId()) {
-            userDao.addPantryListIngredientById(user, ingredients);
+//            userDao.addPantryListIngredientById(user, ingredient);
+            userDao.save(user);
         }
 
 
