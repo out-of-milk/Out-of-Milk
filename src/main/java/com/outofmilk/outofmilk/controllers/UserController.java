@@ -1,5 +1,6 @@
 package com.outofmilk.outofmilk.controllers;
 
+import com.outofmilk.outofmilk.models.Ingredient;
 import com.outofmilk.outofmilk.models.RecipePreference;
 import com.outofmilk.outofmilk.models.User;
 
@@ -137,5 +138,38 @@ public class UserController {
         return "redirect:/user";
 
     }
+
+    @PostMapping("/user/{id}/addItemPantry")
+    public String addItemToPantry(@PathVariable long id, Model model){
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+        List<Ingredient> pantryItems = (List<Ingredient>)
+//        Ingredient ingredient = ingredient.getById(id);
+//        user.getPantryItems().add(ingredient);
+
+
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user = userDao.getReferenceById(loggedInUser.getId());
+//        List<RecipePreference> recipePreferencesFavorites = (List<RecipePreference>) recipePreferenceDao.findFavoritesById(user);
+//        List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
+
+
+        if (user == null) {
+            return "/login";
+        }
+
+
+        return "redirect:/user";
+    }
+//    @PostMapping("/tasks/{id}/transfer")
+//    public String transferTaskToDepartment(@PathVariable long id, @RequestParam(name="department") long deptId) {
+//        Department department = departmentDao.getById(deptId);
+//        Task task = taskDao.getById(id);
+//        department.getTasks().add(task);
+//        task.setDepartment(department);
+//        taskDao.save(task);
+//        return "redirect:/tasks/" + id;
+//    }
 
 }
