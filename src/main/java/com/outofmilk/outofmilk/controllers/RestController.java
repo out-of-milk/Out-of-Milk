@@ -5,6 +5,7 @@ import com.outofmilk.outofmilk.models.Meal;
 import com.outofmilk.outofmilk.models.Recipe;
 import com.outofmilk.outofmilk.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -26,6 +27,9 @@ import java.util.Optional;
 @Controller
 public class RestController {
 
+    @Value("${mealdb.api.key}")
+    private String apiKey;
+
     @Autowired
     private RecipeRepository recipeRepository;
 
@@ -33,8 +37,9 @@ public class RestController {
     public String callExternalApi(@PathVariable int id, Model model) {
         String jsonResponse = null;
         try {
-            URL url = new URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id);
-//            URL url = new URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=52814");
+            System.out.println(apiKey);
+            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=" + id);
+//            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=52814");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "text/plain");
