@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface RecipePreferenceRepository extends JpaRepository<RecipePreference, Long> {
-    List<RecipePreference> findByUserId(long user_id);
+//    List<RecipePreference> findByUserId(long user_id);
 
     @Query("from RecipePreference r where r.user = ?1 and r.favorite = true")
     List<RecipePreference> findFavoritesById(User user);

@@ -44,9 +44,18 @@ public class User {
     )
     private List<Ingredient> groceryItems;
 
+//    @ManyToMany(cascade = CascadeType.PERSIST)
+//    @JoinTable(
+//            name="recipe_preferences",
+//            joinColumns={@JoinColumn(name="user_id")},
+//            inverseJoinColumns={@JoinColumn(name="recipe_id", referencedColumnName = "idMeal")}
+//    )
+//    private List<Recipe> recipes;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @ToString.Exclude
     private List<RecipePreference> recipePreferences;
+
 
     public User(User copy) {
         id = copy.id;

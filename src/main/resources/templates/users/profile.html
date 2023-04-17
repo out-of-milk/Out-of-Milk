@@ -153,9 +153,10 @@
                 <div class="carousel-inner">
                     <div th:each="recipePreferenceFavorite : ${recipePreferencesFavorites}">
                         <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
-                            <p th:text="${recipePreferenceFavorite.getRecipe_name()}"></p>
+<!--                            <p th:text="${recipePreferenceFavorite.getRecipe_name()}"></p>-->
+                            <p th:text="${recipePreferenceFavorite.getRecipe().getStrMeal()}"></p>
                             <a th:href="@{/recipe}">
-                                <img alt="..." class="d-block w-100" th:src="${recipePreferenceFavorite.getRecipe_image()}">
+                                <img alt="..." class="d-block w-100" th:src="${recipePreferenceFavorite.getRecipe().getStrMealThumb()}">
                             </a>
                             <div class="carousel-caption d-none d-md-block"></div>
                         </div>
@@ -204,11 +205,11 @@
                                 <label for="password">Confirm Password:</label>
                             </div>
                             <br/>
-
+<!---->
                             <ul class="no-bullets">
                                 <li th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
-                                    <p th:text="${recipePreferenceHidden.getRecipe_name()}"></p>
-                                    <a class="btn btn-danger" th:href="@{/user/} + ${recipePreferenceHidden.recipe_id} + '/dhr'" role="button">Remove</a>
+                                    <p th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></p>
+                                    <a class="btn btn-danger" th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'" role="button">Remove</a>
                                 </li>
                             </ul>
 

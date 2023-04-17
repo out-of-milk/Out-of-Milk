@@ -34,6 +34,12 @@ public class UserController {
         List<RecipePreference> recipePreferencesFavorites = (List<RecipePreference>) recipePreferenceDao.findFavoritesById(user);
         List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
 
+        System.out.println("********* Favorites ************");
+        System.out.println(recipePreferencesFavorites);
+        System.out.println("********* Hidden ************");
+        System.out.println(recipePreferencesHidden);
+        System.out.println("********* End ************");
+
         if (user == null) {
             return "/login";
         }
@@ -132,7 +138,6 @@ public class UserController {
             System.out.println(user.getId());
             System.out.println("*******************************");
             recipePreferenceDao.deleteHiddenRecipeById(user.getId(), Long.valueOf(id));
-//            userDao.deleteGroceryListIngredientById(user.getId(), Long.valueOf(id));
         }
 
         return "redirect:/user";
