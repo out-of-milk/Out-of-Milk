@@ -65,5 +65,14 @@ public class RecipeController {
 
 
 
+//     logged-in user
+//    @GetMapping("/recipe/{id}")
+//    public String showRecipeForm(){
+//        return "showRecipe";
+//    }
+
+
+
+
 
 }
