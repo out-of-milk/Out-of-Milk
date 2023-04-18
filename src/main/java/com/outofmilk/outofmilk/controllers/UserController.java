@@ -195,37 +195,40 @@ public class UserController {
         }
         System.out.println("help!!!");
 //        grab ingredient by id
-//        List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findById(id);
         Ingredient ingredient =  ingredientDao.findById(id);
         System.out.println(ingredient);
-//        add ingredient to User's pantry list
         user.getPantryItems().add(ingredient);
 
         model.addAttribute("user", user);
         model.addAttribute("ingredients", ingredientDao.findAll());
-//        model.addAttribute("ingredient", ingredient);
-//        save to ingredients dao?
         if (loggedInUser.getId() == user.getId()) {
-//            userDao.addPantryListIngredientById(user, ingredient);
             userDao.save(user);
         }
-
-
         return "redirect:/user";
-        //        ingredientDao.save(ingredients);
+    }
+    @GetMapping("/user/addItemGrocery")
+    public String addItemToGrocery(@RequestParam String selectedIngredient, Model model){
+        System.out.println(selectedIngredient);
+        Ingredient newIngredient = ingredientDao.findByName(selectedIngredient);
+        long id = newIngredient.getId();
 
-//        add ingredient to pantryitem list
-//        List<Ingredient> pantryItems = (List<Ingredient>);
-//        Ingredient ingredient = ingredient.getById(id);
-//        user.getPantryItems().add(ingredient);
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+        if (user == null) {
+            return "redirect:/login";
+        }
+        System.out.println("help!!!");
+//        grab ingredient by id
+        Ingredient ingredient =  ingredientDao.findById(id);
+        System.out.println(ingredient);
+        user.getGroceryItems().add(ingredient);
 
-
-//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        User user = userDao.getReferenceById(loggedInUser.getId());
-//        List<RecipePreference> recipePreferencesFavorites = (List<RecipePreference>) recipePreferenceDao.findFavoritesById(user);
-//        List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
-
-
+        model.addAttribute("user", user);
+        model.addAttribute("ingredients", ingredientDao.findAll());
+        if (loggedInUser.getId() == user.getId()) {
+            userDao.save(user);
+        }
+        return "redirect:/user";
     }
 
 }
