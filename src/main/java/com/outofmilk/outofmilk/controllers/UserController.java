@@ -13,6 +13,7 @@ import com.outofmilk.outofmilk.repositories.IngredientRepository;
 import com.outofmilk.outofmilk.repositories.RecipePreferenceRepository;
 import com.outofmilk.outofmilk.repositories.UserRepository;
 
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -156,30 +157,30 @@ public class UserController {
     }
 
     @PostMapping("/user/{id}/uc")
-    public String updateFavoriteCategories(@PathVariable long id,
-                                           @RequestParam(value = "categories", required = false) List<String> categoryNames,
-                                           Model model){
+    public String updateFavoriteCategories(@RequestParam("categories") @Nullable List<String> categoryNames) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
 
+        if (user == null) {
+            return "/login";
+        }
+
         List<Category> categories = new ArrayList<>();
 
-        if (categoryNames != null && !categoryNames.isEmpty()) {
+        if (categoryNames != null) {
             categories = categoryDao.findByNameIn(categoryNames);
         }
 
         user.setCategories(categories);
-
-        if (user == null) {
-            return "/login";
-        }
 
         if (loggedInUser.getId() == user.getId()) {
             userDao.save(user);
         }
 
         return "redirect:/user";
+
+    }
 
     @GetMapping("/user/addItemPantry")
     public String addItemToPantry(@RequestParam String selectedIngredient, Model model){
