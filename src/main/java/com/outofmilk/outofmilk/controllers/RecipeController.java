@@ -24,7 +24,7 @@ public class RecipeController {
     public String showFindAllForm(Model model){
         String jsonResponse = null;
         try {
-            URL url = new URL("https://www.themealdb.com/api/json/v1/ ADD API HERE /random.php");
+            URL url = new URL("https://www.themealdb.com/api/json/v2/`,MEALDB_API_KEY`/random.php");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "text/plain");

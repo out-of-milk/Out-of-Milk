@@ -211,19 +211,17 @@
 <div>
     <input type="text" id="search" placeholder="Search meals...">
 </div>
-<a th:href="@{/login}" sec:authorize="!isAuthenticated()">
-    <div id="recipes"></div>
-</a>
-<a th:href="@{'/recipe/' + ${idmeal}}" sec:authorize="isAuthenticated()">
-    <div id="recipes"></div>
-</a>
+    <div th:href="@{/login}" sec:authorize="!isAuthenticated()" id="recipes"></div>
+
+    <div th:href="@{'/recipe/' + ${idmeal}}" sec:authorize="isAuthenticated()" id="recipes"></div>
+
 <script>
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
     const recipesContainer = document.getElementById('recipes');
     const searchInput = document.getElementById('search');
 
     alphabet.forEach(letter => {
-        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+        fetch(`https://www.themealdb.com/api/json/v2/`,MEALDB_API_KEY`/search.php?f=${letter}`)
             .then(response => response.json())
             .then(data => {
                 const meals = data.meals;
