@@ -6,13 +6,19 @@
 </head>
 <body>
 <h1>Recipes List</h1>
-<div id="recipes"></div>
-
+<div>
+  <input type="text" id="search" placeholder="Search meals...">
+</div>
+<a th:href="@{/recipe/{id}(id=${idmeal})}">
+  <div id="recipes"></div>
+</a>
 <script>
 
-  // const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
-  const alphabet = '!@#$%^&*()'.split('').sort();
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
+
   const recipesContainer = document.getElementById('recipes');
+  const searchInput = document.getElementById('search');
+
   alphabet.forEach(letter => {
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
             .then(response => response.json())
@@ -21,6 +27,35 @@
               meals.forEach(meal => {
                 const card = document.createElement('div');
                 card.classList.add('card');
+
+                const image = document.createElement('img');
+                image.src = meal.strMealThumb;
+                image.alt = meal.strMeal;
+                const heading = document.createElement('h2');
+                heading.innerText = meal.strMeal;
+                const ID = document.createElement('h3');
+                ID.innerText = meal.idMeal;
+                const cat = document.createElement('h3');
+                cat.innerText = meal.strCategory;
+                const ingredients = document.createElement('ul');
+                for (let i = 1; i <= 20; i++) {
+                  const ingredient = meal[`strIngredient${i}`];
+                  if (ingredient) {
+                    const listItem = document.createElement('li');
+                    listItem.innerText = ingredient;
+                    ingredients.appendChild(listItem);
+                  }
+                }
+                const instructions = document.createElement('p');
+                instructions.innerText = meal.strInstructions;
+
+                // card.appendChild(ID);
+                card.appendChild(cat);
+                card.appendChild(heading);
+                card.appendChild(image);
+                // card.appendChild(ingredients);
+                // card.appendChild(instructions);
+
 
                 // Extracting idMeal, strMeal, strCategory, and strMealThumb from meal object
                 const idMeal = meal.idMeal;
@@ -32,11 +67,26 @@
                 const textElement = document.createElement('p');
                 textElement.innerText = `(${idMeal}, '${strMeal}', '${strCategory}', '${strMealThumb}')`;
 
+
                 card.appendChild(textElement);
                 recipesContainer.appendChild(card);
               });
             })
             .catch(error => console.error(error));
+  });
+
+
+  searchInput.addEventListener('input', () => {
+    const searchValue = searchInput.value.toLowerCase();
+    const cards = recipesContainer.querySelectorAll('.card');
+    cards.forEach(card => {
+      const title = card.querySelector('h2').innerText.toLowerCase();
+      if (title.includes(searchValue)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
   });
 
 
@@ -77,6 +127,7 @@
   //           })
   //           .catch(error => console.error(error));
   // });
+
 </script>
 </body>
 </html>

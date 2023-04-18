@@ -13,7 +13,5 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 
     Ingredient findByName(String name);
 
-//    @Query("from Ingredient i where i.id = ?1 and i.favorite = true")
-//    List<Ingredient> findUserPantryById(User user);
 
 }
