@@ -1,17 +1,11 @@
 package com.outofmilk.outofmilk.controllers;
 
-import com.outofmilk.outofmilk.models.Category;
+import com.outofmilk.outofmilk.models.*;
+
 import com.outofmilk.outofmilk.models.RecipePreference;
 import com.outofmilk.outofmilk.models.User;
 
-import com.outofmilk.outofmilk.models.Ingredient;
-import com.outofmilk.outofmilk.models.RecipePreference;
-import com.outofmilk.outofmilk.models.User;
-
-import com.outofmilk.outofmilk.repositories.CategoryRepository;
-import com.outofmilk.outofmilk.repositories.IngredientRepository;
-import com.outofmilk.outofmilk.repositories.RecipePreferenceRepository;
-import com.outofmilk.outofmilk.repositories.UserRepository;
+import com.outofmilk.outofmilk.repositories.*;
 
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
@@ -32,6 +26,8 @@ import java.util.List;
 public class UserController {
 
     private final UserRepository userDao;
+
+    private final RecipeRepository recipeDao;
     private final RecipePreferenceRepository recipePreferenceDao;
     private final CategoryRepository categoryDao;
     private final PasswordEncoder passwordEncoder;
@@ -234,6 +230,43 @@ public class UserController {
         return "redirect:/user";
     }
 
+    @GetMapping("/user/{id}/add-fav")
+    public String addFavRecipe(@PathVariable long id, Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
 
+        List<RecipePreference> allRecipePreferences = recipePreferenceDao.findAll();
+        List<RecipePreference> recipePreferencesFavorites = recipePreferenceDao.findFavoritesById(user);
+        List<RecipePreference> recipePreferencesHidden = recipePreferenceDao.findHiddenById(user);
+        Recipe viewedRecipe = recipeDao.findByIdMeal(id);
+
+
+        if (user == null) {
+            return "/login";
+        }
+
+        model.addAttribute("user", user);
+        model.addAttribute("recipePreferencesFavorites", recipePreferencesFavorites);
+        model.addAttribute("recipePreferencesHidden", recipePreferencesHidden);
+
+        for (RecipePreference recipePreference : recipePreferencesFavorites) {
+            if(recipePreference.getRecipe().getId() == viewedRecipe.getId()){
+                allRecipePreferences.remove(recipePreference);
+            }
+        }
+
+        RecipePreference newFavorite = new RecipePreference();
+        newFavorite.setUser(user);
+        newFavorite.setRecipe(viewedRecipe);
+        newFavorite.setFavorite(true);
+        newFavorite.setHidden(false);
+
+        allRecipePreferences.add(newFavorite);
+
+        user.setRecipePreferences(allRecipePreferences);
+        userDao.save(user);
+
+        return "redirect:/user";
+    }
 
 }
