@@ -240,6 +240,10 @@ public class UserController {
         List<RecipePreference> recipePreferencesHidden = recipePreferenceDao.findHiddenById(user);
         Recipe viewedRecipe = recipeDao.findByIdMeal(id);
 
+        System.out.println("**********************");
+        System.out.println(viewedRecipe.getStrMealThumb());
+        System.out.println("**********************");
+
 
         if (user == null) {
             return "/login";
@@ -266,7 +270,7 @@ public class UserController {
         user.setRecipePreferences(allRecipePreferences);
         userDao.save(user);
 
-        return "users/profile";
+        return "redirect:/user";
     }
 
 }
