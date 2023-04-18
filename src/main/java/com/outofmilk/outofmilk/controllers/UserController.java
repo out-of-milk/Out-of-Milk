@@ -43,21 +43,23 @@ public class UserController {
     public String showProfileForm(Model model) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (loggedInUser == null) {
+            return "/login";
+        }
+        System.out.println("****************");
+        System.out.println(loggedInUser);
+        System.out.println("****************");
+
         User user = userDao.getReferenceById(loggedInUser.getId());
+
+
         List<RecipePreference> recipePreferencesFavorites = (List<RecipePreference>) recipePreferenceDao.findFavoritesById(user);
         List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
         List<Category> categories = categoryDao.findAll();
-
-        System.out.println("User Pantry Iems!!!!" + user.getPantryItems());
-//        List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findById(4);
-//        System.out.println(ingredients);
         List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findAll();
 
         model.addAttribute("ingredients", ingredients);
-
-        if (user == null) {
-            return "/login";
-        }
 
         model.addAttribute("user", user);
         model.addAttribute("recipePreferencesFavorites", recipePreferencesFavorites);
@@ -137,12 +139,13 @@ public class UserController {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
-        List<RecipePreference> recipePreferencesFavorites = (List<RecipePreference>) recipePreferenceDao.findFavoritesById(user);
-        List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
 
         if (user == null) {
             return "/login";
         }
+
+        List<RecipePreference> recipePreferencesFavorites = (List<RecipePreference>) recipePreferenceDao.findFavoritesById(user);
+        List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
 
         model.addAttribute("user", user);
         model.addAttribute("recipePreferencesFavorites", recipePreferencesFavorites);
