@@ -31,6 +31,9 @@ public class Recipe {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String strMealThumb;
 
+    @Transient
+    private boolean showThis = false;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     @ToString.Exclude
     private List<RecipePreference> recipePreferences;
