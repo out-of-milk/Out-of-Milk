@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -22,13 +23,16 @@
                 <h6 th:text="${user.email}"></h6>
             </div>
             <div>
-                <h3>Favorite Recipes</h3>
-                <ul class="no-bullets">
-                    <li th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
-                        <a th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
-                        <a class="btn btn-danger" th:href="@{/user/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()} + '/dhr'" role="button">Remove</a>
-                    </li>
-                </ul>
+                <h3>Favorite Categories</h3>
+                    <div class="two-columns">
+                        <form th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
+                            <div th:each="category : ${categories}">
+                                <input type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
+                                <label th:for="${category.getName()}" th:text="${category.getName()}"></label><br>
+                            </div>
+                            <button type="submit">Update</button>
+                        </form>
+                    </div>
             </div>
         </div>
     </div>
@@ -77,10 +81,8 @@
             </div>
 
             <div th:each="ingredient : ${user.getPantryItems()}">
-
                 <p th:text="${ingredient.name}">help</p>
                 <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dpi'" role="button">Remove</a>
-
             </div>
         </div>
 
@@ -121,34 +123,16 @@
 
         <!--        favorite recipe-->
         <div aria-labelledby="nav-recipe-tab" class="tab-pane fade" id="nav-recipe" role="tabpanel">
-            <div class="d-flex justify-content-between row">
-                <form class="d-flex col-6">
-                    <input aria-label="Search" class="form-control" placeholder="Search"
-                           style="width: 20rem; height:4rem;"
-                           type="search">
-                    <button class="btn btn-outline-success" style="height:4rem;" type="submit">Search</button>
-                </form>
-                <div class="col-6">
-                    <select class=" mb-3 form-select" id="category" multiple style="width: 30rem; height: 4rem">
-                        <option selected value="0">Show All</option>
-                        <option value="1">Beef</option>
-                        <option value="2">Breakfast</option>
-                        <option value="3">Chicken</option>
-                        <option value="4">Dessert</option>
-                        <option value="5">Goat</option>
-                        <option value="6">Lamb</option>
-                        <option value="7">Pasta</option>
-                        <option value="8">Pork</option>
-                        <option value="9">Seafood</option>
-                        <option value="10">Side</option>
-                        <option value="11">Starter</option>
-                        <option value="12">Vegan</option>
-                        <option value="13">Vegetarian</option>
-                        <option value="14">Miscellaneous</option>
-                    </select>
-                </div>
-            </div>
             <h4 style="text-align: center;">Favorite Recipe</h4>
+            <hr>
+            <div class="d-flex justify-content-between row">
+                <ul class="no-bullets">
+                    <li th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
+                        <a th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
+                        <a class="btn btn-danger" th:href="@{/user/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()} + '/dhr'" role="button">Remove</a>
+                    </li>
+                </ul>
+            </div>
             <hr>
             <div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselExampleDark">
                 <div class="carousel-indicators">
