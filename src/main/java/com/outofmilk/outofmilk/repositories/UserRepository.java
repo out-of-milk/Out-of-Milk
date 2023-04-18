@@ -27,10 +27,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     void deleteGroceryListIngredientById(@Param("groceryListUserId") Long groceryListUserId,
                                          @Param("groceryListIngredientId") Long groceryListIngredientId);
 
-    @Modifying
-    @Transactional
-    @Query(value = "INSERT INTO pantry_items (ingredient_id, user_id) VALUES ( :pantryItemIngredientId, :pantryItemUserId)", nativeQuery = true)
-    void addPantryListIngredientById(@Param("pantryItemUserId") User pantryItemUserId,
-                                     @Param("pantryItemIngredientId") Ingredient pantryItemIngredientId);
 
 }

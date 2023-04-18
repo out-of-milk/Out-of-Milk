@@ -55,7 +55,8 @@ public class SecurityConfiguration {
                         "/user/{id}/dpi", // only authenticated users can remove ingredients
                         "/user/{id}/dgl", // only authenticated users can remove ingredients
                         "/user/{id}/dhr",
-                        "/user/addItemPantry"// only authenticated users can remove ingredients
+                        "/user/addItemPantry",
+                        "/user/addItemGrocery"// only authenticated users can remove ingredients
                 )
                 .authenticated()
 
