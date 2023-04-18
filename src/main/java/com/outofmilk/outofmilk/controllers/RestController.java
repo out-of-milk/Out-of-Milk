@@ -38,7 +38,7 @@ public class RestController {
         String jsonResponse = null;
         try {
             System.out.println(apiKey);
-            URL url = new URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id);
+            URL url = new URL("https://www.themealdb.com/api/json/v2/1/lookup.php?i=" + id);
 //            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=" + id);
 //            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=52814");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
