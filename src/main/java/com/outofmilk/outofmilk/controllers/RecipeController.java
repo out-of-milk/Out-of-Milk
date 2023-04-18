@@ -1,10 +1,18 @@
 package com.outofmilk.outofmilk.controllers;
 
 import com.google.gson.*;
+import com.outofmilk.outofmilk.models.Category;
+import com.outofmilk.outofmilk.models.Recipe;
+import com.outofmilk.outofmilk.models.User;
+import com.outofmilk.outofmilk.repositories.RecipeRepository;
+import com.outofmilk.outofmilk.repositories.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,64 +23,41 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
+@AllArgsConstructor
 @Controller
 public class RecipeController {
 
+    private final UserRepository userDao;
+    private final RecipeRepository recipeDao;
 
     @GetMapping("/")
     public String showFindAllForm(Model model){
-        String jsonResponse = null;
-        try {
-            URL url = new URL("https://www.themealdb.com/api/json/v2/`,MEALDB_API_KEY`/random.php");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoOutput(true);
-            connection.setRequestProperty("Content-Type", "text/plain");
-            connection.setRequestMethod("GET");
-            connection.getResponseCode();
-            jsonResponse = new String(connection.getInputStream().readAllBytes());
-            System.out.println("HTTP response code is " + connection.getResponseCode());
-            System.out.println(jsonResponse);
 
-            Gson gson = new Gson();
-            JsonObject jsonObject = gson.fromJson(jsonResponse, JsonObject.class);
-            System.out.println(jsonObject);
-            JsonArray mealsArray = JsonParser.parseString(jsonResponse).getAsJsonObject().getAsJsonArray("meals");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-            System.out.println(mealsArray);
+        if (authentication.getPrincipal() != "anonymousUser") {
+            System.out.println("**************");
+            System.out.println("Logged in user");
+            System.out.println("**************");
+        } else {
 
-            for (JsonElement mealElement : mealsArray) {
-                JsonObject mealObject = mealElement.getAsJsonObject();
+            List<Recipe> recipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
+            recipes.get(0).setShowThis(true);
 
-                String idMeal = mealObject.get("idMeal").getAsString();
-                System.out.println(idMeal);
-                String strMeal = mealObject.get("strMeal").getAsString();
-                String strCategory = mealObject.get("strCategory").getAsString();
-                String strMealThumb = mealObject.get("strMealThumb").getAsString();
+            model.addAttribute("recipes", recipes);
 
-                model.addAttribute("idmeal", idMeal);
-                model.addAttribute("strMeal", strMeal);
-                model.addAttribute("strCategory", strCategory);
-                model.addAttribute("strMealThumb", strMealThumb);
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(recipes);
+
+            System.out.println("******************");
+            System.out.println("Not logged in user");
+            System.out.println("******************");
         }
 
         return "findAll";
+
     }
-
-
-
-//     logged-in user
-//    @GetMapping("/recipe/{id}")
-//    public String showRecipeForm(){
-//        return "showRecipe";
-//    }
-
-
-
-
 
 }
