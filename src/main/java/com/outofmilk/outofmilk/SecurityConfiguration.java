@@ -55,16 +55,17 @@ public class SecurityConfiguration {
                         "/user/{id}/uc", // only authenticated users can view user profile
                         "/user/{id}/dpi", // only authenticated users can remove ingredients
                         "/user/{id}/dgl", // only authenticated users can remove ingredients
-                        "/user/{id}/dhr",
-                        "/user/addItemPantry",
-                        "/user/addItemGrocery"// only authenticated users can remove ingredients
+                        "/user/{id}/dhr", // only authenticated users can remove hidden recipes
+                        "/recipe/{id}", // only authenticated users can view recipe details
+                        "/user/addItemPantry", // only authenticated users can add ingredients
+                        "/user/addItemGrocery" // only authenticated users can add ingredients
                 )
                 .authenticated()
 
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/recipe","/recipe/{id}", "/login", "/sign-up", "/css/**", "/images/**", "/js/**","/AboutUs") // anyone can see the home and the posts pages
+                .requestMatchers("/", "/recipe", "/login", "/sign-up", "/css/**", "/images/**", "/js/**","/AboutUs") // anyone can see the home and the posts pages
                 .permitAll()
         ;
         return http.build();
