@@ -38,7 +38,8 @@ public class RestController {
         String jsonResponse = null;
         try {
             System.out.println(apiKey);
-            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=" + id);
+            URL url = new URL("https://www.themealdb.com/api/json/v2/1/lookup.php?i=" + id);
+//            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=" + id);
 //            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=52814");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
@@ -282,17 +283,17 @@ public class RestController {
                 model.addAttribute("strMeasure20", strMeasure20);
 
 
-                Optional<Recipe> existingRecipe = Optional.ofNullable(recipeRepository.findByIdMeal(Long.parseLong(idMeal)));
-                if (!existingRecipe.isPresent()) {
-
-                    Recipe newRecipe = new Recipe();
-                    newRecipe.setIdMeal(Long.parseLong(idMeal));
-                    newRecipe.setStrMeal(strMeal);
-                    newRecipe.setStrCategory(strCategory);
-                    newRecipe.setStrMealThumb(strMealThumb);
-
-                    recipeRepository.save(newRecipe);
-                }
+//                Optional<Recipe> existingRecipe = Optional.ofNullable(recipeRepository.findByIdMeal(Long.parseLong(idMeal)));
+//                if (!existingRecipe.isPresent()) {
+//
+//                    Recipe newRecipe = new Recipe();
+//                    newRecipe.setIdMeal(Long.parseLong(idMeal));
+//                    newRecipe.setStrMeal(strMeal);
+//                    newRecipe.setStrCategory(strCategory);
+//                    newRecipe.setStrMealThumb(strMealThumb);
+//
+//                    recipeRepository.save(newRecipe);
+//                }
 
             }
 
