@@ -27,3 +27,9 @@ ul.no-bullets {
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margins */
 }
+
+.two-columns {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}

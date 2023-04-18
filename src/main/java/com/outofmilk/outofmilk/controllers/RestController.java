@@ -2,6 +2,10 @@ package com.outofmilk.outofmilk.controllers;
 
 import com.google.gson.*;
 import com.outofmilk.outofmilk.models.Meal;
+import com.outofmilk.outofmilk.models.Recipe;
+import com.outofmilk.outofmilk.repositories.RecipeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -18,15 +22,24 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Optional;
 
 @Controller
 public class RestController {
+
+    @Value("${mealdb.api.key}")
+    private String apiKey;
+
+    @Autowired
+    private RecipeRepository recipeRepository;
 
     @GetMapping("/recipe/{id}")
     public String callExternalApi(@PathVariable int id, Model model) {
         String jsonResponse = null;
         try {
-            URL url = new URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id);
+            System.out.println(apiKey);
+            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=" + id);
+//            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=52814");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "text/plain");
@@ -48,6 +61,11 @@ public class RestController {
                 String strCategory = mealObject.get("strCategory").getAsString();
                 String strInstructions = mealObject.get("strInstructions").getAsString();
                 String strMealThumb = mealObject.get("strMealThumb").getAsString();
+
+                String strYoutube = "";
+                if(mealObject.get("strYoutube").isJsonNull() == false){
+                    strYoutube = mealObject.get("strYoutube").getAsString();
+                }
 
                 String strIngredient1 = "";
                 if(mealObject.get("strIngredient1").isJsonNull() == false){
@@ -220,6 +238,7 @@ public class RestController {
                 model.addAttribute("strMeal", strMeal);
                 model.addAttribute("strCategory", strCategory);
                 model.addAttribute("strInstructions", strInstructions);
+                model.addAttribute("strYoutube", strYoutube);
                 model.addAttribute("strMealThumb", strMealThumb);
                 model.addAttribute("strIngredient1", strIngredient1);
                 model.addAttribute("strIngredient2", strIngredient2);
@@ -261,6 +280,20 @@ public class RestController {
                 model.addAttribute("strMeasure18", strMeasure18);
                 model.addAttribute("strMeasure19", strMeasure19);
                 model.addAttribute("strMeasure20", strMeasure20);
+
+
+                Optional<Recipe> existingRecipe = Optional.ofNullable(recipeRepository.findByIdMeal(Long.parseLong(idMeal)));
+                if (!existingRecipe.isPresent()) {
+
+                    Recipe newRecipe = new Recipe();
+                    newRecipe.setIdMeal(Long.parseLong(idMeal));
+                    newRecipe.setStrMeal(strMeal);
+                    newRecipe.setStrCategory(strCategory);
+                    newRecipe.setStrMealThumb(strMealThumb);
+
+                    recipeRepository.save(newRecipe);
+                }
+
             }
 
         } catch (Exception e) {

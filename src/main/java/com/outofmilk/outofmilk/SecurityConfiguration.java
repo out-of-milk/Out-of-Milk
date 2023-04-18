@@ -52,9 +52,11 @@ public class SecurityConfiguration {
 
                         "/users/profile", // only authenticated users can create posts
                         "/user", // only authenticated users can view user profile
+                        "/user/{id}/uc", // only authenticated users can view user profile
                         "/user/{id}/dpi", // only authenticated users can remove ingredients
                         "/user/{id}/dgl", // only authenticated users can remove ingredients
-                        "/user/{id}/dhr" // only authenticated users can remove ingredients
+                        "/user/{id}/dhr",
+                        "/user/addItemPantry"// only authenticated users can remove ingredients
                 )
                 .authenticated()
 

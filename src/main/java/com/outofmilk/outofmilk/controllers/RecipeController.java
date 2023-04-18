@@ -19,16 +19,12 @@ import java.net.URL;
 @Controller
 public class RecipeController {
 
-    // guest user
-//    @GetMapping("/")
-//    public String showFindAllForm(){
-//        return "findAll";
-//    }
+
     @GetMapping("/")
     public String showFindAllForm(Model model){
         String jsonResponse = null;
         try {
-            URL url = new URL("https://www.themealdb.com/api/json/v1/1/random.php");
+            URL url = new URL("https://www.themealdb.com/api/json/v1/ ADD API HERE /random.php");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "text/plain");
@@ -42,9 +38,12 @@ public class RecipeController {
             JsonObject jsonObject = gson.fromJson(jsonResponse, JsonObject.class);
             System.out.println(jsonObject);
             JsonArray mealsArray = JsonParser.parseString(jsonResponse).getAsJsonObject().getAsJsonArray("meals");
+
             System.out.println(mealsArray);
+
             for (JsonElement mealElement : mealsArray) {
                 JsonObject mealObject = mealElement.getAsJsonObject();
+
                 String idMeal = mealObject.get("idMeal").getAsString();
                 System.out.println(idMeal);
                 String strMeal = mealObject.get("strMeal").getAsString();
@@ -65,11 +64,13 @@ public class RecipeController {
     }
 
 
+
 //     logged-in user
 //    @GetMapping("/recipe/{id}")
 //    public String showRecipeForm(){
 //        return "showRecipe";
 //    }
+
 
 
 
