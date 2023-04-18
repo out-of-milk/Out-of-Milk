@@ -149,53 +149,68 @@
     <hr>
     <div class="body d-flex justify-content-evenly">
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">
-                    <a th:href="@{'/recipe/' + ${idmeal}}">
-                        <img th:src="${strMealThumb}">
-                    </a>
-                    <h1 id="displayMealTitle1"></h1>
-                    <div class="carousel-caption d-none d-md-block"></div>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <a th:href="@{/recipe/{id}(id=${idmeal})}">
-                        <img th:src="${strMealThumb}">
-                    </a>
-                    <h1 id="displayMealTitle2"></h1>
-                    <div class="carousel-caption d-none d-md-block"></div>
-                </div>
-                <div class="carousel-item">
-                    <a th:href="@{'/recipe/' + ${idmeal}}">
-                        <img  th:src="${strMealThumb}">
-                    </a>
-                    <h1 id="displayMealTitle3"></h1>
-                    <div class="carousel-caption d-none d-md-block"></div>
-                </div>
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
+<!--            <div class="carousel-inner">-->
+<!--                <div class="carousel-item active " data-bs-interval="10000" sec:authorize="isAuthenticated()">-->
+<!--                    <a th:href="@{'/recipe/' + ${idmeal}}">-->
+<!--                        <img th:src="${strMealThumb}">-->
+<!--                    </a>-->
+<!--                    <h1 id="displayMealTitle1"></h1>-->
+<!--                    <div class="carousel-caption d-none d-md-block"></div>-->
+<!--                </div>-->
+<!--                <div class="carousel-item" data-bs-interval="2000">-->
+<!--                    <a th:href="@{/recipe/{id}(id=${idmeal})}">-->
+<!--                        <img th:src="${strMealThumb}">-->
+<!--                    </a>-->
+<!--                    <h1 id="displayMealTitle2"></h1>-->
+<!--                    <div class="carousel-caption d-none d-md-block"></div>-->
+<!--                </div>-->
+<!--                <div class="carousel-item">-->
+<!--                    <a th:href="@{'/recipe/' + ${idmeal}}">-->
+<!--                        <img  th:src="${strMealThumb}">-->
+<!--                    </a>-->
+<!--                    <h1 id="displayMealTitle3"></h1>-->
+<!--                    <div class="carousel-caption d-none d-md-block"></div>-->
+<!--                </div>-->
+<!--            </div>-->
 
             <div class="carousel-inner">
-                <div class="carousel-item active " data-bs-interval="10000" sec:authorize="!isAuthenticated()">
-                    <a th:href="@{/login}">
-                        <div id="displayMealThumb4"></div>
-                    </a>
-                    <h2 id="displayMealTitle4"></h2>
+
+                <div th:each="recipe : ${recipes}" class="carousel-item active" data-bs-interval="10000">
+<!--                        <a th:href="@{/login}">-->
+                    <h2 th:text="${recipe.getStrMeal()}"></h2>
+                    <img alt="..." class="d-block w-100" th:src="${recipe.getStrMealThumb()}">
+<!--                        </a>-->
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
-                <div class="carousel-item" data-bs-interval="2000" sec:authorize="!isAuthenticated()">
-                    <a th:href="@{/login}">
-                        <div id="displayMealThumb5"></div>
-                    </a>
-                    <h2 id="displayMealTitle5"></h2>
-                    <div class="carousel-caption d-none d-md-block"></div>
-                </div>
-                <div class="carousel-item" sec:authorize="!isAuthenticated()">
-                    <a th:href="@{/login}">
-                        <div id="displayMealThumb6"></div>
-                    </a>
-                    <h2 id="displayMealTitle6"></h2>
-                    <div class="carousel-caption d-none d-md-block"></div>
-                </div>
+
             </div>
+
+            <!--                <div class="carousel-item active " data-bs-interval="10000" sec:authorize="!isAuthenticated()">-->
+<!--                    <a th:href="@{/login}">-->
+<!--                        <div id="displayMealThumb4"></div>-->
+<!--                    </a>-->
+<!--                    <h2 id="displayMealTitle4"></h2>-->
+<!--                    <div class="carousel-caption d-none d-md-block"></div>-->
+<!--                </div>-->
+<!--                <div class="carousel-item" data-bs-interval="2000" sec:authorize="!isAuthenticated()">-->
+<!--                    <a th:href="@{/login}">-->
+<!--                        <div id="displayMealThumb5"></div>-->
+<!--                    </a>-->
+<!--                    <h2 id="displayMealTitle5"></h2>-->
+<!--                    <div class="carousel-caption d-none d-md-block"></div>-->
+<!--                </div>-->
+<!--                <div class="carousel-item" sec:authorize="!isAuthenticated()">-->
+<!--                    <a th:href="@{/login}">-->
+<!--                        <div id="displayMealThumb6"></div>-->
+<!--                    </a>-->
+<!--                    <h2 id="displayMealTitle6"></h2>-->
+<!--                    <div class="carousel-caption d-none d-md-block"></div>-->
+<!--                </div>-->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
