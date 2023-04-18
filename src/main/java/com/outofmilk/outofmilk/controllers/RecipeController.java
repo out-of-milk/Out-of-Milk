@@ -23,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -37,24 +38,28 @@ public class RecipeController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+        List<Recipe> recipes = new ArrayList<>();
+
         if (authentication.getPrincipal() != "anonymousUser") {
-            System.out.println("**************");
-            System.out.println("Logged in user");
-            System.out.println("**************");
+            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userDao.getReferenceById(loggedInUser.getId());
+
+            System.out.println(user);
+
+//            recipes = recipeDao.selectRecommendedRecipes(user.getCategories().toString());
+            System.out.println("***************");
+            System.out.println(user.getCategories().toString());
+            System.out.println("***************");
+            recipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
+
         } else {
-
-            List<Recipe> recipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
-            recipes.get(0).setShowThis(true);
-
-            model.addAttribute("recipes", recipes);
-
-
-            System.out.println(recipes);
-
-            System.out.println("******************");
-            System.out.println("Not logged in user");
-            System.out.println("******************");
+            recipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
         }
+
+        model.addAttribute("recipes", recipes);
+        recipes.get(0).setShowThis(true);
+
+        System.out.println(recipes);
 
         return "findAll";
 
