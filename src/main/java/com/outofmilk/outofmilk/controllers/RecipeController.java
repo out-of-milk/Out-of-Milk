@@ -44,6 +44,8 @@ public class RecipeController {
         } else {
 
             List<Recipe> recipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
+            recipes.get(0).setShowThis(true);
+
             model.addAttribute("recipes", recipes);
 
 
