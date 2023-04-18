@@ -15,9 +15,7 @@
 <!--                <p th:text="${idmeal}"></p>-->
                 <p class="card-text" th:text="${strCategory}">recipe category</p>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <form th:action="@{/user/${id}/add-fav}" th:method="post">
-                        <button type="submit" class="btn btn-primary">❤️</button>
-                    </form>
+                    <a th:href="@{/user/} + ${id} + '/afr'}" role="button" class="btn btn-primary">❤️</a>
                     <button type="button" class="btn btn-primary"> X</button>
                     <button type="button" class="btn btn-primary">Add all</button>
                 </div>

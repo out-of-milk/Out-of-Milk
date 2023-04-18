@@ -230,7 +230,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @GetMapping("/user/{id}/add-fav")
+    @GetMapping("/user/{id}/afr")
     public String addFavRecipe(@PathVariable long id, Model model){
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
@@ -266,7 +266,7 @@ public class UserController {
         user.setRecipePreferences(allRecipePreferences);
         userDao.save(user);
 
-        return "redirect:/user";
+        return "users/profile";
     }
 
 }
