@@ -241,9 +241,6 @@ public class UserController {
         List<RecipePreference> recipePreferencesHidden = recipePreferenceDao.findHiddenById(user);
         Recipe viewedRecipe = recipeDao.findByIdMeal(id);
 
-        System.out.println("**********************");
-        System.out.println(viewedRecipe.getStrMealThumb());
-        System.out.println("**********************");
 
 
         if (user == null) {
@@ -267,6 +264,46 @@ public class UserController {
         newFavorite.setHidden(false);
 
         allRecipePreferences.add(newFavorite);
+
+        user.setRecipePreferences(allRecipePreferences);
+        userDao.save(user);
+
+        return "redirect:/user";
+    }
+
+    @GetMapping("/user/{id}/ahr")
+    public String addHiddenRecipe(@PathVariable long id, Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+
+        List<RecipePreference> allRecipePreferences = recipePreferenceDao.findAll();
+        List<RecipePreference> recipePreferencesFavorites = recipePreferenceDao.findFavoritesById(user);
+        List<RecipePreference> recipePreferencesHidden = recipePreferenceDao.findHiddenById(user);
+        Recipe viewedRecipe = recipeDao.findByIdMeal(id);
+
+
+
+        if (user == null) {
+            return "/login";
+        }
+
+        model.addAttribute("user", user);
+        model.addAttribute("recipePreferencesFavorites", recipePreferencesFavorites);
+        model.addAttribute("recipePreferencesHidden", recipePreferencesHidden);
+
+        for (RecipePreference recipePreference : recipePreferencesHidden) {
+            if(recipePreference.getRecipe().getId() == viewedRecipe.getId()){
+                allRecipePreferences.remove(recipePreference);
+            }
+        }
+
+        RecipePreference newHidden = new RecipePreference();
+        newHidden.setUser(user);
+        newHidden.setRecipe(viewedRecipe);
+        newHidden.setFavorite(false);
+        newHidden.setHidden(true);
+
+        allRecipePreferences.add(newHidden);
 
         user.setRecipePreferences(allRecipePreferences);
         userDao.save(user);
