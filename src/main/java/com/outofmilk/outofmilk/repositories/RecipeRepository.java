@@ -11,8 +11,9 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     Recipe findByIdMeal(long id_Meal);
 
-//    @Query(value = "SELECT * FROM recipes ORDER BY RAND() LIMIT :amount", nativeQuery = true)
-//    List<Recipe> selectRecommendedRecipes(@Param("amount") String amount);
+    List<Recipe> findByStrCategoryIn(List<String> categories);
+    @Query(value = "SELECT * FROM recipes ORDER BY RAND() LIMIT 3", nativeQuery = true)
+    List<Recipe> selectRandomRecipes();
 
     @Query(value = "SELECT * FROM recipes ORDER BY RAND() LIMIT :amount", nativeQuery = true)
     List<Recipe> selectRandomRecipes(@Param("amount") Long amount);
