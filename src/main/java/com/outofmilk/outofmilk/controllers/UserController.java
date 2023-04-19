@@ -56,8 +56,8 @@ public class UserController {
         List<Category> categories = categoryDao.findAll();
         List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findAll();
 
-        model.addAttribute("ingredients", ingredients);
 
+        model.addAttribute("ingredients", ingredients);
         model.addAttribute("user", user);
         model.addAttribute("recipePreferencesFavorites", recipePreferencesFavorites);
         model.addAttribute("recipePreferencesHidden", recipePreferencesHidden);
