@@ -33,3 +33,21 @@ ul.no-bullets {
     -webkit-columns: 2;
     -moz-columns: 2;
 }
+.pics_in_a_row {
+    display: flex;
+}
+$circleSize: 165px;
+$radius: 100px;
+$shadow: 0 0 10px 0
+img {
+    position: absolute;
+    object-fit: cover;
+    width: $circleSize;
+    height: $circleSize;
+    box-shadow: $shadow;
+    border-radius: $radius;
+    z-index: 0;
+}
+
+
+
