@@ -165,10 +165,10 @@
         <div id="carouselExampleDark" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
 
 
-  //          <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">
-   //             <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
+<!--  //          <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">-->
+<!--   //             <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">-->
 
-            <div class="carousel-inner" sec:authorize="isAuthenticated()">
+            <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">
                 <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
 
                     <a th:href="@{'/recipe/'} + ${recipe.getIdMeal()}">
@@ -179,10 +179,10 @@
                 </div>
             </div>
 
- //           <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">
- //               <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
+<!-- //           <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">-->
+<!-- //               <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">-->
 
-            <div class="carousel-inner" sec:authorize="!isAuthenticated()">
+            <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">
                 <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
 
                     <a th:href="@{/login}">
