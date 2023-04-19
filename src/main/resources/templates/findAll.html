@@ -156,7 +156,7 @@
             </div>
 
             <div class="carousel-inner" sec:authorize="isAuthenticated()">
-                <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
+                <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
                     <a th:href="@{'/recipe/'} + ${recipe.getIdMeal()}">
                         <h2 th:text="${recipe.getStrMeal()}"></h2>
                         <img alt="..." class="d-block w-100" th:src="${recipe.getStrMealThumb()}">
@@ -166,7 +166,7 @@
             </div>
 
             <div class="carousel-inner" sec:authorize="!isAuthenticated()">
-                <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
+                <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
                     <a th:href="@{/login}">
                         <h2 th:text="${recipe.getStrMeal()}"></h2>
                         <img alt="..." class="d-block w-100" th:src="${recipe.getStrMealThumb()}">
