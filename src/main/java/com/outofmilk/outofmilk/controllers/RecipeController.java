@@ -24,6 +24,7 @@ import org.springframework.web.client.RestTemplate;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @AllArgsConstructor
@@ -44,13 +45,31 @@ public class RecipeController {
             User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User user = userDao.getReferenceById(loggedInUser.getId());
 
-            System.out.println(user);
+            List<String> categoryNames = new ArrayList<>();
 
-//            recipes = recipeDao.selectRecommendedRecipes(user.getCategories().toString());
-            System.out.println("***************");
-            System.out.println(user.getCategories().toString());
-            System.out.println("***************");
-            recipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
+            for (Category category : user.getCategories()) {
+                categoryNames.add(category.getName());
+            }
+
+            if (categoryNames != null && !categoryNames.isEmpty()) {
+                recipes = recipeDao.findByStrCategoryIn(categoryNames);
+
+                Collections.shuffle(recipes);
+                while (recipes.size() > 3) {
+                    recipes.remove(recipes.size() - 1);
+                }
+            }
+
+            if (recipes.size() == 0) {
+                List<Recipe> randomRecipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
+                recipes.addAll(randomRecipes);
+            } else if (recipes.size() == 1) {
+                List<Recipe> randomRecipes = recipeDao.selectRandomRecipes(Long.valueOf("2"));
+                recipes.addAll(randomRecipes);
+            } else if (recipes.size() == 2) {
+                List<Recipe> randomRecipes = recipeDao.selectRandomRecipes(Long.valueOf("1"));
+                recipes.addAll(randomRecipes);
+            }
 
         } else {
             recipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
