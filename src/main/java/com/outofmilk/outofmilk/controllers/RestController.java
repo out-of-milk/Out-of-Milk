@@ -421,6 +421,9 @@ public class RestController {
                     recipeIngredients.add("strIngredient" + i);
                 }
 
+                System.out.println("**********************");
+                System.out.println(recipeIngredients);
+                System.out.println("**********************");
 
             }
 
