@@ -1,18 +1,32 @@
 package com.outofmilk.outofmilk.controllers;
 
 import com.google.gson.*;
+import com.outofmilk.outofmilk.models.Ingredient;
+import com.outofmilk.outofmilk.models.Meal;
+import com.outofmilk.outofmilk.models.Recipe;
+import com.outofmilk.outofmilk.repositories.IngredientRepository;
 import com.outofmilk.outofmilk.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import javax.swing.text.html.ImageView;
+import java.awt.*;
+import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class RestController {
@@ -22,6 +36,9 @@ public class RestController {
 
     @Autowired
     private RecipeRepository recipeRepository;
+
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     @GetMapping("/recipe/{id}")
     public String callExternalApi(@PathVariable int id, Model model) {
@@ -54,176 +71,247 @@ public class RestController {
                 String strMealThumb = mealObject.get("strMealThumb").getAsString();
 
                 String strYoutube = "";
-                if (mealObject.get("strYoutube").isJsonNull() == false) {
+                if(mealObject.get("strYoutube").isJsonNull() == false){
                     strYoutube = mealObject.get("strYoutube").getAsString();
                 }
 
                 String strIngredient1 = "";
-                if (mealObject.get("strIngredient1").isJsonNull() == false) {
+                Ingredient ingredient1 = null;
+                List<Ingredient> ingredients = new ArrayList<>();
+                if(mealObject.get("strIngredient1").isJsonNull() == false){
                     strIngredient1 = mealObject.get("strIngredient1").getAsString();
+                    ingredient1 = ingredientRepository.findByName(strIngredient1);
+                    ingredients.add(ingredient1);
+                    System.out.println("********************");
+                    System.out.println(ingredient1);
+                    System.out.println("********************");
+                    System.out.println(ingredients);
+                    System.out.println("********************");
                 }
 
                 String strIngredient2 = "";
-                if (mealObject.get("strIngredient2").isJsonNull() == false) {
+                Ingredient ingredient2 = null;
+                if(mealObject.get("strIngredient2").isJsonNull() == false){
                     strIngredient2 = mealObject.get("strIngredient2").getAsString();
+                    ingredient2 = ingredientRepository.findByName(strIngredient2);
+                    ingredients.add(ingredient2);
                 }
 
                 String strIngredient3 = "";
-                if (mealObject.get("strIngredient3").isJsonNull() == false) {
+                Ingredient ingredient3 = null;
+                if(mealObject.get("strIngredient3").isJsonNull() == false){
                     strIngredient3 = mealObject.get("strIngredient3").getAsString();
+                    ingredient3 = ingredientRepository.findByName(strIngredient3);
+                    ingredients.add(ingredient3);
                 }
 
                 String strIngredient4 = "";
-                if (mealObject.get("strIngredient4").isJsonNull() == false) {
+                Ingredient ingredient4 = null;
+                if(mealObject.get("strIngredient4").isJsonNull() == false){
                     strIngredient4 = mealObject.get("strIngredient4").getAsString();
+                    ingredient4 = ingredientRepository.findByName(strIngredient4);
+                    ingredients.add(ingredient4);
                 }
 
                 String strIngredient5 = "";
-                if (mealObject.get("strIngredient5").isJsonNull() == false) {
+                Ingredient ingredient5 = null;
+                if(mealObject.get("strIngredient5").isJsonNull() == false){
                     strIngredient5 = mealObject.get("strIngredient5").getAsString();
+                    ingredient5 = ingredientRepository.findByName(strIngredient5);
+                    ingredients.add(ingredient5);
                 }
 
                 String strIngredient6 = "";
-                if (mealObject.get("strIngredient6").isJsonNull() == false) {
+                Ingredient ingredient6 = null;
+                if(mealObject.get("strIngredient6").isJsonNull() == false){
                     strIngredient6 = mealObject.get("strIngredient6").getAsString();
+                    ingredient6 = ingredientRepository.findByName(strIngredient6);
+                    ingredients.add(ingredient6);
                 }
                 String strIngredient7 = "";
-                if (mealObject.get("strIngredient7").isJsonNull() == false) {
+                Ingredient ingredient7 = null;
+                if(mealObject.get("strIngredient7").isJsonNull() == false){
                     strIngredient7 = mealObject.get("strIngredient7").getAsString();
+                    ingredient7 = ingredientRepository.findByName(strIngredient7);
+                    ingredients.add(ingredient7);
                 }
                 String strIngredient8 = "";
-                if (mealObject.get("strIngredient8").isJsonNull() == false) {
+                Ingredient ingredient8 = null;
+                if(mealObject.get("strIngredient8").isJsonNull() == false){
                     strIngredient8 = mealObject.get("strIngredient8").getAsString();
+                    ingredient8 = ingredientRepository.findByName(strIngredient8);
+                    ingredients.add(ingredient8);
                 }
                 String strIngredient9 = "";
-                if (mealObject.get("strIngredient1").isJsonNull() == false) {
+                Ingredient ingredient9 = null;
+                if(mealObject.get("strIngredient1").isJsonNull() == false){
                     strIngredient9 = mealObject.get("strIngredient9").getAsString();
+                    ingredient9 = ingredientRepository.findByName(strIngredient9);
+                    ingredients.add(ingredient9);
                 }
                 String strIngredient10 = "";
-                if (mealObject.get("strIngredient10").isJsonNull() == false) {
+                Ingredient ingredient10 = null;
+                if(mealObject.get("strIngredient10").isJsonNull() == false){
                     strIngredient10 = mealObject.get("strIngredient10").getAsString();
+                    ingredient10 = ingredientRepository.findByName(strIngredient10);
+                    ingredients.add(ingredient10);
                 }
                 String strIngredient11 = "";
-                if (mealObject.get("strIngredient11").isJsonNull() == false) {
+                Ingredient ingredient11 = null;
+                if(mealObject.get("strIngredient11").isJsonNull() == false){
                     strIngredient11 = mealObject.get("strIngredient11").getAsString();
+                    ingredient11 = ingredientRepository.findByName(strIngredient11);
+                    ingredients.add(ingredient11);
                 }
                 String strIngredient12 = "";
-                if (mealObject.get("strIngredient12").isJsonNull() == false) {
+                Ingredient ingredient12 = null;
+                if(mealObject.get("strIngredient12").isJsonNull() == false){
                     strIngredient12 = mealObject.get("strIngredient12").getAsString();
+                    ingredient12 = ingredientRepository.findByName(strIngredient12);
+                    ingredients.add(ingredient12);
                 }
                 String strIngredient13 = "";
-                if (mealObject.get("strIngredient13").isJsonNull() == false) {
+                Ingredient ingredient13 = null;
+                if(mealObject.get("strIngredient13").isJsonNull() == false){
                     strIngredient13 = mealObject.get("strIngredient13").getAsString();
+                    ingredient13 = ingredientRepository.findByName(strIngredient13);
+                    ingredients.add(ingredient13);
                 }
                 String strIngredient14 = "";
-                if (mealObject.get("strIngredient14").isJsonNull() == false) {
+                Ingredient ingredient14 = null;
+                if(mealObject.get("strIngredient14").isJsonNull() == false){
                     strIngredient14 = mealObject.get("strIngredient14").getAsString();
+                    ingredient14 = ingredientRepository.findByName(strIngredient14);
+                    ingredients.add(ingredient14);
                 }
                 String strIngredient15 = "";
-                if (mealObject.get("strIngredient15").isJsonNull() == false) {
+                Ingredient ingredient15 = null;
+                if(mealObject.get("strIngredient15").isJsonNull() == false){
                     strIngredient15 = mealObject.get("strIngredient15").getAsString();
+                    ingredient15 = ingredientRepository.findByName(strIngredient15);
+                    ingredients.add(ingredient15);
                 }
                 String strIngredient16 = "";
-                if (mealObject.get("strIngredient16").isJsonNull() == false) {
+                Ingredient ingredient16 = null;
+                if(mealObject.get("strIngredient16").isJsonNull() == false){
                     strIngredient16 = mealObject.get("strIngredient16").getAsString();
+                    ingredient16 = ingredientRepository.findByName(strIngredient16);
+                    ingredients.add(ingredient16);
                 }
                 String strIngredient17 = "";
-                if (mealObject.get("strIngredient17").isJsonNull() == false) {
+                Ingredient ingredient17 = null;
+                if(mealObject.get("strIngredient17").isJsonNull() == false){
                     strIngredient17 = mealObject.get("strIngredient17").getAsString();
+                    ingredient17 = ingredientRepository.findByName(strIngredient17);
+                    ingredients.add(ingredient17);
                 }
                 String strIngredient18 = "";
-                if (mealObject.get("strIngredient18").isJsonNull() == false) {
+                Ingredient ingredient18 = null;
+                if(mealObject.get("strIngredient18").isJsonNull() == false){
                     strIngredient18 = mealObject.get("strIngredient18").getAsString();
+                    ingredient18 = ingredientRepository.findByName(strIngredient18);
+                    ingredients.add(ingredient18);
                 }
                 String strIngredient19 = "";
-                if (mealObject.get("strIngredient19").isJsonNull() == false) {
+                Ingredient ingredient19 = null;
+                if(mealObject.get("strIngredient19").isJsonNull() == false){
                     strIngredient19 = mealObject.get("strIngredient19").getAsString();
+                    ingredient19 = ingredientRepository.findByName(strIngredient19);
+                    ingredients.add(ingredient19);
                 }
                 String strIngredient20 = "";
-                if (mealObject.get("strIngredient20").isJsonNull() == false) {
+                Ingredient ingredient20 = null;
+                if(mealObject.get("strIngredient20").isJsonNull() == false){
                     strIngredient20 = mealObject.get("strIngredient20").getAsString();
+                    ingredient20 = ingredientRepository.findByName(strIngredient20);
+                    ingredients.add(ingredient20);
                 }
 
                 String strMeasure1 = "";
-                if (mealObject.get("strMeasure1").isJsonNull() == false) {
+                if(mealObject.get("strMeasure1").isJsonNull() == false){
                     strMeasure1 = mealObject.get("strMeasure1").getAsString();
                 }
                 String strMeasure2 = "";
-                if (mealObject.get("strMeasure2").isJsonNull() == false) {
+                if(mealObject.get("strMeasure2").isJsonNull() == false){
                     strMeasure2 = mealObject.get("strMeasure2").getAsString();
                 }
                 String strMeasure3 = "";
-                if (mealObject.get("strMeasure3").isJsonNull() == false) {
+                if(mealObject.get("strMeasure3").isJsonNull() == false){
                     strMeasure3 = mealObject.get("strMeasure3").getAsString();
                 }
                 String strMeasure4 = "";
-                if (mealObject.get("strMeasure4").isJsonNull() == false) {
+                if(mealObject.get("strMeasure4").isJsonNull() == false){
                     strMeasure4 = mealObject.get("strMeasure4").getAsString();
                 }
                 String strMeasure5 = "";
-                if (mealObject.get("strMeasure5").isJsonNull() == false) {
+                if(mealObject.get("strMeasure5").isJsonNull() == false){
                     strMeasure5 = mealObject.get("strMeasure5").getAsString();
                 }
                 String strMeasure6 = "";
-                if (mealObject.get("strMeasure6").isJsonNull() == false) {
+                if(mealObject.get("strMeasure6").isJsonNull() == false){
                     strMeasure6 = mealObject.get("strMeasure6").getAsString();
                 }
                 String strMeasure7 = "";
-                if (mealObject.get("strMeasure7").isJsonNull() == false) {
+                if(mealObject.get("strMeasure7").isJsonNull() == false){
                     strMeasure7 = mealObject.get("strMeasure7").getAsString();
                 }
                 String strMeasure8 = "";
-                if (mealObject.get("strMeasure8").isJsonNull() == false) {
+                if(mealObject.get("strMeasure8").isJsonNull() == false){
                     strMeasure8 = mealObject.get("strMeasure8").getAsString();
                 }
                 String strMeasure9 = "";
-                if (mealObject.get("strMeasure9").isJsonNull() == false) {
+                if(mealObject.get("strMeasure9").isJsonNull() == false){
                     strMeasure9 = mealObject.get("strMeasure9").getAsString();
                 }
                 String strMeasure10 = "";
-                if (mealObject.get("strMeasure10").isJsonNull() == false) {
+                if(mealObject.get("strMeasure10").isJsonNull() == false){
                     strMeasure10 = mealObject.get("strMeasure10").getAsString();
                 }
                 String strMeasure11 = "";
-                if (mealObject.get("strMeasure11").isJsonNull() == false) {
+                if(mealObject.get("strMeasure11").isJsonNull() == false){
                     strMeasure11 = mealObject.get("strMeasure11").getAsString();
                 }
                 String strMeasure12 = "";
-                if (mealObject.get("strMeasure12").isJsonNull() == false) {
+                if(mealObject.get("strMeasure12").isJsonNull() == false){
                     strMeasure12 = mealObject.get("strMeasure12").getAsString();
                 }
                 String strMeasure13 = "";
-                if (mealObject.get("strMeasure13").isJsonNull() == false) {
+                if(mealObject.get("strMeasure13").isJsonNull() == false){
                     strMeasure13 = mealObject.get("strMeasure13").getAsString();
                 }
                 String strMeasure14 = "";
-                if (mealObject.get("strMeasure14").isJsonNull() == false) {
+                if(mealObject.get("strMeasure14").isJsonNull() == false){
                     strMeasure14 = mealObject.get("strMeasure14").getAsString();
                 }
                 String strMeasure15 = "";
-                if (mealObject.get("strMeasure15").isJsonNull() == false) {
+                if(mealObject.get("strMeasure15").isJsonNull() == false){
                     strMeasure15 = mealObject.get("strMeasure15").getAsString();
                 }
                 String strMeasure16 = "";
-                if (mealObject.get("strMeasure16").isJsonNull() == false) {
+                if(mealObject.get("strMeasure16").isJsonNull() == false){
                     strMeasure16 = mealObject.get("strMeasure16").getAsString();
                 }
                 String strMeasure17 = "";
-                if (mealObject.get("strMeasure17").isJsonNull() == false) {
+                if(mealObject.get("strMeasure17").isJsonNull() == false){
                     strMeasure17 = mealObject.get("strMeasure17").getAsString();
                 }
                 String strMeasure18 = "";
-                if (mealObject.get("strMeasure18").isJsonNull() == false) {
+                if(mealObject.get("strMeasure18").isJsonNull() == false){
                     strMeasure18 = mealObject.get("strMeasure18").getAsString();
                 }
                 String strMeasure19 = "";
-                if (mealObject.get("strMeasure19").isJsonNull() == false) {
+                if(mealObject.get("strMeasure19").isJsonNull() == false){
                     strMeasure19 = mealObject.get("strMeasure19").getAsString();
                 }
                 String strMeasure20 = "";
-                if (mealObject.get("strMeasure20").isJsonNull() == false) {
+                if(mealObject.get("strMeasure20").isJsonNull() == false){
                     strMeasure20 = mealObject.get("strMeasure20").getAsString();
                 }
+
+
+                System.out.println("********************");
+                System.out.println(ingredients);
+                System.out.println("********************");
 
                 model.addAttribute("idmeal", idMeal);
                 model.addAttribute("strMeal", strMeal);
@@ -294,147 +382,4 @@ public class RestController {
         return "showRecipe";
 
     }
-
-    @GetMapping("/recipe/{id}/ari")
-    public String addRecipeIngredientsToGrocery(@PathVariable int id, Model model) {
-        String jsonResponse = null;
-        List<String> recipeIngredients = new ArrayList<>();
-        try {
-            System.out.println(apiKey);
-            URL url = new URL("https://www.themealdb.com/api/json/v2/1/lookup.php?i=" + id);
-//            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=" + id);
-//            URL url = new URL("https://www.themealdb.com/api/json/v2/" + apiKey + "/lookup.php?i=52814");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoOutput(true);
-            connection.setRequestProperty("Content-Type", "text/plain");
-            connection.setRequestMethod("GET");
-            connection.getResponseCode();
-            jsonResponse = new String(connection.getInputStream().readAllBytes());
-            System.out.println("HTTP response code is " + connection.getResponseCode());
-            System.out.println(jsonResponse);
-
-            Gson gson = new Gson();
-            JsonObject jsonObject = gson.fromJson(jsonResponse, JsonObject.class);
-            System.out.println(jsonObject);
-            JsonArray mealsArray = JsonParser.parseString(jsonResponse).getAsJsonObject().getAsJsonArray("meals");
-            System.out.println(mealsArray);
-            for (JsonElement mealElement : mealsArray) {
-                JsonObject mealObject = mealElement.getAsJsonObject();
-                String idMeal = mealObject.get("idMeal").getAsString();
-                String strMeal = mealObject.get("strMeal").getAsString();
-                String strCategory = mealObject.get("strCategory").getAsString();
-                String strInstructions = mealObject.get("strInstructions").getAsString();
-                String strMealThumb = mealObject.get("strMealThumb").getAsString();
-
-                String strYoutube = "";
-                if (mealObject.get("strYoutube").isJsonNull() == false) {
-                    strYoutube = mealObject.get("strYoutube").getAsString();
-                }
-
-                String strIngredient1 = "";
-                if (mealObject.get("strIngredient1").isJsonNull() == false) {
-                    strIngredient1 = mealObject.get("strIngredient1").getAsString();
-                }
-
-                String strIngredient2 = "";
-                if (mealObject.get("strIngredient2").isJsonNull() == false) {
-                    strIngredient2 = mealObject.get("strIngredient2").getAsString();
-                }
-
-                String strIngredient3 = "";
-                if (mealObject.get("strIngredient3").isJsonNull() == false) {
-                    strIngredient3 = mealObject.get("strIngredient3").getAsString();
-                }
-
-                String strIngredient4 = "";
-                if (mealObject.get("strIngredient4").isJsonNull() == false) {
-                    strIngredient4 = mealObject.get("strIngredient4").getAsString();
-                }
-
-                String strIngredient5 = "";
-                if (mealObject.get("strIngredient5").isJsonNull() == false) {
-                    strIngredient5 = mealObject.get("strIngredient5").getAsString();
-                }
-
-                String strIngredient6 = "";
-                if (mealObject.get("strIngredient6").isJsonNull() == false) {
-                    strIngredient6 = mealObject.get("strIngredient6").getAsString();
-                }
-                String strIngredient7 = "";
-                if (mealObject.get("strIngredient7").isJsonNull() == false) {
-                    strIngredient7 = mealObject.get("strIngredient7").getAsString();
-                }
-                String strIngredient8 = "";
-                if (mealObject.get("strIngredient8").isJsonNull() == false) {
-                    strIngredient8 = mealObject.get("strIngredient8").getAsString();
-                }
-                String strIngredient9 = "";
-                if (mealObject.get("strIngredient1").isJsonNull() == false) {
-                    strIngredient9 = mealObject.get("strIngredient9").getAsString();
-                }
-                String strIngredient10 = "";
-                if (mealObject.get("strIngredient10").isJsonNull() == false) {
-                    strIngredient10 = mealObject.get("strIngredient10").getAsString();
-                }
-                String strIngredient11 = "";
-                if (mealObject.get("strIngredient11").isJsonNull() == false) {
-                    strIngredient11 = mealObject.get("strIngredient11").getAsString();
-                }
-                String strIngredient12 = "";
-                if (mealObject.get("strIngredient12").isJsonNull() == false) {
-                    strIngredient12 = mealObject.get("strIngredient12").getAsString();
-                }
-                String strIngredient13 = "";
-                if (mealObject.get("strIngredient13").isJsonNull() == false) {
-                    strIngredient13 = mealObject.get("strIngredient13").getAsString();
-                }
-                String strIngredient14 = "";
-                if (mealObject.get("strIngredient14").isJsonNull() == false) {
-                    strIngredient14 = mealObject.get("strIngredient14").getAsString();
-                }
-                String strIngredient15 = "";
-                if (mealObject.get("strIngredient15").isJsonNull() == false) {
-                    strIngredient15 = mealObject.get("strIngredient15").getAsString();
-                }
-                String strIngredient16 = "";
-                if (mealObject.get("strIngredient16").isJsonNull() == false) {
-                    strIngredient16 = mealObject.get("strIngredient16").getAsString();
-                }
-                String strIngredient17 = "";
-                if (mealObject.get("strIngredient17").isJsonNull() == false) {
-                    strIngredient17 = mealObject.get("strIngredient17").getAsString();
-                }
-                String strIngredient18 = "";
-                if (mealObject.get("strIngredient18").isJsonNull() == false) {
-                    strIngredient18 = mealObject.get("strIngredient18").getAsString();
-                }
-                String strIngredient19 = "";
-                if (mealObject.get("strIngredient19").isJsonNull() == false) {
-                    strIngredient19 = mealObject.get("strIngredient19").getAsString();
-                }
-                String strIngredient20 = "";
-                if (mealObject.get("strIngredient20").isJsonNull() == false) {
-                    strIngredient20 = mealObject.get("strIngredient20").getAsString();
-                }
-
-                for (int i = 0; i < 20; i++) {
-                    recipeIngredients.add("strIngredient" + i);
-                }
-
-                System.out.println("**********************");
-                System.out.println(recipeIngredients);
-                System.out.println("**********************");
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-
-
-        return "redirect:/user";
-    }
-
 }

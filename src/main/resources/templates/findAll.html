@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <title>Find Recipe</title>
 </head>
+<style>
+    .carousel-container {
+    width: 850px;
+    height: 850px;
+    overflow: hidden;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+</style>
 <body>
 <script>
     // fetch('https://www.themealdb.com/api/json/v1/1/random.php')
@@ -147,29 +160,34 @@
             </div>
         </div>
     <hr>
-    <div class="body d-flex justify-content-evenly">
-        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
 
-            <div class="carousel-inner" sec:authorize="isAuthenticated()">
-                <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
+    <div class="body d-flex justify-content-evenly">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+
+
+<!--  //          <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">-->
+<!--   //             <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">-->
+
+            <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">
+                <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
+
                     <a th:href="@{'/recipe/'} + ${recipe.getIdMeal()}">
                         <h2 th:text="${recipe.getStrMeal()}"></h2>
-                        <img alt="..." class="d-block w-100" th:src="${recipe.getStrMealThumb()}">
+                        <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
                     </a>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
             </div>
 
-            <div class="carousel-inner" sec:authorize="!isAuthenticated()">
-                <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
+<!-- //           <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">-->
+<!-- //               <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">-->
+
+            <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">
+                <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
+
                     <a th:href="@{/login}">
                         <h2 th:text="${recipe.getStrMeal()}"></h2>
-                        <img alt="..." class="d-block w-100" th:src="${recipe.getStrMealThumb()}">
+                        <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
                     </a>
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
@@ -193,78 +211,77 @@
     <div th:href="@{/login}" sec:authorize="!isAuthenticated()" id="recipes"></div>
 
     <div th:href="@{'/recipe/' + ${idmeal}}" sec:authorize="isAuthenticated()" id="recipes"></div>
-
 <script>
-    // const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
-    // const recipesContainer = document.getElementById('recipes');
-    // const searchInput = document.getElementById('search');
-    //
-    // alphabet.forEach(letter => {
-    //     fetch(`https://www.themealdb.com/api/json/v2/`,MEALDB_API_KEY`/search.php?f=${letter}`)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             const meals = data.meals;
-    //             meals.forEach(meal => {
-    //                 const card = document.createElement('div');
-    //                 card.classList.add('card');
-    //
-    //                 const cardHeader = document.createElement('div');
-    //                 cardHeader.classList.add('card-header');
-    //
-    //                 const ID = document.createElement('a');
-    //                 ID.innerText = meal.strMeal;
-    //                 ID.setAttribute('href', `/recipe/${meal.idMeal}`); // Add the href attribute with the meal id
-    //                 ID.setAttribute('id', meal.idMeal); // Set the id attribute to the meal id
-    //                 const cat = document.createElement('p');
-    //                 cat.innerText = meal.strCategory;
-    //                 const heading = document.createElement('h1');
-    //                 heading.innerText = meal.strMeal;
-    //
-    //                 cardHeader.appendChild(ID);
-    //                 cardHeader.appendChild(cat);
-    //                 // cardHeader.appendChild(heading);
-    //                 card.appendChild(cardHeader);
-    //
-    //                 const image = document.createElement('img');
-    //                 image.src = meal.strMealThumb;
-    //                 image.alt = meal.strMeal;
-    //                 const ingredients = document.createElement('ul');
-    //                 for (let i = 1; i <= 20; i++) {
-    //                     const ingredient = meal[`strIngredient${i}`];
-    //                     if (ingredient) {
-    //                         const listItem = document.createElement('li');
-    //                         listItem.innerText = ingredient;
-    //                         ingredients.appendChild(listItem);
-    //                     }
-    //                 }
-    //                 const instructions = document.createElement('p');
-    //                 instructions.innerText = meal.strInstructions;
-    //
-    //                 // card.appendChild(ID);
-    //                 // card.appendChild(cat);
-    //                 // card.appendChild(heading);
-    //                 // card.appendChild(image);
-    //                 // card.appendChild(ingredients);
-    //                 // card.appendChild(instructions);
-    //
-    //                 recipesContainer.appendChild(card);
-    //             });
-    //         })
-    //         .catch(error => console.error(error));
-    // });
-    //
-    // searchInput.addEventListener('input', () => {
-    //     const searchValue = searchInput.value.toLowerCase();
-    //     const cards = recipesContainer.querySelectorAll('.card');
-    //     cards.forEach(card => {
-    //         const title = card.querySelector('div').innerText.toLowerCase();
-    //         if (title.includes(searchValue)) {
-    //             card.style.display = '';
-    //         } else {
-    //             card.style.display = 'none';
-    //         }
-    //     });
-    // });
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
+    const recipesContainer = document.getElementById('recipes');
+    const searchInput = document.getElementById('search');
+
+    alphabet.forEach(letter => {
+        fetch(`https://www.themealdb.com/api/json/v2/1/search.php?f=${letter}`)
+            .then(response => response.json())
+            .then(data => {
+                const meals = data.meals;
+                meals.forEach(meal => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+
+                    const cardHeader = document.createElement('div');
+                    cardHeader.classList.add('card-header');
+
+                    const ID = document.createElement('a');
+                    ID.innerText = meal.strMeal;
+                    ID.setAttribute('href', `/recipe/${meal.idMeal}`); // Add the href attribute with the meal id
+                    ID.setAttribute('id', meal.idMeal); // Set the id attribute to the meal id
+                    const cat = document.createElement('p');
+                    cat.innerText = meal.strCategory;
+                    const heading = document.createElement('h1');
+                    heading.innerText = meal.strMeal;
+
+                    cardHeader.appendChild(ID);
+                    cardHeader.appendChild(cat);
+                    // cardHeader.appendChild(heading);
+                    card.appendChild(cardHeader);
+
+                    const image = document.createElement('img');
+                    image.src = meal.strMealThumb;
+                    image.alt = meal.strMeal;
+                    const ingredients = document.createElement('ul');
+                    for (let i = 1; i <= 20; i++) {
+                        const ingredient = meal[`strIngredient${i}`];
+                        if (ingredient) {
+                            const listItem = document.createElement('li');
+                            listItem.innerText = ingredient;
+                            ingredients.appendChild(listItem);
+                        }
+                    }
+                    const instructions = document.createElement('p');
+                    instructions.innerText = meal.strInstructions;
+
+                    // card.appendChild(ID);
+                    // card.appendChild(cat);
+                    // card.appendChild(heading);
+                    // card.appendChild(image);
+                    // card.appendChild(ingredients);
+                    // card.appendChild(instructions);
+
+                    recipesContainer.appendChild(card);
+                });
+            })
+            .catch(error => console.error(error));
+    });
+
+    searchInput.addEventListener('input', () => {
+        const searchValue = searchInput.value.toLowerCase();
+        const cards = recipesContainer.querySelectorAll('.card');
+        cards.forEach(card => {
+            const title = card.querySelector('div').innerText.toLowerCase();
+            if (title.includes(searchValue)) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
 </script>
 <p class="fw-lighter">Outofmilk is a Grocery List is a website that helps you make
     your grocery list in a more organized and convenient way. It allows you to create
