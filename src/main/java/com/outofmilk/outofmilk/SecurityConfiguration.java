@@ -58,7 +58,7 @@ public class SecurityConfiguration {
                         "/user/{id}/dhr", // only authenticated users can remove hidden recipes
                         "/user/{id}/afr", // only authenticated users can add favorite recipes
                         "/user/{id}/ahr", // only authenticated users can add hidden recipes
-                        "/user/{id}/ari", // only authenticated users can add recipes ingredients to grocery list
+                        "/recipe/{id}/ari", // only authenticated users can add recipes ingredients to grocery list
                         "/recipe/{id}", // only authenticated users can view recipe details
                         "/user/addItemPantry", // only authenticated users can add ingredients
                         "/user/addItemGrocery" // only authenticated users can add ingredients
