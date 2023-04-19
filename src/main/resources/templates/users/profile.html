@@ -14,38 +14,45 @@
     // client.picker().open();
 </script>
 <div class="container-fluid p-3 content">
-    <div class="card mb-3" style="max-width: 25%;">
-        <div class="row g-0">
-            <div class="col-md-4">
-
-                <img th:src="@{user.url}" class="img-fluid rounded-start" alt="...">
+    <div class="row">
+        <div class="card mb-3 col" style="max-width: 40%;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${user.username}" ></h5>
+                        <p th:text="${user.email}" class="card-text"></p>
+                        <button class="btn btn-primary col-6" data-bs-target="#settings" data-bs-toggle="modal"
+                                type="button">Settings
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${user.username}" ></h5>
-                    <p th:text="${user.email}" class="card-text"></p>
-                    <button class="btn btn-primary" data-bs-target="#settings" data-bs-toggle="modal"
-                            type="button">Settings
-                    </button>
+        </div>
+
+        <div class="container-fluid d-flex justify-content-center col">
+            <div class="row">
+                <h3 class="col">Favorite Categories</h3>
+                <div class="row">
+                    <div class="two-columns justify-content-between col">
+                        <form th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
+                            <div th:each="category : ${categories}">
+                                <input type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
+                                <label th:for="${category.getName()}" th:text="${category.getName()}"></label><br>
+                            </div>
+                        <div class="row">
+                            <button type="submit" class="col-6">Update Categories</button>
+
+                        </div>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="container-fluid d-flex justify-content-center row" style="border-style: double;">
-        <h3 class="col-6">Favorite Categories</h3>
-        <div class="two-columns justify-content-between row">
-            <form th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
-                <div th:each="category : ${categories}">
-                    <input type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
-                    <label th:for="${category.getName()}" th:text="${category.getName()}"></label><br>
-                </div>
-                <button type="submit" class="col-6">Update</button>
-            </form>
-        </div>
-    </div>
-<!--        </div>-->
-<!--    </div>-->
 
     <nav class="m-3">
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
