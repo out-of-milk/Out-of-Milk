@@ -18,7 +18,7 @@
         <div class="card mb-3 col" style="max-width: 100%;max-height: 100%;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="img-fluid rounded-start" alt="..." style="max-width: 100%;max-height: 100%;">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="img-fluid rounded-circle" alt="..." style="max-width: 100%;max-height: 100%;">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -38,12 +38,14 @@
                 <div class="row">
                     <div class="two-columns justify-content-center col">
                         <form th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
-                            <div class="list-group" th:each="category : ${categories}" >
-                                <label class="list-group-item" style="text-align: center;" th:for="${category.getName()}" th:text="${category.getName()}">
+                            <ul class="list-group" th:each="category : ${categories}">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <label class="" style="text-align: center;" th:for="${category.getName()}" th:text="${category.getName()}"></label>
                                     <input class="form-check-input me-1" value="" type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
-                                </label>
-                            </div>
-                            <button type="submit" class="col">Update Categories</button>
+
+                                </li>
+                            </ul>
+                            <button type="submit" class="btn btn-primary">Update Categories</button>
                         </form>
                     </div>
                 </div>
@@ -77,11 +79,12 @@
                 <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dpl'" role="button">Clear Pantry List</a>
             </div>
             <hr>
-
-            <div  class="d-flex justify-content-between" th:each="ingredient : ${user.getPantryItems()}">
-                <p style="text-transform: capitalize;" th:text="${ingredient.name}"></p>
-                <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dpi'" role="button">Remove</a>
-            </div>
+            <ul  class="list-group" th:each="ingredient : ${user.getPantryItems()}">
+                <li class="list-group-item d-flex justify-content-between">
+                    <p style="text-transform: capitalize;" th:text="${ingredient.name}"></p>
+                    <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dpi'" role="button">Remove</a>
+                </li>
+            </ul>
         </div>
 
         <!--grocery -->
@@ -96,26 +99,24 @@
             </div>
             <hr>
 
-            <div th:each="ingredient : ${user.getGroceryItems()}">
-
-                <p style="text-transform: capitalize;" th:class="${user.getPantryItems().contains(ingredient)} ? 'green' : 'red'" th:text="${ingredient.name}" >No ingredients in list</p>
-                <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dgl'" role="button">Remove</a>
-
-            </div>
+            <ul class="list-group" th:each="ingredient : ${user.getGroceryItems()}">
+                <li class="list-group-item d-flex justify-content-between">
+                    <p style="text-transform: capitalize;" th:class="${user.getPantryItems().contains(ingredient)} ? 'green' : 'red'" th:text="${ingredient.name}" >No ingredients in list</p>
+                    <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dgl'" role="button">Remove</a>
+                </li>
+            </ul>
         </div>
 
         <!--        favorite recipe-->
         <div aria-labelledby="nav-recipe-tab" class="tab-pane fade" id="nav-recipe" role="tabpanel">
             <h4 style="text-align: center;">Favorite Recipe</h4>
             <hr>
-            <div class="d-flex justify-content-between row">
-                <ul class="no-bullets">
-                    <li th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
-                        <a th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
-                        <a class="btn btn-danger" th:href="@{/user/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()} + '/dhr'" role="button">Remove</a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="list-group" th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
+                <li class="list-group-item d-flex justify-content-between">
+                    <a th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
+                    <a class="btn btn-danger" th:href="@{/user/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()} + '/dhr'" role="button">Remove</a>
+                </li>
+            </ul>
             <hr>
             <div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselExampleDark">
                 <div class="carousel-indicators">
