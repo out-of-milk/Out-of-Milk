@@ -314,7 +314,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}/ahr")
-    public String addHiddenRecipe(@PathVariable long id, Model model){
+    public String addHiddenRecipe(@PathVariable long id, Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
 
@@ -322,7 +322,6 @@ public class UserController {
         List<RecipePreference> recipePreferencesFavorites = recipePreferenceDao.findFavoritesById(user);
         List<RecipePreference> recipePreferencesHidden = recipePreferenceDao.findHiddenById(user);
         Recipe viewedRecipe = recipeDao.findByIdMeal(id);
-
 
 
         if (user == null) {
@@ -334,7 +333,7 @@ public class UserController {
         model.addAttribute("recipePreferencesHidden", recipePreferencesHidden);
 
         for (RecipePreference recipePreference : recipePreferencesHidden) {
-            if(recipePreference.getRecipe().getId() == viewedRecipe.getId()){
+            if (recipePreference.getRecipe().getId() == viewedRecipe.getId()) {
                 allRecipePreferences.remove(recipePreference);
             }
         }
