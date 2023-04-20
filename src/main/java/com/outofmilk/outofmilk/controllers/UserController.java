@@ -109,7 +109,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/dpl")
+    @PostMapping("/user/dpl")
     @Transactional
     public String deletePantryList(Model model){
 
@@ -151,7 +151,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/dgl")
+    @PostMapping("/user/dgl")
     @Transactional
     public String deleteGroceryList(Model model){
 
