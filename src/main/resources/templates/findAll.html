@@ -185,7 +185,7 @@
             <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">
                 <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
 
-                    <a th:href="@{/login}">
+                    <a th:href="@{/login}" >
                         <h2 th:text="${recipe.getStrMeal()}"></h2>
                         <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
                     </a>
@@ -206,7 +206,7 @@
 </div>
 <br>
 <div>
-    <input type="text" id="search" placeholder="Search meals...">
+    <input type="text" id="search" placeholder="Search meals/categories">
 </div>
     <div th:href="@{/login}" sec:authorize="!isAuthenticated()" id="recipes"></div>
 

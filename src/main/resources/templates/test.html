@@ -50,9 +50,9 @@
                 instructions.innerText = meal.strInstructions;
 
                 // card.appendChild(ID);
-                card.appendChild(cat);
-                card.appendChild(heading);
-                card.appendChild(image);
+                // card.appendChild(cat);
+                // card.appendChild(heading);
+                // card.appendChild(image);
                 // card.appendChild(ingredients);
                 // card.appendChild(instructions);
 
@@ -128,6 +128,22 @@
   //           .catch(error => console.error(error));
   // });
 
+</script>
+<form>
+  <label>Enter URL:</label>
+  <input type="text" id="urlInput">
+  <button type="button" onclick="displayImage()">Display</button>
+</form>
+<div id="imageContainer"></div>
+
+<script>
+  function displayImage() {
+    var url = document.getElementById("urlInput").value;
+    var image = document.createElement("img");
+    image.src = url;
+    image.classList.add("img-fluid");
+    document.getElementById("imageContainer").appendChild(image);
+  }
 </script>
 </body>
 </html>
