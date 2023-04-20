@@ -59,8 +59,8 @@ public class RecipeController {
                 }
 
                 Collections.shuffle(finalRecipes);
-                while (recipes.size() > 3) {
-                    recipes.remove(recipes.size() - 1);
+                while (finalRecipes.size() > 3) {
+                    finalRecipes.remove(finalRecipes.size() - 1);
                 }
             }
 
@@ -78,6 +78,8 @@ public class RecipeController {
         } else {
             finalRecipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
         }
+
+        System.out.println(finalRecipes);
 
         model.addAttribute("finalRecipes", finalRecipes);
         finalRecipes.get(0).setShowThis(true);
