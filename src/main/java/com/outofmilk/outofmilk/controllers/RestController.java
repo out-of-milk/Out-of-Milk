@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -36,7 +35,7 @@ public class RestController {
     @Autowired
     private IngredientRepository ingredientRepository;
 
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private final List<Ingredient> ingredients = new ArrayList<>();
 
     @GetMapping("/recipe/{id}")
     public String callExternalApi(@PathVariable int id, Model model) {
@@ -366,43 +365,39 @@ public class RestController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
         List<Ingredient> usersGroceries = new ArrayList<>(user.getGroceryItems().stream().toList());
-        int i = 0;
-    try {
-//        for (Ingredient ingredient : ingredients) {
-//            for (Ingredient usersGrocery : usersGroceries) {
-//                if (ingredient == null) {
-//                    break;
-//                }
-//                if (!ingredient.getName().equalsIgnoreCase(usersGrocery.getName().toLowerCase())) {
-//                    usersGroceries.add(ingredient);   // doesnt work????
-//                }
-//            }
-//        }
-        while(i < ingredients.size()) {
-            if(!ingredients.get(i).getName().equals(usersGroceries.get(i).getName())){
-                System.out.println("**********************");
-                System.out.println(ingredients.get(i));
-                System.out.println(usersGroceries);
-                System.out.println("**********************");
 
-                usersGroceries.add(ingredients.get(i));
+        try {
+            if (usersGroceries.isEmpty()) {
+                usersGroceries.addAll(ingredients);
+            } else {
+                int i = 0;
+                while (i < ingredients.size()) {
+                    if (!ingredients.get(i).getName().equals(usersGroceries.get(i).getName())) {
+                        System.out.println("**********************");
+                        System.out.println(ingredients.get(i));
+                        System.out.println(usersGroceries);
+                        System.out.println("**********************");
+
+                        usersGroceries.add(ingredients.get(i));
 
 
-                System.out.println("----------------------");
-                System.out.println(usersGroceries);
-                System.out.println("----------------------");
+                        System.out.println("----------------------");
+                        System.out.println(usersGroceries);
+                        System.out.println("----------------------");
 
-                i++;
+                        i++;
+                    }
+                }
             }
+
+            user.setGroceryItems(usersGroceries);
+            userDao.save(user);
+
+            ingredients.clear();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        user.setGroceryItems(usersGroceries);
-        userDao.save(user);
-
-
-    } catch (Exception e){
-        e.printStackTrace();
-    }
 
         return "redirect:/user";
     }
