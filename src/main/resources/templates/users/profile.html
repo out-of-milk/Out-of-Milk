@@ -37,7 +37,7 @@
                 <h3 class="col" style="text-align: center;">Favorite Categories</h3>
                 <div class="row">
                     <div class="two-columns justify-content-center col">
-                        <form th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
+                        <form id="update-categories-form" th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
                             <ul class="list-group" th:each="category : ${categories}">
                                 <li class="list-group-item d-flex justify-content-between">
                                     <label class="" style="text-align: center;" th:for="${category.getName()}" th:text="${category.getName()}"></label>
@@ -45,7 +45,7 @@
 
                                 </li>
                             </ul>
-                            <button type="submit" class="btn btn-primary">Update Categories</button>
+                            <button id="update-categories-btn" type="submit" class="btn btn-primary">Update Categories</button>
                         </form>
                     </div>
                 </div>
@@ -76,7 +76,10 @@
                 <button class="btn btn-primary" data-bs-target="#addItemPantry" data-bs-toggle="modal" style="float: right"
                         type="button">Add New Item
                 </button>
-                <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dpl'" role="button">Clear Pantry List</a>
+                <form id="delete-pantry-form" th:object="${user}" th:action="@{/user/} + 'dpl'" method="post">
+<!--                    <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dpl'" role="button">Clear Pantry List</a>-->
+                    <button id="delete-pantry-btn" type="submit" class="btn btn-outline-secondary" >Clear Pantry List</button>
+                </form>
             </div>
             <hr>
             <ul  class="list-group" th:each="ingredient : ${user.getPantryItems()}">
@@ -94,15 +97,17 @@
                 <button class="btn btn-primary" data-bs-target="#addItemGrocery" data-bs-toggle="modal" style="float: right"
                         type="button">Add New Item
                 </button>
-                <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dgl'" role="button">Clear Grocery List</a>
-
+                <form id="delete-grocery-form" th:object="${user}" th:action="@{/user/} + 'dgl'" method="post">
+<!--                    <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dgl'" role="button">Clear Grocery List</a>-->
+                    <button id="delete-grocery-btn" class="btn btn-outline-secondary" type="submit">Clear Grocery List</button>
+                </form>
             </div>
             <hr>
 
             <ul class="list-group" th:each="ingredient : ${user.getGroceryItems()}">
                 <li class="list-group-item d-flex justify-content-between">
                     <p style="text-transform: capitalize;" th:class="${user.getPantryItems().contains(ingredient)} ? 'green' : 'red'" th:text="${ingredient.name}" >No ingredients in list</p>
-                    <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dgl'" role="button">Remove</a>
+                    <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dgi'" role="button">Remove</a>
                 </li>
             </ul>
         </div>
@@ -221,7 +226,7 @@
 
                             <datalist id="datalistOptions" >
                                 <option th:value="${ingredient.name}" th:each="ingredient : ${ingredients}" th:text="${ingredient.name}"></option>
-<!--                                th:text="${ingredient.name}"-->
+                                <!--                                th:text="${ingredient.name}"-->
                             </datalist>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
@@ -233,7 +238,7 @@
                 </div>
             </div>
         </div>
-<!--        Add item Grocery Modal-->
+        <!--        Add item Grocery Modal-->
         <div class="modal fade" id="addItemGrocery" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -265,6 +270,7 @@
 </div>
 
 <footer th:insert="partial/partials :: footer"></footer>
+<script th:src="@{/js/confirm-buttons.js}"></script>
 <script>
     $(document).ready(function () {
 
