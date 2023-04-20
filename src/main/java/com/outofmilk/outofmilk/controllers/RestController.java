@@ -378,15 +378,15 @@ public class RestController {
 //                }
 //            }
 //        }
-
         while(i < ingredients.size()) {
-            if(!ingredients.get(i).getName().equals(usersGroceries.get(i).getName()) || usersGroceries.size() == 0){
+            if(!ingredients.get(i).getName().equals(usersGroceries.get(i).getName())){
                 System.out.println("**********************");
                 System.out.println(ingredients.get(i));
                 System.out.println(usersGroceries);
                 System.out.println("**********************");
 
                 usersGroceries.add(ingredients.get(i));
+
 
                 System.out.println("----------------------");
                 System.out.println(usersGroceries);
@@ -396,8 +396,8 @@ public class RestController {
             }
         }
 
-//        user.setGroceryItems(usersGroceries);
-//        userDao.save(user);
+        user.setGroceryItems(usersGroceries);
+        userDao.save(user);
 
 
     } catch (Exception e){
