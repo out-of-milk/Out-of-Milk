@@ -133,32 +133,7 @@
     <h2 style="text-align: center;" sec:authorize="!isAuthenticated()">Search for Recipes</h2>
     <h2 style="text-align: center;" sec:authorize="isAuthenticated()">Recommended Recipes for You</h2>
 
-        <div sec:authorize="isAuthenticated()" class="d-flex justify-content-between row">
-            <form class="d-flex col-6">
-                <input aria-label="Search" class="form-control" placeholder="Search" style="width: 20rem; height:4rem;"
-                       type="search">
-                <button class="btn btn-outline-success" style="height:4rem;" type="submit">Search</button>
-            </form>
-            <div class="col-6">
-                <select class=" mb-3 form-select" id="category" multiple style="width: 30rem; height: 4rem">
-                    <option selected value="0">Show All</option>
-                    <option value="1">Beef</option>
-                    <option value="2">Breakfast</option>
-                    <option value="3">Chicken</option>
-                    <option value="4">Dessert</option>
-                    <option value="5">Goat</option>
-                    <option value="6">Lamb</option>
-                    <option value="7">Pasta</option>
-                    <option value="8">Pork</option>
-                    <option value="9">Seafood</option>
-                    <option value="10">Side</option>
-                    <option value="11">Starter</option>
-                    <option value="12">Vegan</option>
-                    <option value="13">Vegetarian</option>
-                    <option value="14">Miscellaneous</option>
-                </select>
-            </div>
-        </div>
+
     <hr>
 
     <div class="body d-flex justify-content-evenly">
@@ -192,7 +167,6 @@
                     <div class="carousel-caption d-none d-md-block"></div>
                 </div>
             </div>
-
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -206,15 +180,39 @@
 </div>
 <br>
 <div>
-    <input type="text" id="search" placeholder="Search meals/categories">
+<!--    <div sec:authorize="isAuthenticated()" class="d-flex justify-content-between row ">-->
+    <div sec:authorize="isAuthenticated()" class="d-flex justify-content-evenly container">
+            <input type="text" id="search" placeholder="Search meals/categories" class="w-25 col-6 rounded-pill">
+<!--            <button class="btn btn-outline-success" style="height:4rem;" type="submit">Search</button>-->
+        <div>
+            <select class=" form-select" id="category" multiple style="width: 15rem; height: 4rem">
+                <option value="" selected>Show All</option>
+                <option value="Beef">Beef</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Chicken">Chicken</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Goat">Goat</option>
+                <option value="Lamb">Lamb</option>
+                <option value="Pasta">Pasta</option>
+                <option value="Pork">Pork</option>
+                <option value="Seafood">Seafood</option>
+                <option value="Side">Side</option>
+                <option value="Starter">Starter</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Miscellaneous">Miscellaneous</option>
+            </select>
+        </div>
+    </div>
 </div>
-    <div th:href="@{/login}" sec:authorize="!isAuthenticated()" id="recipes"></div>
+<!--    <div th:href="@{/login}" sec:authorize="!isAuthenticated()" id="recipes"></div>-->
 
     <div th:href="@{'/recipe/' + ${idmeal}}" sec:authorize="isAuthenticated()" id="recipes"></div>
 <script>
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
     const recipesContainer = document.getElementById('recipes');
     const searchInput = document.getElementById('search');
+    const CategoryInput = document.getElementById('category');
 
     alphabet.forEach(letter => {
         fetch(`https://www.themealdb.com/api/json/v2/1/search.php?f=${letter}`)
@@ -276,6 +274,17 @@
         cards.forEach(card => {
             const title = card.querySelector('div').innerText.toLowerCase();
             if (title.includes(searchValue)) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }); CategoryInput.addEventListener('input', () => {
+        const searchValue = CategoryInput.value.toLowerCase();
+        const cards = recipesContainer.querySelectorAll('.card');
+        cards.forEach(card => {
+            const category = card.querySelector('p').innerText.toLowerCase();
+            if (searchValue === '' || category.includes(searchValue)) {
                 card.style.display = '';
             } else {
                 card.style.display = 'none';
