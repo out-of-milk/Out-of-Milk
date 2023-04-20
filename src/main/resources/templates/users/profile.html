@@ -37,13 +37,18 @@
                 <h3 class="col">Favorite Categories</h3>
                 <div class="row">
                     <div class="two-columns justify-content-between col">
-                        <form th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
+                        <form id="update-categories-form" th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
                             <div th:each="category : ${categories}">
                                 <input type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
                                 <label th:for="${category.getName()}" th:text="${category.getName()}"></label><br>
                             </div>
                         <div class="row">
-                            <button type="submit" class="col-6">Update Categories</button>
+
+<!--                            <form id="delete-task-form" class="inline-form" th:action="@{/tasks/{id}/delete(id=${task.id})}" th:method="POST">-->
+<!--                                <button id="delete-btn" class="waves-effect waves-light btn">Delete Task</button>-->
+<!--                            </form>-->
+
+                            <button id="update-categories-btn" type="submit" class="col-6">Update Categories</button>
 
                         </div>
 
@@ -79,24 +84,11 @@
             </div>
             <h4 style="text-align: center;">Ingredients</h4>
             <hr>
-            <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dpl'" role="button">Clear Pantry List</a>
 
-            <!--            <div class="form-check d-flex justify-content-center">-->
-<!--                <ul>-->
-<!--                    <li style="list-style-type: none;">-->
-<!--                        <input class="form-check-input" id="ingredientCheck1" type="checkbox" value="">-->
-<!--                        <label class="form-check-label" for="ingredientCheck1">-->
-<!--                            List Ingredient-->
-<!--                        </label>-->
-<!--                    </li>-->
-<!--                    <li style="list-style-type: none;">-->
-<!--                        <input class="form-check-input" id="ingredientCheck2" type="checkbox" value="">-->
-<!--                        <label class="form-check-label" for="ingredientCheck2">-->
-<!--                            List Ingredient-->
-<!--                        </label>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
+            <form id="delete-pantry-form" th:object="${user}" th:action="@{/user/} + 'dpl'" method="post">
+<!--                     <a id="delete-pantry-btn" class="btn btn-outline-secondary" th:href="@{/user/} + 'dpl'" role="button">Clear Pantry List</a>-->
+                <button id="delete-pantry-btn" type="submit" class="col-6">Clear Pantry List</button>
+            </form>
 
             <div th:each="ingredient : ${user.getPantryItems()}">
                 <p style="text-transform: capitalize;" th:text="${ingredient.name}">help</p>
@@ -114,6 +106,13 @@
             </div>
             <h4 style="text-align: center;">Ingredients</h4>
             <hr>
+
+
+
+            <form id="delete-grocery-form" th:object="${user}" th:action="@{/user/} + 'dgl'" method="post">
+<!--                <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dgl'" role="button">Clear Grocery List</a>-->
+                <button id="delete-grocery-btn" type="submit" class="col-6">Clear Grocery List</button>
+            </form>
             <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dgl'" role="button">Clear Grocery List</a>
 
 <!--            <div class="form-check d-flex justify-content-center">-->
@@ -301,6 +300,7 @@
 </div>
 
 <footer th:insert="partial/partials :: footer"></footer>
+<script th:src="@{/js/confirm-buttons.js}"></script>
 <script>
     $(document).ready(function () {
 
