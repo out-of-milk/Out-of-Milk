@@ -53,8 +53,10 @@ public class SecurityConfiguration {
                         "/users/profile", // only authenticated users can create posts
                         "/user", // only authenticated users can view user profile
                         "/user/{id}/uc", // only authenticated users can view user profile
+                        "/user/dpl", // only authenticated users can remove ingredients list
+                        "/user/dgl", // only authenticated users can remove ingredients list
                         "/user/{id}/dpi", // only authenticated users can remove ingredients
-                        "/user/{id}/dgl", // only authenticated users can remove ingredients
+                        "/user/{id}/dgi", // only authenticated users can remove ingredients
                         "/user/{id}/dhr", // only authenticated users can remove hidden recipes
                         "/user/{id}/afr", // only authenticated users can add favorite recipes
                         "/user/{id}/ahr", // only authenticated users can add hidden recipes

@@ -109,7 +109,28 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/{id}/dgl")
+    @GetMapping("/user/dpl")
+    @Transactional
+    public String deletePantryList(Model model){
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+
+        if (user == null) {
+            return "/login";
+        }
+
+        model.addAttribute("user", user);
+
+        if (loggedInUser.getId() == user.getId()) {
+            userDao.deletePantryListById(user.getId());
+        }
+
+        return "redirect:/user";
+
+    }
+
+    @GetMapping("/user/{id}/dgi")
     @Transactional
     public String deleteGroceryListIngredientFromList(@PathVariable long id, Model model){
 
@@ -124,6 +145,27 @@ public class UserController {
 
         if (loggedInUser.getId() == user.getId()) {
             userDao.deleteGroceryListIngredientById(user.getId(), Long.valueOf(id));
+        }
+
+        return "redirect:/user";
+
+    }
+
+    @GetMapping("/user/dgl")
+    @Transactional
+    public String deleteGroceryList(Model model){
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+
+        if (user == null) {
+            return "/login";
+        }
+
+        model.addAttribute("user", user);
+
+        if (loggedInUser.getId() == user.getId()) {
+            userDao.deleteGroceryListById(user.getId());
         }
 
         return "redirect:/user";
