@@ -15,10 +15,10 @@
 </script>
 <div class="container-fluid p-3 content">
     <div class="row">
-        <div class="card mb-3 col" style="max-width: 40%;">
+        <div class="card mb-3 col" style="max-width: 100%;max-height: 100%;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="img-fluid rounded-start" alt="...">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="img-fluid rounded-start" alt="..." style="max-width: 100%;max-height: 100%;">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -34,19 +34,16 @@
 
         <div class="container-fluid d-flex justify-content-center col">
             <div class="row">
-                <h3 class="col">Favorite Categories</h3>
+                <h3 class="col" style="text-align: center;">Favorite Categories</h3>
                 <div class="row">
-                    <div class="two-columns justify-content-between col">
+                    <div class="two-columns justify-content-center col">
                         <form th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
-                            <div th:each="category : ${categories}">
-                                <input type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
-                                <label th:for="${category.getName()}" th:text="${category.getName()}"></label><br>
+                            <div class="list-group" th:each="category : ${categories}" >
+                                <label class="list-group-item" style="text-align: center;" th:for="${category.getName()}" th:text="${category.getName()}">
+                                    <input class="form-check-input me-1" value="" type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
+                                </label>
                             </div>
-                        <div class="row">
-                            <button type="submit" class="col-6">Update Categories</button>
-
-                        </div>
-
+                            <button type="submit" class="col">Update Categories</button>
                         </form>
                     </div>
                 </div>
@@ -72,66 +69,32 @@
         <!--        inside the tabs-->
         <!--        pantry-->
         <div aria-labelledby="nav-pantry-tab" class="tab-pane fade show active" id="nav-pantry" role="tabpanel">
+            <h4 style="text-align: center;">Pantry List Ingredients</h4>
             <div class="d-flex justify-content-between">
                 <button class="btn btn-primary" data-bs-target="#addItemPantry" data-bs-toggle="modal" style="float: right"
                         type="button">Add New Item
                 </button>
+                <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dpl'" role="button">Clear Pantry List</a>
             </div>
-            <h4 style="text-align: center;">Ingredients</h4>
             <hr>
-            <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dpl'" role="button">Clear Pantry List</a>
 
-            <!--            <div class="form-check d-flex justify-content-center">-->
-<!--                <ul>-->
-<!--                    <li style="list-style-type: none;">-->
-<!--                        <input class="form-check-input" id="ingredientCheck1" type="checkbox" value="">-->
-<!--                        <label class="form-check-label" for="ingredientCheck1">-->
-<!--                            List Ingredient-->
-<!--                        </label>-->
-<!--                    </li>-->
-<!--                    <li style="list-style-type: none;">-->
-<!--                        <input class="form-check-input" id="ingredientCheck2" type="checkbox" value="">-->
-<!--                        <label class="form-check-label" for="ingredientCheck2">-->
-<!--                            List Ingredient-->
-<!--                        </label>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-
-            <div th:each="ingredient : ${user.getPantryItems()}">
-                <p style="text-transform: capitalize;" th:text="${ingredient.name}">help</p>
+            <div  class="d-flex justify-content-between" th:each="ingredient : ${user.getPantryItems()}">
+                <p style="text-transform: capitalize;" th:text="${ingredient.name}"></p>
                 <a class="btn btn-outline-secondary" th:href="@{/user/} + ${ingredient.id} + '/dpi'" role="button">Remove</a>
             </div>
         </div>
 
         <!--grocery -->
         <div aria-labelledby="nav-grocery-tab" class="tab-pane fade" id="nav-grocery" role="tabpanel">
+            <h4 style="text-align: center;">Grocery List Ingredients</h4>
             <div class="d-flex justify-content-between">
                 <button class="btn btn-primary" data-bs-target="#addItemGrocery" data-bs-toggle="modal" style="float: right"
                         type="button">Add New Item
                 </button>
-                <input class="btn btn-primary" type="button" value="Delete Item">
-            </div>
-            <h4 style="text-align: center;">Ingredients</h4>
-            <hr>
-            <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dgl'" role="button">Clear Grocery List</a>
+                <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dgl'" role="button">Clear Grocery List</a>
 
-<!--            <div class="form-check d-flex justify-content-center">-->
-<!--                <ul>-->
-<!--                    <li style="list-style-type: none;">-->
-<!--                        <input class="form-check-input" id="ingredientCheck3" type="checkbox" value="">-->
-<!--                        <label class="form-check-label" for="ingredientCheck3">-->
-<!--                            List Ingredient-->
-<!--                        </label>-->
-<!--                    </li>-->
-<!--                    <li style="list-style-type: none;">-->
-<!--                        <input class="form-check-input" id="ingredientCheck4" type="checkbox" value="">-->
-<!--                        <label class="form-check-label" for="ingredientCheck4">-->
-<!--                            List Ingredient-->
-<!--                        </label>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
+            </div>
+            <hr>
 
             <div th:each="ingredient : ${user.getGroceryItems()}">
 
