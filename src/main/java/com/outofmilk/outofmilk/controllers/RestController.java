@@ -25,6 +25,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,7 +81,7 @@ public class RestController {
                 List<Ingredient> ingredients = new ArrayList<>();
                 if(mealObject.get("strIngredient1").isJsonNull() == false){
                     strIngredient1 = mealObject.get("strIngredient1").getAsString();
-                    ingredient1 = ingredientRepository.findByName(strIngredient1);
+                    ingredient1 = ingredientRepository.findByName(strIngredient1.toLowerCase());
                     ingredients.add(ingredient1);
                     System.out.println("********************");
                     System.out.println(ingredient1);
@@ -93,7 +94,7 @@ public class RestController {
                 Ingredient ingredient2 = null;
                 if(mealObject.get("strIngredient2").isJsonNull() == false){
                     strIngredient2 = mealObject.get("strIngredient2").getAsString();
-                    ingredient2 = ingredientRepository.findByName(strIngredient2);
+                    ingredient2 = ingredientRepository.findByName(strIngredient2.toLowerCase());
                     ingredients.add(ingredient2);
                 }
 
@@ -101,7 +102,7 @@ public class RestController {
                 Ingredient ingredient3 = null;
                 if(mealObject.get("strIngredient3").isJsonNull() == false){
                     strIngredient3 = mealObject.get("strIngredient3").getAsString();
-                    ingredient3 = ingredientRepository.findByName(strIngredient3);
+                    ingredient3 = ingredientRepository.findByName(strIngredient3.toLowerCase());
                     ingredients.add(ingredient3);
                 }
 
@@ -109,7 +110,7 @@ public class RestController {
                 Ingredient ingredient4 = null;
                 if(mealObject.get("strIngredient4").isJsonNull() == false){
                     strIngredient4 = mealObject.get("strIngredient4").getAsString();
-                    ingredient4 = ingredientRepository.findByName(strIngredient4);
+                    ingredient4 = ingredientRepository.findByName(strIngredient4.toLowerCase());
                     ingredients.add(ingredient4);
                 }
 
@@ -117,7 +118,7 @@ public class RestController {
                 Ingredient ingredient5 = null;
                 if(mealObject.get("strIngredient5").isJsonNull() == false){
                     strIngredient5 = mealObject.get("strIngredient5").getAsString();
-                    ingredient5 = ingredientRepository.findByName(strIngredient5);
+                    ingredient5 = ingredientRepository.findByName(strIngredient5.toLowerCase());
                     ingredients.add(ingredient5);
                 }
 
@@ -125,107 +126,109 @@ public class RestController {
                 Ingredient ingredient6 = null;
                 if(mealObject.get("strIngredient6").isJsonNull() == false){
                     strIngredient6 = mealObject.get("strIngredient6").getAsString();
-                    ingredient6 = ingredientRepository.findByName(strIngredient6);
+                    ingredient6 = ingredientRepository.findByName(strIngredient6.toLowerCase());
                     ingredients.add(ingredient6);
                 }
                 String strIngredient7 = "";
                 Ingredient ingredient7 = null;
                 if(mealObject.get("strIngredient7").isJsonNull() == false){
                     strIngredient7 = mealObject.get("strIngredient7").getAsString();
-                    ingredient7 = ingredientRepository.findByName(strIngredient7);
+                    ingredient7 = ingredientRepository.findByName(strIngredient7.toLowerCase());
                     ingredients.add(ingredient7);
                 }
                 String strIngredient8 = "";
                 Ingredient ingredient8 = null;
                 if(mealObject.get("strIngredient8").isJsonNull() == false){
                     strIngredient8 = mealObject.get("strIngredient8").getAsString();
-                    ingredient8 = ingredientRepository.findByName(strIngredient8);
+                    ingredient8 = ingredientRepository.findByName(strIngredient8.toLowerCase());
                     ingredients.add(ingredient8);
                 }
                 String strIngredient9 = "";
                 Ingredient ingredient9 = null;
                 if(mealObject.get("strIngredient1").isJsonNull() == false){
                     strIngredient9 = mealObject.get("strIngredient9").getAsString();
-                    ingredient9 = ingredientRepository.findByName(strIngredient9);
+                    ingredient9 = ingredientRepository.findByName(strIngredient9.toLowerCase());
                     ingredients.add(ingredient9);
                 }
                 String strIngredient10 = "";
                 Ingredient ingredient10 = null;
                 if(mealObject.get("strIngredient10").isJsonNull() == false){
                     strIngredient10 = mealObject.get("strIngredient10").getAsString();
-                    ingredient10 = ingredientRepository.findByName(strIngredient10);
+                    ingredient10 = ingredientRepository.findByName(strIngredient10.toLowerCase());
                     ingredients.add(ingredient10);
                 }
                 String strIngredient11 = "";
                 Ingredient ingredient11 = null;
                 if(mealObject.get("strIngredient11").isJsonNull() == false){
                     strIngredient11 = mealObject.get("strIngredient11").getAsString();
-                    ingredient11 = ingredientRepository.findByName(strIngredient11);
+                    ingredient11 = ingredientRepository.findByName(strIngredient11.toLowerCase());
                     ingredients.add(ingredient11);
                 }
                 String strIngredient12 = "";
                 Ingredient ingredient12 = null;
                 if(mealObject.get("strIngredient12").isJsonNull() == false){
                     strIngredient12 = mealObject.get("strIngredient12").getAsString();
-                    ingredient12 = ingredientRepository.findByName(strIngredient12);
+                    ingredient12 = ingredientRepository.findByName(strIngredient12.toLowerCase());
                     ingredients.add(ingredient12);
                 }
                 String strIngredient13 = "";
                 Ingredient ingredient13 = null;
                 if(mealObject.get("strIngredient13").isJsonNull() == false){
                     strIngredient13 = mealObject.get("strIngredient13").getAsString();
-                    ingredient13 = ingredientRepository.findByName(strIngredient13);
+                    ingredient13 = ingredientRepository.findByName(strIngredient13.toLowerCase());
                     ingredients.add(ingredient13);
                 }
                 String strIngredient14 = "";
                 Ingredient ingredient14 = null;
                 if(mealObject.get("strIngredient14").isJsonNull() == false){
                     strIngredient14 = mealObject.get("strIngredient14").getAsString();
-                    ingredient14 = ingredientRepository.findByName(strIngredient14);
+                    ingredient14 = ingredientRepository.findByName(strIngredient14.toLowerCase());
                     ingredients.add(ingredient14);
                 }
                 String strIngredient15 = "";
                 Ingredient ingredient15 = null;
                 if(mealObject.get("strIngredient15").isJsonNull() == false){
                     strIngredient15 = mealObject.get("strIngredient15").getAsString();
-                    ingredient15 = ingredientRepository.findByName(strIngredient15);
+                    ingredient15 = ingredientRepository.findByName(strIngredient15.toLowerCase());
                     ingredients.add(ingredient15);
                 }
                 String strIngredient16 = "";
                 Ingredient ingredient16 = null;
                 if(mealObject.get("strIngredient16").isJsonNull() == false){
                     strIngredient16 = mealObject.get("strIngredient16").getAsString();
-                    ingredient16 = ingredientRepository.findByName(strIngredient16);
+                    ingredient16 = ingredientRepository.findByName(strIngredient16.toLowerCase());
                     ingredients.add(ingredient16);
                 }
                 String strIngredient17 = "";
                 Ingredient ingredient17 = null;
                 if(mealObject.get("strIngredient17").isJsonNull() == false){
                     strIngredient17 = mealObject.get("strIngredient17").getAsString();
-                    ingredient17 = ingredientRepository.findByName(strIngredient17);
+                    ingredient17 = ingredientRepository.findByName(strIngredient17.toLowerCase());
                     ingredients.add(ingredient17);
                 }
                 String strIngredient18 = "";
                 Ingredient ingredient18 = null;
                 if(mealObject.get("strIngredient18").isJsonNull() == false){
                     strIngredient18 = mealObject.get("strIngredient18").getAsString();
-                    ingredient18 = ingredientRepository.findByName(strIngredient18);
+                    ingredient18 = ingredientRepository.findByName(strIngredient18.toLowerCase());
                     ingredients.add(ingredient18);
                 }
                 String strIngredient19 = "";
                 Ingredient ingredient19 = null;
                 if(mealObject.get("strIngredient19").isJsonNull() == false){
                     strIngredient19 = mealObject.get("strIngredient19").getAsString();
-                    ingredient19 = ingredientRepository.findByName(strIngredient19);
+                    ingredient19 = ingredientRepository.findByName(strIngredient19.toLowerCase());
                     ingredients.add(ingredient19);
                 }
                 String strIngredient20 = "";
                 Ingredient ingredient20 = null;
                 if(mealObject.get("strIngredient20").isJsonNull() == false){
                     strIngredient20 = mealObject.get("strIngredient20").getAsString();
-                    ingredient20 = ingredientRepository.findByName(strIngredient20);
+                    ingredient20 = ingredientRepository.findByName(strIngredient20.toLowerCase());
                     ingredients.add(ingredient20);
                 }
+
+                ingredients.removeAll(Arrays.asList("", null));
 
                 String strMeasure1 = "";
                 if(mealObject.get("strMeasure1").isJsonNull() == false){
