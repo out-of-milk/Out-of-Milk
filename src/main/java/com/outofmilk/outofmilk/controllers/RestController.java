@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -79,11 +80,6 @@ public class RestController {
                     strIngredient1 = mealObject.get("strIngredient1").getAsString();
                     ingredient1 = ingredientRepository.findByName(strIngredient1.toLowerCase());
                     ingredients.add(ingredient1);
-                    System.out.println("********************");
-                    System.out.println(ingredient1);
-                    System.out.println("********************");
-                    System.out.println(ingredients);
-                    System.out.println("********************");
                 }
 
                 String strIngredient2 = "";
@@ -369,23 +365,44 @@ public class RestController {
     public String addRecipeIngredientsToGrocery(@PathVariable int id, Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
-        List<Ingredient> usersGroceries = user.getGroceryItems();
+        List<Ingredient> usersGroceries = new ArrayList<>(user.getGroceryItems().stream().toList());
+        int i = 0;
+    try {
+//        for (Ingredient ingredient : ingredients) {
+//            for (Ingredient usersGrocery : usersGroceries) {
+//                if (ingredient == null) {
+//                    break;
+//                }
+//                if (!ingredient.getName().equalsIgnoreCase(usersGrocery.getName().toLowerCase())) {
+//                    usersGroceries.add(ingredient);   // doesnt work????
+//                }
+//            }
+//        }
 
-        for (Ingredient ingredient : ingredients) {
-            for (Ingredient usersGrocery : usersGroceries) {
-                if(ingredient == null){
-                    break;
-                }
-                if(ingredient.getId() != usersGrocery.getId()){
-//                    usersGroceries.add(ingredient);   doesnt work????
-                    System.out.println(ingredient);   // works ????????
-                }
+        while(i < ingredients.size()) {
+            if(!ingredients.get(i).getName().equals(usersGroceries.get(i).getName()) || usersGroceries.size() == 0){
+                System.out.println("**********************");
+                System.out.println(ingredients.get(i));
+                System.out.println(usersGroceries);
+                System.out.println("**********************");
+
+                usersGroceries.add(ingredients.get(i));
+
+                System.out.println("----------------------");
+                System.out.println(usersGroceries);
+                System.out.println("----------------------");
+
+                i++;
             }
         }
 
-        System.out.println("********************");
-        System.out.println(usersGroceries);
-        System.out.println("********************");
+//        user.setGroceryItems(usersGroceries);
+//        userDao.save(user);
+
+
+    } catch (Exception e){
+        e.printStackTrace();
+    }
 
         return "redirect:/user";
     }
