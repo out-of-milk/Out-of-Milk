@@ -2,6 +2,7 @@ package com.outofmilk.outofmilk.controllers;
 
 import com.google.gson.*;
 import com.outofmilk.outofmilk.models.Ingredient;
+import com.outofmilk.outofmilk.models.Recipe;
 import com.outofmilk.outofmilk.models.User;
 import com.outofmilk.outofmilk.repositories.IngredientRepository;
 import com.outofmilk.outofmilk.repositories.RecipeRepository;
@@ -19,6 +20,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class RestController {
@@ -349,6 +351,16 @@ public class RestController {
                 model.addAttribute("strMeasure18", strMeasure18);
                 model.addAttribute("strMeasure19", strMeasure19);
                 model.addAttribute("strMeasure20", strMeasure20);
+
+                Optional<Recipe> existingRecipe = Optional.ofNullable(recipeRepository.findByIdMeal(Long.parseLong(idMeal)));
+                if (!existingRecipe.isPresent()) {
+                    Recipe newRecipe = new Recipe();
+                    newRecipe.setIdMeal(Long.parseLong(idMeal));
+                    newRecipe.setStrMeal(strMeal);
+                    newRecipe.setStrCategory(strCategory);
+                    newRecipe.setStrMealThumb(strMealThumb);
+                    recipeRepository.save(newRecipe);
+                }
 
             }
 

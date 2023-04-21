@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Controller
@@ -228,47 +229,66 @@ public class UserController {
 
     @GetMapping("/user/addItemPantry")
     public String addItemToPantry(@RequestParam String selectedIngredient, Model model){
-        System.out.println(selectedIngredient);
-        Ingredient newIngredient = ingredientDao.findByName(selectedIngredient);
-        long id = newIngredient.getId();
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
+
         if (user == null) {
             return "redirect:/login";
         }
-        System.out.println("help!!!");
-//        grab ingredient by id
-        Ingredient ingredient =  ingredientDao.findById(id);
-        System.out.println(ingredient);
+
+        Optional<Ingredient> existingIngredient = Optional.ofNullable(ingredientDao.findByName(selectedIngredient));
+        if (!existingIngredient.isPresent()) {
+            Ingredient newIngredient = new Ingredient();
+            newIngredient.setName(selectedIngredient);
+            ingredientDao.save(newIngredient);
+        }
+
+        Ingredient ingredient = ingredientDao.findByName(selectedIngredient);
+
+        if (user.getPantryItems().contains(ingredient)) {
+            return "redirect:/user";
+        }
+
         user.getPantryItems().add(ingredient);
 
         model.addAttribute("user", user);
         model.addAttribute("ingredients", ingredientDao.findAll());
+
         if (loggedInUser.getId() == user.getId()) {
             userDao.save(user);
         }
         return "redirect:/user";
     }
+
     @GetMapping("/user/addItemGrocery")
     public String addItemToGrocery(@RequestParam String selectedIngredient, Model model){
-        System.out.println(selectedIngredient);
-        Ingredient newIngredient = ingredientDao.findByName(selectedIngredient);
-        long id = newIngredient.getId();
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
+
         if (user == null) {
             return "redirect:/login";
         }
-        System.out.println("help!!!");
-//        grab ingredient by id
-        Ingredient ingredient =  ingredientDao.findById(id);
-        System.out.println(ingredient);
+
+        Optional<Ingredient> existingIngredient = Optional.ofNullable(ingredientDao.findByName(selectedIngredient));
+        if (!existingIngredient.isPresent()) {
+            Ingredient newIngredient = new Ingredient();
+            newIngredient.setName(selectedIngredient);
+            ingredientDao.save(newIngredient);
+        }
+
+        Ingredient ingredient = ingredientDao.findByName(selectedIngredient);
+
+        if (user.getGroceryItems().contains(ingredient)) {
+            return "redirect:/user";
+        }
+
         user.getGroceryItems().add(ingredient);
 
         model.addAttribute("user", user);
         model.addAttribute("ingredients", ingredientDao.findAll());
+
         if (loggedInUser.getId() == user.getId()) {
             userDao.save(user);
         }
