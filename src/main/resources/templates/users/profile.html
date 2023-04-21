@@ -7,25 +7,12 @@
     <title id="pageTitle">Profile</title>
 
     <title>Profile</title>
-    <style>
-    .carousel-container {
-        width: 40em;
-        height: 25em;
-        overflow: hidden;
-    }
-
-    .carousel-image {
-        width: 40em;
-        height: 25em;
-        object-fit: cover;
-    }
-    </style>
 </head>
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="container-fluid p-3">
     <div class="row">
-        <div class="card col d-flex" style="max-width: 50%;max-height: 50%">
+        <div class="card col d-flex" style="max-width: 100%;max-height: 100%; width:50em;">
             <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="card-img-top rounded-circle" alt="...">
             <div class="card-body">
                 <h5 class="card-title" th:text="${user.username}"></h5>
@@ -83,7 +70,6 @@
                         type="button">Add New Item
                 </button>
                 <form id="delete-pantry-form" th:object="${user}" th:action="@{/user/} + 'dpl'" method="post">
-<!--                    <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dpl'" role="button">Clear Pantry List</a>-->
                     <button id="delete-pantry-btn" type="submit" class="btn btn-outline-secondary" >Clear Pantry List</button>
                 </form>
             </div>
@@ -109,7 +95,6 @@
                 </form>
 
                 <form id="delete-grocery-form" th:object="${user}" th:action="@{/user/} + 'dgl'" method="post">
-<!--                    <a class="btn btn-outline-secondary" th:href="@{/user/} + 'dgl'" role="button">Clear Grocery List</a>-->
                     <button id="delete-grocery-btn" class="btn btn-outline-secondary" type="submit">Clear Grocery List</button>
                 </form>
             </div>
