@@ -137,15 +137,6 @@
         <div aria-labelledby="nav-recipe-tab" class="tab-pane fade" id="nav-recipe" role="tabpanel">
             <h4 style="text-align: center;">Favorite Recipe</h4>
             <hr>
-            <ul class="list-group" th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
-                <li class="list-group-item d-flex justify-content-between">
-                    <a th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
-                    <a class="btn btn-danger" th:href="@{/user/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()} + '/dhr'" role="button">Remove</a>
-                </li>
-            </ul>
-            <hr>
-
-
             <div id="carouselExampleDark" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
 
                 <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">
@@ -156,55 +147,18 @@
                             <img alt="..." class="d-block w-100 carousel-image" th:src="${recipePreferenceFavorite.getRecipe().getStrMealThumb()}">
                         </a>
                         <div class="carousel-caption d-none d-md-block"></div>
-
                     </div>
-                    <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleIndicators"
-                            type="button">
-                        <span class="carousel-control-prev-icon"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselExampleIndicators"
-                            type="button">
-                        <span class="carousel-control-next-icon"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
 
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-
-
-
-<!--            <div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselExampleDark">-->
-<!--                <div class="carousel-indicators">-->
-<!--                    <button aria-current="true" aria-label="Slide 1" class="active" data-bs-slide-to="0"-->
-<!--                            data-bs-target="#carouselExampleDark" type="button"></button>-->
-<!--                    <button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carouselExampleDark"-->
-<!--                            type="button"></button>-->
-<!--                    <button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carouselExampleDark"-->
-<!--                            type="button"></button>-->
-<!--                </div>-->
-<!--                <div class="carousel-inner carousel-container">-->
-<!--&lt;!&ndash;                    <div th:each="recipePreferenceFavorite : ${recipePreferencesFavorites}">&ndash;&gt;-->
-<!--                        <div th:each="recipePreferenceFavorite : ${recipePreferencesFavorites}" th:class="${recipePreferenceFavorite.getRecipe().showThis} ? 'carousel-item active' : 'carousel-item'" sec:authorize="isAuthenticated()" data-bs-interval="10000">-->
-<!--                            <a th:href="@{/recipe/} + ${recipePreferenceFavorite.getRecipe().getIdMeal()}">-->
-<!--                                <p th:text="${recipePreferenceFavorite.getRecipe().getStrMeal()}"></p>-->
-<!--                                <img alt="..." class="d-block w-100 carousel-image" th:src="${recipePreferenceFavorite.getRecipe().getStrMealThumb()}">-->
-<!--                            </a>-->
-<!--                            <div class="carousel-caption d-none d-md-block"></div>-->
-<!--                        </div>-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                </div>-->
-<!--                <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleDark"-->
-<!--                        type="button">-->
-<!--                    <span aria-hidden="true" class="carousel-control-prev-icon"></span>-->
-<!--                    <span class="visually-hidden">Previous</span>-->
-<!--                </button>-->
-<!--                <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselExampleDark"-->
-<!--                        type="button">-->
-<!--                    <span aria-hidden="true" class="carousel-control-next-icon"></span>-->
-<!--                    <span class="visually-hidden">Next</span>-->
-<!--                </button>-->
-<!--            </div>-->
         </div>
         <!-- Settings Modal -->
         <div class="modal fade" id="settings" tabindex="-1">
