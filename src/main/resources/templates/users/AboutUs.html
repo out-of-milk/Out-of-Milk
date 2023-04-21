@@ -3,60 +3,62 @@
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
     <title id="pageTitle">About Us</title>
-    <style>
-        .carousel .item {
-            height: 300px;
-        }
-
-        .item img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            min-height: 300px;
-        }
-    </style>
 </head>
 
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
-<div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselExampleDark">
-    <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-            <h1>Jennie Smith</h1>
-            <img style="width:200px;height:550px;" alt="..." class="d-block w-100" src="https://static.wikia.nocookie.net/f04a450c-711f-4a70-9fd2-2a4e63ca9dc1/scale-to-width/755">
-            <p> I'm from the small state of Kansas, where I have returned from traveling the world of Oz after defeating the wicked witch of the waste. Now that I have returned to back to normal society, I have taken up coding by recommendation of my older brother. With my newfound coding skills, I hope to make a long lasting career and hope to return to Oz one day to make it an technologic empire.</p>
-            <div class="carousel-caption d-none d-md-block"></div>
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-            <h1>Mitchell (Emi) Campbell</h1>
-            <img style="width:200px;height:550px;" alt="..." class="d-block w-100" src="https://images.sr.roku.com/idType/roku/context/global/id/4be944e089c59be47a4cdac5e26d986f/images/partner/files/styles/feed-240x360/public/a8wn4hw/im/f4/09/c8883fde675594b2c5375f9bf69dc794.jpg/magic/396x0/filters:quality(70)">
-            <p>about: An amoeba with limbs who decided one day to leave the amoeba family in the pond in search for a way to make the pond a better place. Through terrible confetti effects and poorly made html forms, this amoeba plans to turn the pond into Microsoft 2: Electric Boogaloo</p>
-            <div class="carousel-caption d-none d-md-block"></div>
-        </div>
-        <div class="carousel-item">
-            <h1>Kevin Fowler</h1>
-            <a href="https://youtu.be/b0rOJmBx8rE" target="_blank"><img style="width:200px;height:550px;" alt="..." class="d-block w-100" src="https://reviewed-com-res.cloudinary.com/image/fetch/s--gdwBkHt0--/b_white,c_limit,cs_srgb,f_auto,fl_progressive.strip_profile,g_center,q_auto,w_972/https://reviewed-production.s3.amazonaws.com/1599835372365/bluey.png"></a>
-            <p>Meet Kevin, the web developer with a knack for breaking websites with a single line of code! Despite his quirks, Kevin's creativity and humor make him a standout in the industry. With websites that come with hidden Easter eggs like dancing bananas and sneezing unicorns, Kevin's projects are both functional and hilarious. Clients are guaranteed a cutting-edge and entertaining experience with this accidental genius of web development!</p>
-            <div class="carousel-caption d-none d-md-block"></div>
-        </div>
-        <div class="carousel-item">
-            <h1>Shawn Hardin</h1>
-            <img style="width:200px;height:550px;" alt="..." class="d-block w-100" src="https://i.stack.imgur.com/IgfQ1.jpg">
-            <p>My name is Shawn, and I was born and raised in San Antonio. Throughout my life, I've held onto the belief that, "No matter how hard life pulls you down, you must keep your head above water, or you'll sink." I'm a firm believer in the power of positivity and the importance of always moving forward, even if the path isn't always clear-cut. Sometimes, it requires taking a zigzag route, but as long as you're making progress, you're headed in the right direction.That's precisely why I transitioned into my current career field, which has given me the chance to grow and continue moving forward. I'm excited to see where this new opportunity takes me and to learn from the challenges and experiences it offers.In conclusion, I'm grateful for the chance to pursue a career that aligns with my values and allows me to keep moving forward. I look forward to the challenges and growth that lie ahead, and I'm confident that with a positive attitude and a commitment to learning and adapting, I'll continue to thrive.
-            </p>
-                <div class="carousel-caption d-none d-md-block"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="mx-auto col-6 p-3">
+            <h2 style="text-align: center">About Out-of-Milk</h2>
+            <p style="text-align: left;text-indent: 1em;">Outofmilk is a Grocery List is a website that helps you make
+                your grocery list in a more organized and convenient way. It allows you to create
+                a list and categorize your items. You can also search for recipes and add the
+                ingredients needed for those recipes directly to your list. If you have some
+                ingredients at home already, you can also add them to a pantry tracker to
+                help you avoid buying duplicates. The website may also have some extra features,
+                like showing pricing and nutrition information, letting users share their own
+                recipes.</p>
         </div>
     </div>
-    <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleDark"
-            type="button">
-        <span aria-hidden="true" class="carousel-control-prev-icon"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselExampleDark"
-            type="button">
-        <span aria-hidden="true" class="carousel-control-next-icon"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+
+    <div class="row">
+        <div class="mx-auto col-12 p-3">
+            <h2 style="text-align: center">Meet the Team</h2>
+
+            <div class="card-group">
+                <div class="card">
+                    <img style="height: 20%" src="https://static.wikia.nocookie.net/f04a450c-711f-4a70-9fd2-2a4e63ca9dc1/scale-to-width/755" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Jennie Smith</h5>
+                        <p class="card-text"> I'm from the small state of Kansas, where I have returned from traveling the world of Oz after defeating the wicked witch of the waste. Now that I have returned to back to normal society, I have taken up coding by recommendation of my older brother. With my newfound coding skills, I hope to make a long lasting career and hope to return to Oz one day to make it an technologic empire.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img style="height: 20%" alt="..." class="card-img-top" src="https://images.sr.roku.com/idType/roku/context/global/id/4be944e089c59be47a4cdac5e26d986f/images/partner/files/styles/feed-240x360/public/a8wn4hw/im/f4/09/c8883fde675594b2c5375f9bf69dc794.jpg/magic/396x0/filters:quality(70)">
+                    <div class="card-body">
+                        <h5 class="card-title">Mitchell (Emi) Campbell</h5>
+                        <p class="card-text">An amoeba with limbs who decided one day to leave the amoeba family in the pond in search for a way to make the pond a better place. Through terrible confetti effects and poorly made html forms, this amoeba plans to turn the pond into Microsoft 2: Electric Boogaloo</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img alt="..." class="card-img-top" style="height: 20%" src="https://reviewed-com-res.cloudinary.com/image/fetch/s--gdwBkHt0--/b_white,c_limit,cs_srgb,f_auto,fl_progressive.strip_profile,g_center,q_auto,w_972/https://reviewed-production.s3.amazonaws.com/1599835372365/bluey.png">
+                    <div class="card-body">
+                        <h5 class="card-title">Kevin Fowler</h5>
+                        <p class="card-text">Meet Kevin, the web developer with a knack for breaking websites with a single line of code! Despite his quirks, Kevin's creativity and humor make him a standout in the industry. With websites that come with hidden Easter eggs like dancing bananas and sneezing unicorns, Kevin's projects are both functional and hilarious. Clients are guaranteed a cutting-edge and entertaining experience with this accidental genius of web development!</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img style="height: 20%" src="https://i.stack.imgur.com/IgfQ1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Shawn Hardin</h5>
+                        <p class="card-text">My name is Shawn, and I was born and raised in San Antonio. Throughout my life, I've held onto the belief that, "No matter how hard life pulls you down, you must keep your head above water, or you'll sink." I'm a firm believer in the power of positivity and the importance of always moving forward, even if the path isn't always clear-cut. Sometimes, it requires taking a zigzag route, but as long as you're making progress, you're headed in the right direction.That's precisely why I transitioned into my current career field, which has given me the chance to grow and continue moving forward. I'm excited to see where this new opportunity takes me and to learn from the challenges and experiences it offers.In conclusion, I'm grateful for the chance to pursue a career that aligns with my values and allows me to keep moving forward. I look forward to the challenges and growth that lie ahead, and I'm confident that with a positive attitude and a commitment to learning and adapting, I'll continue to thrive.\</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <footer class="footer" th:insert="partial/partials :: footer"></footer>
 </body>

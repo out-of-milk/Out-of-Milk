@@ -4,147 +4,14 @@
     <meta charset="UTF-8">
     <title id="pageTitle">Find Recipe</title>
 </head>
-<style>
-.carousel-container {
-    width: 40em;
-    height: 25em;
-    overflow: hidden;
-}
-
-.carousel-image {
-    width: 40em;
-    height: 25em;
-    object-fit: cover;
-}
-</style>
 <body>
-<script>
-    // fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         const meal = data.meals[0];
-    //         const img = document.createElement('img');
-    //         img.src = meal.strMealThumb;
-    //         const displayMealThumb = document.getElementById('displayMealThumb1');
-    //         displayMealThumb.appendChild(img);
-    //         const displayMealTitle = document.getElementById('displayMealTitle1');
-    //         const mealTitle = document.createElement('h2');
-    //         mealTitle.textContent = meal.strMeal;
-    //         displayMealTitle.appendChild(mealTitle);
-    //         const displayMeal = document.getElementById('displayMeal');
-    //         const mealInstructions = document.createElement('p');
-    //         mealInstructions.textContent = meal.strInstructions;
-    //         displayMeal.appendChild(mealInstructions);
-    //     })
-    //     .catch(error => console.error(error));
-    // fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         const meal = data.meals[0];
-    //         const img = document.createElement('img');
-    //         img.src = meal.strMealThumb;
-    //         const displayMealThumb = document.getElementById('displayMealThumb2');
-    //         displayMealThumb.appendChild(img);
-    //         const displayMealTitle = document.getElementById('displayMealTitle2');
-    //         const mealTitle = document.createElement('h2');
-    //         mealTitle.textContent = meal.strMeal;
-    //         displayMealTitle.appendChild(mealTitle);
-    //         const displayMeal = document.getElementById('displayMeal');
-    //         const mealInstructions = document.createElement('p');
-    //         mealInstructions.textContent = meal.strInstructions;
-    //         displayMeal.appendChild(mealInstructions);
-    //     })
-    //     .catch(error => console.error(error));
-    // fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         const meal = data.meals[0];
-    //         const img = document.createElement('img');
-    //         img.src = meal.strMealThumb;
-    //         const displayMealThumb = document.getElementById('displayMealThumb3');
-    //         displayMealThumb.appendChild(img);
-    //         const displayMealTitle = document.getElementById('displayMealTitle3');
-    //         const mealTitle = document.createElement('h2');
-    //         mealTitle.textContent = meal.strMeal;
-    //         displayMealTitle.appendChild(mealTitle);
-    //         const displayMeal = document.getElementById('displayMeal');
-    //         const mealInstructions = document.createElement('p');
-    //         mealInstructions.textContent = meal.strInstructions;
-    //         displayMeal.appendChild(mealInstructions);
-    //     })
-    //     .catch(error => console.error(error));
-    // fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         const meal = data.meals[0];
-    //         const img = document.createElement('img');
-    //         img.src = meal.strMealThumb;
-    //         const displayMealThumb = document.getElementById('displayMealThumb4');
-    //         displayMealThumb.appendChild(img);
-    //         const displayMealTitle = document.getElementById('displayMealTitle4');
-    //         const mealTitle = document.createElement('h2');
-    //         mealTitle.textContent = meal.strMeal;
-    //         displayMealTitle.appendChild(mealTitle);
-    //         const displayMeal = document.getElementById('displayMeal');
-    //         const mealInstructions = document.createElement('p');
-    //         mealInstructions.textContent = meal.strInstructions;
-    //         displayMeal.appendChild(mealInstructions);
-    //     })
-    //     .catch(error => console.error(error));
-    // fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         const meal = data.meals[0];
-    //         const img = document.createElement('img');
-    //         img.src = meal.strMealThumb;
-    //         const displayMealThumb = document.getElementById('displayMealThumb5');
-    //         displayMealThumb.appendChild(img);
-    //         const displayMealTitle = document.getElementById('displayMealTitle5');
-    //         const mealTitle = document.createElement('h2');
-    //         mealTitle.textContent = meal.strMeal;
-    //         displayMealTitle.appendChild(mealTitle);
-    //         const displayMeal = document.getElementById('displayMeal');
-    //         const mealInstructions = document.createElement('p');
-    //         mealInstructions.textContent = meal.strInstructions;
-    //         displayMeal.appendChild(mealInstructions);
-    //     })
-    //     .catch(error => console.error(error));
-    // fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         const meal = data.meals[0];
-    //         const img = document.createElement('img');
-    //         img.src = meal.strMealThumb;
-    //         const displayMealThumb = document.getElementById('displayMealThumb6');
-    //         displayMealThumb.appendChild(img);
-    //         const displayMealTitle = document.getElementById('displayMealTitle6');
-    //         const mealTitle = document.createElement('h2');
-    //         mealTitle.textContent = meal.strMeal;
-    //         displayMealTitle.appendChild(mealTitle);
-    //         const displayMeal = document.getElementById('displayMeal');
-    //         const mealInstructions = document.createElement('p');
-    //         mealInstructions.textContent = meal.strInstructions;
-    //         displayMeal.appendChild(mealInstructions);
-    //     })
-    //     .catch(error => console.error(error));
-</script>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="container-fluid content">
-    <h2 style="text-align: center;" sec:authorize="!isAuthenticated()">Search for Recipes</h2>
-    <h2 style="text-align: center;" sec:authorize="isAuthenticated()">Recommended Recipes for You</h2>
-
-
-    <hr>
+    <h2 class="p-2" style="text-align: center;" sec:authorize="!isAuthenticated()">Search for Recipes</h2>
+    <h2 class="p-2" style="text-align: center;" sec:authorize="isAuthenticated()">Recommended Recipes for You</h2>
 
     <div class="body d-flex justify-content-evenly">
         <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
-
-            <!--  //          <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">-->
-<!--   //             <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">-->
-
             <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">
                 <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
                     <a th:href="@{'/recipe/'} + ${recipe.getIdMeal()}">
@@ -156,9 +23,6 @@
                 </div>
 
             </div>
-
-<!-- //           <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">-->
-<!-- //               <div th:each="recipe : ${recipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">-->
 
             <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">
                 <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
@@ -182,15 +46,12 @@
         </div>
     </div>
 </div>
-<br>
-<div>
-<!--    <div sec:authorize="isAuthenticated()" class="d-flex justify-content-between row ">-->
+<div class="row p-2">
     <div sec:authorize="isAuthenticated()" class="d-flex justify-content-evenly container">
-            <input type="text" id="search" placeholder="Search meals/categories" class="w-25 col-6 rounded-pill">
-<!--            <button class="btn btn-outline-success" style="height:4rem;" type="submit">Search</button>-->
+            <input type="text" id="search" placeholder="Search Meals" class="w-30 col-6 rounded border border-info">
         <div>
-            <select class=" form-select" id="category" multiple style="width: 15rem; height: 4rem">
-                <option value="" selected>Show All</option>
+            <select  class="selectpicker show-tick rounded border border-info" id="category" style="width: 15rem; height: 4rem">
+                <option value="" selected>Show All Categories</option>
                 <option value="Beef">Beef</option>
                 <option value="Breakfast">Breakfast</option>
                 <option value="Chicken">Chicken</option>
@@ -209,9 +70,14 @@
         </div>
     </div>
 </div>
-<!--    <div th:href="@{/login}" sec:authorize="!isAuthenticated()" id="recipes"></div>-->
+<ul class="list-group p-2">
+    <li class="list-group-item" >
+        <div th:href="@{'/recipe/' + ${idmeal}}" sec:authorize="isAuthenticated()" id="recipes"></div>
+    </li>
+</ul>
 
-    <div th:href="@{'/recipe/' + ${idmeal}}" sec:authorize="isAuthenticated()" id="recipes"></div>
+<!--    <div th:href="@{'/recipe/' + ${idmeal}}" sec:authorize="isAuthenticated()" id="recipes"></div>-->
+<footer th:insert="partial/partials :: footer"></footer>
 <script>
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
     const recipesContainer = document.getElementById('recipes');
@@ -228,7 +94,7 @@
                     card.classList.add('card');
 
                     const cardHeader = document.createElement('div');
-                    cardHeader.classList.add('card-header');
+                    cardHeader.classList.add('card-body');
 
                     const ID = document.createElement('a');
                     ID.innerText = meal.strMeal;
@@ -241,7 +107,6 @@
 
                     cardHeader.appendChild(ID);
                     cardHeader.appendChild(cat);
-                    // cardHeader.appendChild(heading);
                     card.appendChild(cardHeader);
 
                     const image = document.createElement('img');
@@ -258,13 +123,6 @@
                     }
                     const instructions = document.createElement('p');
                     instructions.innerText = meal.strInstructions;
-
-                    // card.appendChild(ID);
-                    // card.appendChild(cat);
-                    // card.appendChild(heading);
-                    // card.appendChild(image);
-                    // card.appendChild(ingredients);
-                    // card.appendChild(instructions);
 
                     recipesContainer.appendChild(card);
                 });
@@ -296,14 +154,6 @@
         });
     });
 </script>
-<p class="fw-lighter">Outofmilk is a Grocery List is a website that helps you make
-    your grocery list in a more organized and convenient way. It allows you to create
-    a list and categorize your items. You can also search for recipes and add the
-    ingredients needed for those recipes directly to your list. If you have some
-    ingredients at home already, you can also add them to a pantry tracker to
-    help you avoid buying duplicates. The website may also have some extra features,
-    like showing pricing and nutrition information, letting users share their own
-    recipes.</p>
-<footer th:insert="partial/partials :: footer"></footer>
+
 </body>
 </html>
