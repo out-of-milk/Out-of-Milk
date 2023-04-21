@@ -7,7 +7,9 @@ import com.outofmilk.outofmilk.models.User;
 
 import com.outofmilk.outofmilk.repositories.*;
 
+import com.outofmilk.outofmilk.services.EmailService;
 import jakarta.annotation.Nullable;
+import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @AllArgsConstructor
@@ -32,6 +33,7 @@ public class UserController {
     private final CategoryRepository categoryDao;
     private final PasswordEncoder passwordEncoder;
     private final IngredientRepository ingredientDao;
+    private final EmailService emailService;
 
 
     @GetMapping("/user")
@@ -350,6 +352,36 @@ public class UserController {
         userDao.save(user);
 
         return "redirect:/user";
+    }
+
+    @PostMapping("/user/egl")
+    public String emailGroceryList(Model model) throws MessagingException {
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+
+        if (user == null) {
+            return "/login";
+        }
+
+        model.addAttribute("user", user);
+
+        String emailBody = "<ul style=\"text-transform: capitalize;\">";
+        for (Ingredient item : user.getGroceryItems()){
+            emailBody += "<li>" + item.getName() + "</li>";
+            System.out.println(item);
+        }
+        emailBody += "</ul>";
+
+        System.out.println(emailBody);
+
+        if (loggedInUser.getId() == user.getId()) {
+//            emailService.prepareAndSend(user, "Grocery list from: " + user.getUsername(),
+//                                                "Your grocery list:" + emailBody);
+        }
+
+        return "redirect:/user";
+
     }
 
 }
