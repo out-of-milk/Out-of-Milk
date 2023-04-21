@@ -119,6 +119,7 @@
         <div aria-labelledby="nav-recipe-tab" class="tab-pane fade" id="nav-recipe" role="tabpanel">
             <h4 style="text-align: center;">Favorite Recipe</h4>
             <hr>
+
             <div class="body d-flex justify-content-evenly">
                 <div id="carouselExampleIndicators" class="carousel slide carousel-fade p-3" data-bs-ride="carousel">
                     <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">
@@ -151,6 +152,7 @@
                     <a class="btn btn-outline-primary" th:href="@{/user/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()} + '/dhr'" role="button">Remove</a>
                 </li>
             </ul>
+
         </div>
         <!-- Settings Modal -->
         <div class="modal fade" id="settings" tabindex="-1">
