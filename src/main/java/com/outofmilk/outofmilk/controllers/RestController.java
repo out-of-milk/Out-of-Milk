@@ -25,7 +25,7 @@ import java.util.Optional;
 @Controller
 public class RestController {
 
-    @Value("MEALDB_API_KEY")
+    @Value("${mealdb.api.key}")
     private String apiKey;
 
     @Autowired

@@ -101,6 +101,10 @@
                     <button id="email-grocery-btn" class="btn btn-outline-primary" type="submit">Email Grocery List</button>
                 </form>
 
+                <button class="btn btn-outline-secondary" data-bs-target="#textGroceryList" data-bs-toggle="modal" style="float: right"
+                        type="button">Text Grocery List
+                </button>
+
                 <form id="delete-grocery-form" th:object="${user}" th:action="@{/user/} + 'dgl'" method="post">
                     <button id="delete-grocery-btn" class="btn btn-outline-primary" type="submit">Clear Grocery List</button>
                 </form>
@@ -249,6 +253,32 @@
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
                                 <button class="btn btn-primary" type="submit">Add</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--        Text Grocery Item Modal-->
+        <div class="modal fade" id="textGroceryList" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="textGroceryListLabel">Text Grocery List</h1>
+                        <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!--                <a th:href="@{/user/tgl}" role="button" class="btn btn-primary">Text Grocery List</a>-->
+
+                        <form th:action="@{/user/tgl}" th:method="GET" >
+
+                            <label for="exampleDataList" class="form-label">Phone number to text to</label>
+                            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="7778889999" name="phoneNumber">
+
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
+                                <button class="btn btn-primary" type="submit">Send</button>
                             </div>
                         </form>
                     </div>
