@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +20,12 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-@RestController
+@Controller
 public class SmsController {
 
     @Autowired
@@ -44,8 +49,11 @@ public class SmsController {
 
         model.addAttribute("user", user);
 
+        List<Ingredient> sortedItems = new ArrayList<>(user.getGroceryItems());
+        Collections.sort(sortedItems, Comparator.comparing(Ingredient::getName));
+
         String textBody = "";
-        for (Ingredient item : user.getGroceryItems()){
+        for (Ingredient item : sortedItems){
             textBody += item.getName().substring(0, 1).toUpperCase() + item.getName().substring(1) + "\n";
         }
 

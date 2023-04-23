@@ -19,9 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @AllArgsConstructor
 @Controller
@@ -383,15 +381,18 @@ public class UserController {
 
         model.addAttribute("user", user);
 
+        List<Ingredient> sortedItems = new ArrayList<>(user.getGroceryItems());
+        Collections.sort(sortedItems, Comparator.comparing(Ingredient::getName));
+
         String emailBody = "<ul style=\"text-transform: capitalize;\">";
-        for (Ingredient item : user.getGroceryItems()){
+        for (Ingredient item : sortedItems){
             emailBody += "<li>" + item.getName() + "</li>";
         }
         emailBody += "</ul>";
 
         if (loggedInUser.getId() == user.getId()) {
-//            emailService.prepareAndSend(user, "Grocery list from: " + user.getUsername(),
-//                                                "Your grocery list:" + emailBody);
+            emailService.prepareAndSend(user, "Grocery list from: " + user.getUsername(),
+                                                "Your grocery list:" + emailBody);
         }
 
         return "redirect:/user";
