@@ -46,9 +46,6 @@ public class UserController {
         if (loggedInUser == null) {
             return "/login";
         }
-        System.out.println("****************");
-        System.out.println(loggedInUser);
-        System.out.println("****************");
 
         User user = userDao.getReferenceById(loggedInUser.getId());
 
@@ -389,11 +386,8 @@ public class UserController {
         String emailBody = "<ul style=\"text-transform: capitalize;\">";
         for (Ingredient item : user.getGroceryItems()){
             emailBody += "<li>" + item.getName() + "</li>";
-            System.out.println(item);
         }
         emailBody += "</ul>";
-
-        System.out.println(emailBody);
 
         if (loggedInUser.getId() == user.getId()) {
 //            emailService.prepareAndSend(user, "Grocery list from: " + user.getUsername(),

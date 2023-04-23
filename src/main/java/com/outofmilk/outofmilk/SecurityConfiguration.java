@@ -56,6 +56,7 @@ public class SecurityConfiguration {
                         "/user/dpl", // only authenticated users can remove ingredients list
                         "/user/dgl", // only authenticated users can remove ingredients list
                         "/user/egl", // only authenticated users can email ingredients list
+                        "/user/tgl", // only authenticated users can text ingredients list
                         "/user/{id}/dpi", // only authenticated users can remove ingredients
                         "/user/{id}/dgi", // only authenticated users can remove ingredients
                         "/user/{id}/dhr", // only authenticated users can remove hidden recipes
