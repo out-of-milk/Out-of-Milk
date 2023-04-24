@@ -19,3 +19,7 @@
     height: 25em;
     object-fit: cover;
 }
+
+.hide {
+    display: none;
+}
