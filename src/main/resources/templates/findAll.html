@@ -47,8 +47,8 @@
         </div>
     </div>
 </div>
-<div class="row p-2" sec:authorize="isAuthenticated()">
-    <div  class="d-flex justify-content-evenly container">
+<div class="row p-2" >
+    <div sec:authorize="isAuthenticated()" class="d-flex justify-content-evenly container">
             <input type="text" id="search" placeholder="Search Meals" class="w-30 col-6 rounded border border-info">
         <div>
             <select  class="selectpicker show-tick rounded border border-info" id="category" style="width: 15rem; height: 4rem">

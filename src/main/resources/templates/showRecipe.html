@@ -3,17 +3,26 @@
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
     <title id="pageTitle">Recipe</title>
+
 </head>
 <body>
+<style>
+    @media screen and (max-width: 540px){
+        .imgResponse {
+            display: none;
+        }
+    }
+
+</style>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="container-fluid content">
     <div class="d-flex justify-content-center p-3">
         <div class="card mb-3 border border-info" style="max-width: 100%;max-height: 100%;width:60em; height:20em;">
             <div class="row g-0">
-                <div class="col-md-4">
-                    <img id="displayMealThumb" class="img-fluid card-img rounded-star" th:src="${strMealThumb}" style="width:20em; height:20em;">
+                <div class="col-md-4 col-xs-6 col-sm-6 col-lg-4 imgResponse">
+                    <img id="displayMealThumb " class="img-fluid card-img rounded-star" th:src="${strMealThumb}" style="width:20em; height:20em;">
                 </div>
-                <div class="col-md-8 d-flex align-items-center justify-content-center">
+                <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">
                     <div class="card-body text-center">
                         <h1 class="card-title" th:text="${strMeal}">title/name</h1>
                         <h3 class="card-text opacity-75" th:text="${strCategory}">recipe category</h3>
@@ -72,5 +81,6 @@
     </div>
 </div>
 <footer class="footer" th:insert="partial/partials :: footer"></footer>
+
 </body>
 </html>
