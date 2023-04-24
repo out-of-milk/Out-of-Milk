@@ -20,6 +20,12 @@
     object-fit: cover;
 }
 
+
 .hide {
     display: none;
 }
+
+*{
+    font-family: 'Playfair Display', serif;
+}
+

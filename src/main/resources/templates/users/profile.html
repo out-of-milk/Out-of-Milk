@@ -10,15 +10,12 @@
 </head>
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
+
 <div class="container-fluid p-3">
-    <!--    login example-->
-<!--    <div class="container p-3">-->
-<!--        <div class="row" style="height: 100vh;">-->
-<!--            <div class="mx-auto col-6">-->
-<!--                <div class="card col">-->
+
         <div class="justify-content-center">
             <div class="row">
-                <div class="col">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="card mb-2 border border-info" style="max-width: 100%;max-height: 100%;">
                         <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="card-img-top img-fluid rounded-circle" alt="..." >
                         <div class="col-md-12 d-flex align-items-center justify-content-center">
@@ -34,7 +31,7 @@
                 </div>
 
 
-                <div class="col">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <h3>Favorite Categories</h3>
                     <form id="update-categories-form" th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
                         <ul class="list-group form-group" th:each="category : ${categories}">
@@ -122,14 +119,14 @@
         <!--        favorite recipe-->
         <div aria-labelledby="nav-recipe-tab" class="tab-pane fade" id="nav-recipe" role="tabpanel">
             <h4 style="text-align: center;">Favorite Recipe</h4>
-            <hr>
 
-            <div class="body d-flex justify-content-evenly">
+
+            <div class="d-flex justify-content-evenly">
                 <div id="carouselExampleIndicators" class="carousel slide carousel-fade p-3" data-bs-ride="carousel">
-                    <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">
+                    <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()" role="listbox">
                         <div th:each="recipePreferenceFavorite : ${recipePreferencesFavorites}" th:class="${recipePreferenceFavorite.getRecipe().showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
                             <a th:href="@{'/recipe/'} + ${recipePreferenceFavorite.getRecipe().getIdMeal()}">
-                                <img alt="..." class="d-block w-100 carousel-image" th:src="${recipePreferenceFavorite.getRecipe().getStrMealThumb()}">
+                                <img alt="..." class="d-block img-fluid w-100 carousel-image" th:src="${recipePreferenceFavorite.getRecipe().getStrMealThumb()}">
                             </a>
                             <div class="carousel-caption d-none d-md-block">
                                 <h2 th:text="${recipePreferenceFavorite.getRecipe().getStrMeal()}"></h2>
@@ -150,6 +147,7 @@
 
                 </div>
             </div>
+
             <ul class="list-group" th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
                 <li class="list-group-item d-flex justify-content-between">
                     <a th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
@@ -291,11 +289,5 @@
 
 <footer th:insert="partial/partials :: footer"></footer>
 <script th:src="@{/js/confirm-buttons.js}"></script>
-<script>
-    $(document).ready(function () {
-
-    })
-
-</script>
 </body>
 </html>

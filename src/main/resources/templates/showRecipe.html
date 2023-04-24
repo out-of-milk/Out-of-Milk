@@ -3,17 +3,26 @@
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
     <title id="pageTitle">Recipe</title>
+
 </head>
 <body>
+<style>
+    @media screen and (max-width: 540px){
+        .imgResponse {
+            display: none;
+        }
+    }
+
+</style>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="container-fluid content">
     <div class="d-flex justify-content-center p-3">
         <div class="card mb-3 border border-info" style="max-width: 100%;max-height: 100%;width:60em; height:20em;">
             <div class="row g-0">
-                <div class="col-md-4">
-                    <img id="displayMealThumb" class="img-fluid card-img rounded-star" th:src="${strMealThumb}" style="width:20em; height:20em;">
+                <div class="col-md-4 col-xs-6 col-sm-6 col-lg-4 imgResponse">
+                    <img id="displayMealThumb " class="img-fluid card-img rounded-star" th:src="${strMealThumb}" style="width:20em; height:20em;">
                 </div>
-                <div class="col-md-8 d-flex align-items-center justify-content-center">
+                <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">
                     <div class="card-body text-center">
                         <h1 class="card-title" th:text="${strMeal}">title/name</h1>
                         <h3 class="card-text opacity-75" th:text="${strCategory}">recipe category</h3>
@@ -37,6 +46,7 @@
         <div class="col-6">
             <h4 class="border border-info" style="text-align: center">Ingredients</h4>
             <ul class="list-group border border-info">
+
                 <li th:text="${strIngredient1}+ ' ' + ${strMeasure1}" th:class="${strIngredient1 != null} and ${strIngredient1 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
                 <li th:text="${strIngredient2}+ ' ' + ${strMeasure2}" th:class="${strIngredient2 != null} and ${strIngredient2 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
                 <li th:text="${strIngredient3}+ ' ' + ${strMeasure3}" th:class="${strIngredient1 != null} and ${strIngredient3 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
@@ -57,6 +67,7 @@
                 <li th:text="${strIngredient18}+ ' ' + ${strMeasure18}" th:class="${strIngredient1 != null} and ${strIngredient18 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
                 <li th:text="${strIngredient19}+ ' ' + ${strMeasure19}" th:class="${strIngredient1 != null} and ${strIngredient19 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
                 <li th:text="${strIngredient20}+ ' ' + ${strMeasure20}" th:class="${strIngredient1 != null} and ${strIngredient20 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+
             </ul>
         </div>
 
@@ -72,5 +83,6 @@
     </div>
 </div>
 <footer class="footer" th:insert="partial/partials :: footer"></footer>
+
 </body>
 </html>
