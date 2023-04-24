@@ -21,4 +21,22 @@
 }
 *{
     font-family: 'Playfair Display', serif;
+
+}
+h2 {
+    /*background: -webkit-linear-gradient(#F9F9F9,  #D55E2D);*/
+    /*-webkit-background-clip: text;*/
+    /*-webkit-text-fill-color: transparent;*/
+    filter: brightness(150%);
+
+}
+nav{
+    background-color:#E85A4F ;
+}
+footer{
+    background-color:#E85A4F ;
+}
+
+body{
+    background-color: #EAE7DC;
 }
