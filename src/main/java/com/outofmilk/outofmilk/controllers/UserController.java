@@ -19,8 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @AllArgsConstructor
 @Controller
@@ -45,9 +44,6 @@ public class UserController {
         if (loggedInUser == null) {
             return "/login";
         }
-        System.out.println("****************");
-        System.out.println(loggedInUser);
-        System.out.println("****************");
 
         User user = userDao.getReferenceById(loggedInUser.getId());
 
@@ -228,47 +224,66 @@ public class UserController {
 
     @GetMapping("/user/addItemPantry")
     public String addItemToPantry(@RequestParam String selectedIngredient, Model model){
-        System.out.println(selectedIngredient);
-        Ingredient newIngredient = ingredientDao.findByName(selectedIngredient);
-        long id = newIngredient.getId();
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
+
         if (user == null) {
             return "redirect:/login";
         }
-        System.out.println("help!!!");
-//        grab ingredient by id
-        Ingredient ingredient =  ingredientDao.findById(id);
-        System.out.println(ingredient);
+
+        Optional<Ingredient> existingIngredient = Optional.ofNullable(ingredientDao.findByName(selectedIngredient));
+        if (!existingIngredient.isPresent()) {
+            Ingredient newIngredient = new Ingredient();
+            newIngredient.setName(selectedIngredient);
+            ingredientDao.save(newIngredient);
+        }
+
+        Ingredient ingredient = ingredientDao.findByName(selectedIngredient);
+
+        if (user.getPantryItems().contains(ingredient)) {
+            return "redirect:/user";
+        }
+
         user.getPantryItems().add(ingredient);
 
         model.addAttribute("user", user);
         model.addAttribute("ingredients", ingredientDao.findAll());
+
         if (loggedInUser.getId() == user.getId()) {
             userDao.save(user);
         }
         return "redirect:/user";
     }
+
     @GetMapping("/user/addItemGrocery")
     public String addItemToGrocery(@RequestParam String selectedIngredient, Model model){
-        System.out.println(selectedIngredient);
-        Ingredient newIngredient = ingredientDao.findByName(selectedIngredient);
-        long id = newIngredient.getId();
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
+
         if (user == null) {
             return "redirect:/login";
         }
-        System.out.println("help!!!");
-//        grab ingredient by id
-        Ingredient ingredient =  ingredientDao.findById(id);
-        System.out.println(ingredient);
+
+        Optional<Ingredient> existingIngredient = Optional.ofNullable(ingredientDao.findByName(selectedIngredient));
+        if (!existingIngredient.isPresent()) {
+            Ingredient newIngredient = new Ingredient();
+            newIngredient.setName(selectedIngredient);
+            ingredientDao.save(newIngredient);
+        }
+
+        Ingredient ingredient = ingredientDao.findByName(selectedIngredient);
+
+        if (user.getGroceryItems().contains(ingredient)) {
+            return "redirect:/user";
+        }
+
         user.getGroceryItems().add(ingredient);
 
         model.addAttribute("user", user);
         model.addAttribute("ingredients", ingredientDao.findAll());
+
         if (loggedInUser.getId() == user.getId()) {
             userDao.save(user);
         }
@@ -366,18 +381,18 @@ public class UserController {
 
         model.addAttribute("user", user);
 
+        List<Ingredient> sortedItems = new ArrayList<>(user.getGroceryItems());
+        Collections.sort(sortedItems, Comparator.comparing(Ingredient::getName));
+
         String emailBody = "<ul style=\"text-transform: capitalize;\">";
-        for (Ingredient item : user.getGroceryItems()){
+        for (Ingredient item : sortedItems){
             emailBody += "<li>" + item.getName() + "</li>";
-            System.out.println(item);
         }
         emailBody += "</ul>";
 
-        System.out.println(emailBody);
-
         if (loggedInUser.getId() == user.getId()) {
-//            emailService.prepareAndSend(user, "Grocery list from: " + user.getUsername(),
-//                                                "Your grocery list:" + emailBody);
+            emailService.prepareAndSend(user, "Grocery list from: " + user.getUsername(),
+                                                "Your grocery list:" + emailBody);
         }
 
         return "redirect:/user";
