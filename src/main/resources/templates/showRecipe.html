@@ -46,26 +46,28 @@
         <div class="col-6">
             <h4 class="border border-info" style="text-align: center">Ingredients</h4>
             <ul class="list-group border border-info">
-                <li class="list-group-item" th:text="${strMeasure1} + ' ' + ${strIngredient1}"></li>
-                <li class="list-group-item" th:text="${strMeasure2} + ' ' + ${strIngredient2}"></li>
-                <li class="list-group-item" th:text="${strMeasure3} + ' ' + ${strIngredient3}"></li>
-                <li class="list-group-item" th:text="${strMeasure4} + ' ' + ${strIngredient4}"></li>
-                <li class="list-group-item" th:text="${strMeasure5} + ' ' + ${strIngredient5}"></li>
-                <li class="list-group-item" th:text="${strMeasure6} + ' ' + ${strIngredient6}"></li>
-                <li class="list-group-item" th:text="${strMeasure7} + ' ' + ${strIngredient7}"></li>
-                <li class="list-group-item" th:text="${strMeasure8} + ' ' + ${strIngredient8}"></li>
-                <li class="list-group-item" th:text="${strMeasure9} + ' ' + ${strIngredient9}"></li>
-                <li class="list-group-item" th:text="${strMeasure10} + ' ' + ${strIngredient10}"></li>
-                <li class="list-group-item" th:text="${strMeasure11} + ' ' + ${strIngredient11}"></li>
-                <li class="list-group-item" th:text="${strMeasure12} + ' ' + ${strIngredient12}"></li>
-                <li class="list-group-item" th:text="${strMeasure13} + ' ' + ${strIngredient13}"></li>
-                <li class="list-group-item" th:text="${strMeasure14} + ' ' + ${strIngredient14}"></li>
-                <li class="list-group-item" th:text="${strMeasure15} + ' ' + ${strIngredient15}"></li>
-                <li class="list-group-item" th:text="${strMeasure16} + ' ' + ${strIngredient16}"></li>
-                <li class="list-group-item" th:text="${strMeasure17} + ' ' + ${strIngredient17}"></li>
-                <li class="list-group-item" th:text="${strMeasure18} + ' ' + ${strIngredient18}"></li>
-                <li class="list-group-item" th:text="${strMeasure19} + ' ' + ${strIngredient19}"></li>
-                <li class="list-group-item" th:text="${strMeasure20} + ' ' + ${strIngredient20}"></li>
+
+                <li th:text="${strIngredient1}+ ' ' + ${strMeasure1}" th:class="${strIngredient1 != null} and ${strIngredient1 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient2}+ ' ' + ${strMeasure2}" th:class="${strIngredient2 != null} and ${strIngredient2 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient3}+ ' ' + ${strMeasure3}" th:class="${strIngredient1 != null} and ${strIngredient3 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient4}+ ' ' + ${strMeasure4}" th:class="${strIngredient1 != null} and ${strIngredient4 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient5}+ ' ' + ${strMeasure5}" th:class="${strIngredient1 != null} and ${strIngredient5 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient6}+ ' ' + ${strMeasure6}" th:class="${strIngredient1 != null} and ${strIngredient6 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient7}+ ' ' + ${strMeasure7}" th:class="${strIngredient1 != null} and ${strIngredient7 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient8}+ ' ' + ${strMeasure8}" th:class="${strIngredient1 != null} and ${strIngredient8 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient9}+ ' ' + ${strMeasure9}" th:class="${strIngredient1 != null} and ${strIngredient9 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient10}+ ' ' + ${strMeasure10}" th:class="${strIngredient1 != null} and ${strIngredient10 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient11}+ ' ' + ${strMeasure11}" th:class="${strIngredient1 != null} and ${strIngredient11 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient12}+ ' ' + ${strMeasure12}" th:class="${strIngredient1 != null} and ${strIngredient12 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient13}+ ' ' + ${strMeasure13}" th:class="${strIngredient1 != null} and ${strIngredient13 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient14}+ ' ' + ${strMeasure14}" th:class="${strIngredient1 != null} and ${strIngredient14 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient15}+ ' ' + ${strMeasure15}" th:class="${strIngredient1 != null} and ${strIngredient15 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient16}+ ' ' + ${strMeasure16}" th:class="${strIngredient1 != null} and ${strIngredient16 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient17}+ ' ' + ${strMeasure17}" th:class="${strIngredient1 != null} and ${strIngredient17 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient18}+ ' ' + ${strMeasure18}" th:class="${strIngredient1 != null} and ${strIngredient18 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient19}+ ' ' + ${strMeasure19}" th:class="${strIngredient1 != null} and ${strIngredient19 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient20}+ ' ' + ${strMeasure20}" th:class="${strIngredient1 != null} and ${strIngredient20 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+
             </ul>
         </div>
 
