@@ -79,9 +79,9 @@
             </div>
             <hr>
             <ul  class="list-group" th:each="ingredient : ${user.getPantryItems()}">
-                <li class="list-group-item d-flex justify-content-between ">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
                     <p style="text-transform: capitalize;" th:text="${ingredient.name}"></p>
-                    <a class="btn btn-outline-primary" th:href="@{/user/} + ${ingredient.id} + '/dpi'" role="button">Remove</a>
+                    <a class="btn btn-close" th:href="@{/user/} + ${ingredient.id} + '/dpi'" role="button"></a>
                 </li>
             </ul>
         </div>
@@ -109,9 +109,9 @@
             <hr>
 
             <ul class="list-group" th:each="ingredient : ${user.getGroceryItems()}">
-                <li class="list-group-item d-flex justify-content-between">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
                     <p style="text-transform: capitalize;" th:class="${user.getPantryItems().contains(ingredient)} ? 'red' : 'green'" th:text="${ingredient.name}" >No ingredients in list</p>
-                    <a class="btn btn-outline-primary" th:href="@{/user/} + ${ingredient.id} + '/dgi'" role="button">Remove</a>
+                    <a class="btn btn-close" th:href="@{/user/} + ${ingredient.id} + '/dgi'" role="button"></a>
                 </li>
             </ul>
         </div>
@@ -188,8 +188,8 @@
                             </div>
                             <br/>
                             <div class="container p-2">
-                                <ul class="no-bullets">
-                                    <li th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
+                                <ul class="list-group no-bullets">
+                                    <li class="list-group-item" th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
                                         <a class="capitalize" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}" th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></a>
                                         <div class="d-flex justify-content-end">
                                             <a class="btn btn-close" th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'" role="button"></a>
