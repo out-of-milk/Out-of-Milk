@@ -39,6 +39,8 @@ public class RestController {
 
     private final List<Ingredient> ingredients = new ArrayList<>();
 
+    private long recipeLikes = 0;
+
     @GetMapping("/recipe/{id}")
     public String callExternalApi(@PathVariable int id, Model model) {
         String jsonResponse = null;
@@ -351,6 +353,9 @@ public class RestController {
                 model.addAttribute("strMeasure18", strMeasure18);
                 model.addAttribute("strMeasure19", strMeasure19);
                 model.addAttribute("strMeasure20", strMeasure20);
+
+                recipeLikes = recipeRepository.recipeLikes(id);
+                model.addAttribute("recipeLikes", recipeLikes);
 
                 Optional<Recipe> existingRecipe = Optional.ofNullable(recipeRepository.findByIdMeal(Long.parseLong(idMeal)));
                 if (!existingRecipe.isPresent()) {
