@@ -19,6 +19,12 @@
     height: 25em;
     object-fit: cover;
 }
+
+
+.hide {
+    display: none;
+}
+
 *{
     font-family: 'Playfair Display', serif;
 
@@ -39,4 +45,8 @@ footer{
 
 body{
     background-color: #EAE7DC;
+}
+
+.capitalize {
+    text-transform: capitalize;
 }

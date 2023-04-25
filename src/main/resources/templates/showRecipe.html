@@ -13,6 +13,56 @@
         }
     }
 
+    .btn1 {
+        margin: 0;
+        padding: 0;
+        top: 50%;
+        left: 50%;
+    }
+
+    .btn1 {
+        list-style: none;
+        margin: 0 15px;
+    }
+
+    .btn1{
+        display: block;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        line-height: 63px;
+        background: #ffff;
+        border-radius: 50%;
+        font-size: 30px;
+        color: #ffff;
+        transition: .5s;
+    }
+
+    .btn1::before {
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #ffee10;
+        transition: .5s;
+        transform: scale(.9);
+        z-index: -1;
+    }
+
+    .btn1:hover::before {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px #ffee10;
+    }
+
+    .btn1:hover {
+        color: #ffee10;
+        box-shadow: 0 0 10px #ffee10;
+        text-shadow: 0 0 10px #ffee10;
+    }
+
+
 </style>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="container-fluid content">
@@ -24,18 +74,21 @@
                 </div>
                 <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">
                     <div class="card-body text-center">
-                        <h1 class="card-title" th:text="${strMeal}">title/name</h1>
+                        <h1 class="card-title capitalize" th:text="${strMeal}">title/name</h1>
                         <h3 class="card-text opacity-75" th:text="${strCategory}">recipe category</h3>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a th:href="@{/user/} + ${id} + @{/afr}" role="button" class="btn" style="font-size: 2em;color:lightpink;">
+                            <a th:href="@{/user/} + ${id} + @{/afr}" role="button" class="btn1" style="font-size: 2em;color:lightpink;">
                                 <i class="fa-solid fa-heart-circle-plus"></i>
                             </a>
-                            <a th:href="@{/user/} + ${id} + @{/ahr}" role="button" class="btn" style="font-size: 2em;color:darkgrey">
+                            <a th:href="@{/user/} + ${id} + @{/ahr}" role="button" class="btn1" style="font-size: 2em;color:darkgrey">
                                 <i class="fa-sharp fa-solid fa-heart-crack"></i>
                             ️</a>
-                            <a th:href="@{/recipe/} + ${id} + @{/ari}" role="button" class="btn" style="font-size: 2em;color:lightblue">
+                            <a th:href="@{/recipe/} + ${id} + @{/ari}" role="button" class="btn1" style="font-size: 2em;color:lightblue">
                                 <i class="fa-solid fa-file-circle-plus"></i>
                             </a>
+                        </div>
+                        <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">
+                            <p>Likes: </p><p th:text="${recipeLikes}"></p>
                         </div>
                     </div>
                 </div>
@@ -46,26 +99,28 @@
         <div class="col-6">
             <h4 class="border border-info" style="text-align: center">Ingredients</h4>
             <ul class="list-group border border-info">
-                <li class="list-group-item" th:text="${strMeasure1} + ' ' + ${strIngredient1}"></li>
-                <li class="list-group-item" th:text="${strMeasure2} + ' ' + ${strIngredient2}"></li>
-                <li class="list-group-item" th:text="${strMeasure3} + ' ' + ${strIngredient3}"></li>
-                <li class="list-group-item" th:text="${strMeasure4} + ' ' + ${strIngredient4}"></li>
-                <li class="list-group-item" th:text="${strMeasure5} + ' ' + ${strIngredient5}"></li>
-                <li class="list-group-item" th:text="${strMeasure6} + ' ' + ${strIngredient6}"></li>
-                <li class="list-group-item" th:text="${strMeasure7} + ' ' + ${strIngredient7}"></li>
-                <li class="list-group-item" th:text="${strMeasure8} + ' ' + ${strIngredient8}"></li>
-                <li class="list-group-item" th:text="${strMeasure9} + ' ' + ${strIngredient9}"></li>
-                <li class="list-group-item" th:text="${strMeasure10} + ' ' + ${strIngredient10}"></li>
-                <li class="list-group-item" th:text="${strMeasure11} + ' ' + ${strIngredient11}"></li>
-                <li class="list-group-item" th:text="${strMeasure12} + ' ' + ${strIngredient12}"></li>
-                <li class="list-group-item" th:text="${strMeasure13} + ' ' + ${strIngredient13}"></li>
-                <li class="list-group-item" th:text="${strMeasure14} + ' ' + ${strIngredient14}"></li>
-                <li class="list-group-item" th:text="${strMeasure15} + ' ' + ${strIngredient15}"></li>
-                <li class="list-group-item" th:text="${strMeasure16} + ' ' + ${strIngredient16}"></li>
-                <li class="list-group-item" th:text="${strMeasure17} + ' ' + ${strIngredient17}"></li>
-                <li class="list-group-item" th:text="${strMeasure18} + ' ' + ${strIngredient18}"></li>
-                <li class="list-group-item" th:text="${strMeasure19} + ' ' + ${strIngredient19}"></li>
-                <li class="list-group-item" th:text="${strMeasure20} + ' ' + ${strIngredient20}"></li>
+
+                <li th:text="${strIngredient1}+ ' ' + ${strMeasure1}" th:class="${strIngredient1 != null} and ${strIngredient1 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient2}+ ' ' + ${strMeasure2}" th:class="${strIngredient2 != null} and ${strIngredient2 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient3}+ ' ' + ${strMeasure3}" th:class="${strIngredient1 != null} and ${strIngredient3 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient4}+ ' ' + ${strMeasure4}" th:class="${strIngredient1 != null} and ${strIngredient4 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient5}+ ' ' + ${strMeasure5}" th:class="${strIngredient1 != null} and ${strIngredient5 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient6}+ ' ' + ${strMeasure6}" th:class="${strIngredient1 != null} and ${strIngredient6 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient7}+ ' ' + ${strMeasure7}" th:class="${strIngredient1 != null} and ${strIngredient7 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient8}+ ' ' + ${strMeasure8}" th:class="${strIngredient1 != null} and ${strIngredient8 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient9}+ ' ' + ${strMeasure9}" th:class="${strIngredient1 != null} and ${strIngredient9 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient10}+ ' ' + ${strMeasure10}" th:class="${strIngredient1 != null} and ${strIngredient10 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient11}+ ' ' + ${strMeasure11}" th:class="${strIngredient1 != null} and ${strIngredient11 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient12}+ ' ' + ${strMeasure12}" th:class="${strIngredient1 != null} and ${strIngredient12 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient13}+ ' ' + ${strMeasure13}" th:class="${strIngredient1 != null} and ${strIngredient13 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient14}+ ' ' + ${strMeasure14}" th:class="${strIngredient1 != null} and ${strIngredient14 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient15}+ ' ' + ${strMeasure15}" th:class="${strIngredient1 != null} and ${strIngredient15 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient16}+ ' ' + ${strMeasure16}" th:class="${strIngredient1 != null} and ${strIngredient16 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient17}+ ' ' + ${strMeasure17}" th:class="${strIngredient1 != null} and ${strIngredient17 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient18}+ ' ' + ${strMeasure18}" th:class="${strIngredient1 != null} and ${strIngredient18 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient19}+ ' ' + ${strMeasure19}" th:class="${strIngredient1 != null} and ${strIngredient19 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                <li th:text="${strIngredient20}+ ' ' + ${strMeasure20}" th:class="${strIngredient1 != null} and ${strIngredient20 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+
             </ul>
         </div>
 

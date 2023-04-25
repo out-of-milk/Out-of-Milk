@@ -1,7 +1,6 @@
 package com.outofmilk.outofmilk.repositories;
 
 import com.outofmilk.outofmilk.models.Recipe;
-import com.outofmilk.outofmilk.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,5 +16,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     @Query(value = "SELECT * FROM recipes ORDER BY RAND() LIMIT :amount", nativeQuery = true)
     List<Recipe> selectRandomRecipes(@Param("amount") Long amount);
+
+    @Query(value = "SELECT COUNT(*) FROM recipe_preferences WHERE favorite = true and recipe_id = :recipe_id", nativeQuery = true)
+    long recipeLikes(@Param("recipe_id") int recipe_id);
 
 }
