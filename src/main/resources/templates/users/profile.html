@@ -126,10 +126,10 @@
                     <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()" role="listbox">
                         <div th:each="recipePreferenceFavorite : ${recipePreferencesFavorites}" th:class="${recipePreferenceFavorite.getRecipe().showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
                             <a th:href="@{'/recipe/'} + ${recipePreferenceFavorite.getRecipe().getIdMeal()}">
-                                <img alt="..." class="d-block img-fluid w-100 carousel-image" th:src="${recipePreferenceFavorite.getRecipe().getStrMealThumb()}">
+                                <img alt="..." class="d-block img-fluid w-100 carousel-image rounded float-end" th:src="${recipePreferenceFavorite.getRecipe().getStrMealThumb()}">
                             </a>
                             <div class="carousel-caption d-none d-md-block">
-                                <h2 class="capitalize" th:text="${recipePreferenceFavorite.getRecipe().getStrMeal()}"></h2>
+                                <h2 class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3" th:text="${recipePreferenceFavorite.getRecipe().getStrMeal()}"></h2>
                             </div>
                         </div>
                     </div>
@@ -286,7 +286,11 @@
         </div>
     </div>
 </div>
-
+<!--<script>-->
+<!--    $('.btn').click(function() {-->
+<!--        $(".btn").css({color:'red'},1000);-->
+<!--    });-->
+<!--</script>-->
 <footer th:insert="partial/partials :: footer"></footer>
 <script th:src="@{/js/confirm-buttons.js}"></script>
 </body>
