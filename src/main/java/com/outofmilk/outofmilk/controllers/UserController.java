@@ -300,8 +300,6 @@ public class UserController {
         List<RecipePreference> recipePreferencesHidden = recipePreferenceDao.findHiddenById(user);
         Recipe viewedRecipe = recipeDao.findByIdMeal(id);
 
-
-
         if (user == null) {
             return "/login";
         }
@@ -327,7 +325,7 @@ public class UserController {
         user.setRecipePreferences(allRecipePreferences);
         userDao.save(user);
 
-        return "redirect:/user";
+        return "redirect:/recipe/" + id;
     }
 
     @GetMapping("/user/{id}/ahr")
@@ -366,7 +364,9 @@ public class UserController {
         user.setRecipePreferences(allRecipePreferences);
         userDao.save(user);
 
-        return "redirect:/user";
+        System.out.println(id);
+
+        return "redirect:/recipe/" + id;
     }
 
     @PostMapping("/user/egl")
