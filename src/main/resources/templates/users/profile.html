@@ -192,7 +192,7 @@
                                     <li th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
                                         <a class="capitalize" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}" th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></a>
                                         <div class="d-flex justify-content-end">
-                                            <a class="btn btn-danger" th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'" role="button">Remove</a>
+                                            <a class="btn btn-close" th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'" role="button"></a>
                                         </div>
                                     </li>
                                 </ul>
