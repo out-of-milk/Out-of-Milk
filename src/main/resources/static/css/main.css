@@ -19,3 +19,16 @@
     height: 25em;
     object-fit: cover;
 }
+
+
+.hide {
+    display: none;
+}
+
+*{
+    font-family: 'Playfair Display', serif;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
