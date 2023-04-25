@@ -13,6 +13,56 @@
         }
     }
 
+    .btn1 {
+        margin: 0;
+        padding: 0;
+        top: 50%;
+        left: 50%;
+    }
+
+    .btn1 {
+        list-style: none;
+        margin: 0 15px;
+    }
+
+    .btn1{
+        display: block;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        line-height: 63px;
+        background: #ffff;
+        border-radius: 50%;
+        font-size: 30px;
+        color: #ffff;
+        transition: .5s;
+    }
+
+    .btn1::before {
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #ffee10;
+        transition: .5s;
+        transform: scale(.9);
+        z-index: -1;
+    }
+
+    .btn1:hover::before {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px #ffee10;
+    }
+
+    .btn1:hover {
+        color: #ffee10;
+        box-shadow: 0 0 10px #ffee10;
+        text-shadow: 0 0 10px #ffee10;
+    }
+
+
 </style>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="container-fluid content">
@@ -27,13 +77,13 @@
                         <h1 class="card-title capitalize" th:text="${strMeal}">title/name</h1>
                         <h3 class="card-text opacity-75" th:text="${strCategory}">recipe category</h3>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a th:href="@{/user/} + ${id} + @{/afr}" role="button" class="btn" style="font-size: 2em;color:lightpink;">
+                            <a th:href="@{/user/} + ${id} + @{/afr}" role="button" class="btn1" style="font-size: 2em;color:lightpink;">
                                 <i class="fa-solid fa-heart-circle-plus"></i>
                             </a>
-                            <a th:href="@{/user/} + ${id} + @{/ahr}" role="button" class="btn" style="font-size: 2em;color:darkgrey">
+                            <a th:href="@{/user/} + ${id} + @{/ahr}" role="button" class="btn1" style="font-size: 2em;color:darkgrey">
                                 <i class="fa-sharp fa-solid fa-heart-crack"></i>
                             ️</a>
-                            <a th:href="@{/recipe/} + ${id} + @{/ari}" role="button" class="btn" style="font-size: 2em;color:lightblue">
+                            <a th:href="@{/recipe/} + ${id} + @{/ari}" role="button" class="btn1" style="font-size: 2em;color:lightblue">
                                 <i class="fa-solid fa-file-circle-plus"></i>
                             </a>
                         </div>
