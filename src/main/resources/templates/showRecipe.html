@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">
                     <div class="card-body text-center">
-                        <h1 class="card-title" th:text="${strMeal}">title/name</h1>
+                        <h1 class="card-title capitalize" th:text="${strMeal}">title/name</h1>
                         <h3 class="card-text opacity-75" th:text="${strCategory}">recipe category</h3>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <a th:href="@{/user/} + ${id} + @{/afr}" role="button" class="btn" style="font-size: 2em;color:lightpink;">

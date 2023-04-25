@@ -18,7 +18,7 @@
                         <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
                     </a>
                     <div class="carousel-caption d-none d-md-block">
-                        <h2 th:text="${recipe.getStrMeal()}"></h2>
+                        <h2 class="capitalize" th:text="${recipe.getStrMeal()}"></h2>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                         <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
                     </a>
                     <div class="carousel-caption d-none d-md-block">
-                        <h2 th:text="${recipe.getStrMeal()}"></h2>
+                        <h2 class="capitalize" th:text="${recipe.getStrMeal()}"></h2>
                     </div>
                 </div>
             </div>
@@ -96,6 +96,7 @@
 
                     const cardHeader = document.createElement('div');
                     cardHeader.classList.add('card-body');
+                    cardHeader.classList.add('capitalize');
 
                     const ID = document.createElement('a');
                     ID.innerText = meal.strMeal;
