@@ -390,17 +390,8 @@ public class RestController {
                 int i = 0;
                 while (i < ingredients.size()) {
                     if (!ingredients.get(i).getName().equals(usersGroceries.get(i).getName())) {
-                        System.out.println("**********************");
-                        System.out.println(ingredients.get(i));
-                        System.out.println(usersGroceries);
-                        System.out.println("**********************");
 
                         usersGroceries.add(ingredients.get(i));
-
-
-                        System.out.println("----------------------");
-                        System.out.println(usersGroceries);
-                        System.out.println("----------------------");
 
                         i++;
                     }
@@ -416,6 +407,6 @@ public class RestController {
             e.printStackTrace();
         }
 
-        return "redirect:/user";
+        return "redirect:/recipe/" + id;
     }
 }
