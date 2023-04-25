@@ -1,6 +1,7 @@
 package com.outofmilk.outofmilk;
 
 import com.outofmilk.outofmilk.services.UserDetailsLoader;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -39,6 +40,22 @@ public class SecurityConfiguration {
                 .loginPage("/login")
                 .defaultSuccessUrl("/", true) // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
+                .and()
+
+                .formLogin()
+                .loginPage("/login/{id}")
+                .successHandler((httpServletRequest, httpServletResponse, authentication) -> {
+                    HttpSession session = httpServletRequest.getSession();
+                    Long recipeId = (Long) session.getAttribute("recipeId");
+                    if (recipeId != null) {
+                        session.removeAttribute("recipeId");
+                        httpServletResponse.sendRedirect("/recipe/" + recipeId);
+                    } else {
+                        httpServletResponse.sendRedirect("/");
+                    }
+                })
+                .permitAll()
+
 
                 /* Logout configuration */
                 .and()
@@ -72,7 +89,7 @@ public class SecurityConfiguration {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/recipe", "/login", "/sign-up", "/css/**", "/img/**", "/js/**","/AboutUs","/error") // anyone can see the home and the posts pages
+                .requestMatchers("/", "/recipe", "/login", "/login/{id}", "/sign-up", "/css/**", "/img/**", "/js/**","/AboutUs","/error") // anyone can see the home and the posts pages
                 .permitAll()
         ;
         return http.build();
