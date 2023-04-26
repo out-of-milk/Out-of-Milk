@@ -26,7 +26,7 @@
         height: 60px;
         text-align: center;
         line-height: 63px;
-        background: #ffff;
+        /*background: #ffff;*/
         border-radius: 50%;
         font-size: 30px;
         color: #ffff;
@@ -64,44 +64,74 @@
 
 </style>
 <nav th:insert="partial/partials :: navbar"></nav>
-<div class="container-fluid content">
-    <div class="d-flex justify-content-center p-3">
-        <div class="card mb-3 border border-info" style="max-width: 100%;max-height: 100%;width:60em; height:20em;">
-            <div class="row g-0">
-                <div class="col-md-4 col-xs-6 col-sm-6 col-lg-4 imgResponse">
-                    <img id="displayMealThumb " class="img-fluid card-img rounded-star" th:src="${strMealThumb}" style="width:20em; height:20em;">
-                </div>
-                <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">
-                    <div class="card-body text-center">
-                        <h1 class="card-title capitalize" th:text="${strMeal}">title/name</h1>
-                        <h3 class="card-text opacity-75" th:text="${strCategory}">recipe category</h3>
-                        <div class="btn-group" role="group" aria-label="Basic example">
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6  shadow p-3 mb-5 rounded">
+            <img th:src="${strMealThumb}" id="displayMealThumb" class="d-block mx-lg-auto img-fluid rounded" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3" th:text="${strMeal}">Title</h1>
+            <p class="lead" th:text="${strCategory}"></p>
+            <p class="lead">Likes: <p th:text="${recipeLikes}"></p></p>
 
-                            <a th:href="@{/user/} + ${id} + @{/afr}" role="button" th:style="${recipeLiked > 0} ? 'font-size: 2em;color:red; id=heart' : 'font-size: 2em;color:lightpink; id=heart'" th:class="${recipeHidden > 0} ? 'btn1 disabled' : 'btn1'">
-                                <i class="fa-solid fa-heart-circle-plus toggle"></i>
-                            </a>
-                            <a th:href="@{/user/} + ${id} + @{/ahr}" role="button" th:style="${recipeHidden > 0} ? 'font-size: 2em;color:black; id=bheart' : 'font-size: 2em;color:darkgrey; id=bheart'" th:class="${recipeLiked > 0} ? 'btn1 disabled' : 'btn1'">
-                                <i class="fa-sharp fa-solid fa-heart-crack"></i>
-                    ️       </a>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a class="btn btn-lg px-4 me-md-2" style="font-size:2em;" th:href="@{/user/} + ${id} + @{/afr}" role="button" th:style="${recipeLiked > 0} ? 'color:#E85A4F; id=heart' : 'color:#E98074; id=heart'" th:class="${recipeHidden > 0} ? 'btn1 disabled' : 'btn1'">
+                    <i class="fa-solid fa-heart-circle-plus toggle"></i>
+                </a>
+                <a class="btn btn-lg px-4 me-md-2" style="font-size:2em;" th:href="@{/user/} + ${id} + @{/ahr}" role="button" th:style="${recipeHidden > 0} ? 'color:#6B6A67; id=bheart' : 'color:#8E8D8A; id=bheart'" th:class="${recipeLiked > 0} ? 'btn1 disabled' : 'btn1'">
+                    <i class="fa-sharp fa-solid fa-heart-crack"></i>
+        ️       </a>
+                <a class="btn btn-lg px-4 me-md-2 btn1" th:href="@{/recipe/} + ${id} + @{/ari}" role="button" style="font-size: 2em;color:#D8C3A5" id="adding">
+                    <i class="fa-solid fa-file-circle-plus"></i>
+                </a>
 
 
-                            <a th:href="@{/recipe/} + ${id} + @{/ari}" role="button" class="btn1" style="font-size: 2em;color:lightblue" id="adding">
-                                <i class="fa-solid fa-file-circle-plus"></i>
-                            </a>
-                        </div>
-                        <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">
-                            <p>Likes: </p><p th:text="${recipeLikes}"></p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-    <div class="row">
+</div>
+<div class="container-fluid content">
 
+
+<!--    <div class="d-flex justify-content-center p-3">-->
+<!--        <div class="card mb-3 border border-info" style="max-width: 100%;max-height: 100%;width:60em; height:20em;">-->
+<!--            <div class="row g-0">-->
+<!--                <div class="col-md-4 col-xs-6 col-sm-6 col-lg-4 imgResponse">-->
+<!--                    <img id="displayMealThumb " class="img-fluid card-img rounded-star" th:src="${strMealThumb}" style="width:20em; height:20em;">-->
+<!--                </div>-->
+<!--                <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">-->
+<!--                    <div class="card-body text-center">-->
+<!--                        <h1 class="card-title capitalize" th:text="${strMeal}">title/name</h1>-->
+<!--                        <h3 class="card-text opacity-75" th:text="${strCategory}">recipe category</h3>-->
+<!--                        <div class="btn-group" role="group" aria-label="Basic example">-->
+
+<!--                            <a th:href="@{/user/} + ${id} + @{/afr}" role="button" th:style="${recipeLiked > 0} ? 'font-size: 2em;color:red; id=heart' : 'font-size: 2em;color:lightpink; id=heart'" th:class="${recipeHidden > 0} ? 'btn1 disabled' : 'btn1'">-->
+<!--                                <i class="fa-solid fa-heart-circle-plus toggle"></i>-->
+<!--                            </a>-->
+<!--                            <a th:href="@{/user/} + ${id} + @{/ahr}" role="button" th:style="${recipeHidden > 0} ? 'font-size: 2em;color:black; id=bheart' : 'font-size: 2em;color:darkgrey; id=bheart'" th:class="${recipeLiked > 0} ? 'btn1 disabled' : 'btn1'">-->
+<!--                                <i class="fa-sharp fa-solid fa-heart-crack"></i>-->
+<!--                    ️       </a>-->
+
+
+<!--                            <a th:href="@{/recipe/} + ${id} + @{/ari}" role="button" class="btn1" style="font-size: 2em;color:lightblue" id="adding">-->
+<!--                                <i class="fa-solid fa-file-circle-plus"></i>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">-->
+<!--                            <p>Likes: </p><p th:text="${recipeLikes}"></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+
+    <div class="row">
         <div class="col-6">
             <div class="card mb-3 justify-content-center">
-                <div class="card-header d-flex justify-content-center" style="background-color: #E85A4F;"><h5 style="color:#EAE7DC">Ingredients</h5></div>
+                <div class="card-header d-flex justify-content-center" style="background-color: #E98074;"><h5 style="color:#EAE7DC">Ingredients</h5></div>
                 <div class="card-body">
                     <ul class="list-group">
                         <li th:text="${strIngredient1}+ ' ' + ${strMeasure1}" th:class="${strIngredient1 != null} and ${strIngredient1 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
@@ -131,7 +161,7 @@
 
         <div class="d-flex col-6">
             <div class="card mb-3 justify-content-center">
-                <div class="card-header d-flex justify-content-center" style="background-color: #E85A4F;"><h5 style="color:#EAE7DC">How to cook</h5></div>
+                <div class="card-header d-flex justify-content-center" style="background-color: #E98074;"><h5 style="color:#EAE7DC">How to cook</h5></div>
                 <div class="card-body">
                     <h5 class="card-title">Steps</h5>
                     <p class="card-text" th:text="${strInstructions}"></p>
