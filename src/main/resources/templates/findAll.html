@@ -3,6 +3,12 @@
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
     <title id="pageTitle">Find Recipe</title>
+<!--    <style>-->
+<!--        .list-group{-->
+<!--            display: flex;-->
+<!--            flex-wrap: wrap;-->
+<!--        }-->
+<!--    </style>-->
 </head>
 
 <body>
@@ -70,7 +76,7 @@
         </div>
     </div>
     <div sec:authorize="isAuthenticated()">
-        <ul class="list-group p-2">
+        <ul class="list-group p-2 d-flex flex-wrap ">
             <li class="list-group-item" >
                 <div th:href="@{'/recipe/' + ${idmeal}}" id="recipes"></div>
             </li>
@@ -83,7 +89,7 @@
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
     const recipesContainer = document.getElementById('recipes');
     const searchInput = document.getElementById('search');
-    const CategoryInput = document.getElementById('category');
+    const categoryInput = document.getElementById('category');
 
     alphabet.forEach(letter => {
         fetch(`https://www.themealdb.com/api/json/v2/1/search.php?f=${letter}`)
@@ -93,31 +99,36 @@
                 meals.forEach(meal => {
                     const card = document.createElement('div');
                     card.classList.add('card');
+                    card.style.width = '200px';
+                    card.style.margin = '10px';
 
                     const cardHeader = document.createElement('div');
                     cardHeader.classList.add('card-body');
                     cardHeader.classList.add('capitalize');
 
-                    const ID = document.createElement('a');
-                    ID.innerText = meal.strMeal;
-                    ID.setAttribute('href', `/recipe/${meal.idMeal}`); // Add the href attribute with the meal id
-                    ID.setAttribute('id', meal.idMeal); // Set the id attribute to the meal id
+                    const id = meal.idMeal;
+                    const title = meal.strMeal;
+                    const category = meal.strCategory;
+                    const image = meal.strMealThumb;
+
+                    const idLink = document.createElement('a');
+                    idLink.href = `/recipe/${id}`;
+                    idLink.id = id;
+                    idLink.innerText = title;
+
                     const cat = document.createElement('p');
-                    cat.innerText = meal.strCategory;
-                    const heading = document.createElement('h1');
-                    heading.innerText = meal.strMeal;
-                    const IMG = document.createElement('img');
-                    IMG.src = meal.strMealThumb;
+                    cat.innerText = category;
 
+                    const img = document.createElement('img');
+                    img.src = image;
+                    img.alt = title;
+                    img.style.width = '100%';
 
-                    cardHeader.appendChild(ID);
+                    cardHeader.appendChild(idLink);
                     cardHeader.appendChild(cat);
-                    cardHeader.appendChild(IMG);
+                    cardHeader.appendChild(img);
                     card.appendChild(cardHeader);
 
-                    const image = document.createElement('img');
-                    image.src = meal.strMealThumb;
-                    image.alt = meal.strMeal;
                     const ingredients = document.createElement('ul');
                     for (let i = 1; i <= 20; i++) {
                         const ingredient = meal[`strIngredient${i}`];
@@ -127,6 +138,7 @@
                             ingredients.appendChild(listItem);
                         }
                     }
+
                     const instructions = document.createElement('p');
                     instructions.innerText = meal.strInstructions;
 
@@ -140,15 +152,17 @@
         const searchValue = searchInput.value.toLowerCase();
         const cards = recipesContainer.querySelectorAll('.card');
         cards.forEach(card => {
-            const title = card.querySelector('div').innerText.toLowerCase();
+            const title = card.querySelector('a').innerText.toLowerCase();
             if (title.includes(searchValue)) {
                 card.style.display = '';
             } else {
                 card.style.display = 'none';
             }
         });
-    }); CategoryInput.addEventListener('input', () => {
-        const searchValue = CategoryInput.value.toLowerCase();
+    });
+
+    categoryInput.addEventListener('input', () => {
+        const searchValue = categoryInput.value.toLowerCase();
         const cards = recipesContainer.querySelectorAll('.card');
         cards.forEach(card => {
             const category = card.querySelector('p').innerText.toLowerCase();
@@ -160,5 +174,6 @@
         });
     });
 </script>
+
 </body>
 </html>
