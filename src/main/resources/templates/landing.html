@@ -7,7 +7,11 @@
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4 rounded-circle" th:src="@{/img/shoppingbasket.jpg}" alt="" style="width:20em;height:20em;">
+    <div class="d-flex justify-content-center">
+        <img class="d-block mx-auto mb-4 rounded-circle" th:src="@{/img/shoppingbasket.jpg}" alt="" style="width:20em;height:20em;">
+        <img class="d-block mx-auto mb-4 rounded-circle" th:src="@{/img/shoppingbasket.jpg}" alt="" style="width:20em;height:20em;">
+        <img class="d-block mx-auto mb-4 rounded-circle" th:src="@{/img/shoppingbasket.jpg}" alt="" style="width:20em;height:20em;">
+    </div>
     <h1 class="display-5 fw-bold">OUT OF MILK</h1>
     <div class="col-lg-6 mx-auto">
         <p class="lead mb-4">One stop shop grocery list</p>
@@ -18,7 +22,7 @@
 </div>
 
 <div class="container px-4 py-5" id="hanging-icons">
-    <h2 class="pb-2 border-bottom">WHY CHOOSE US</h2>
+    <h2 class="pb-2 border-bottom">Why Choose Us</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-4">
         <div class="col d-flex align-items-start">
             <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
@@ -43,7 +47,7 @@
                 <button class="btn"><i class="fa-solid fa-heart"></i></button>
             </div>
             <div>
-                <h2>Recipes catered to you</h2>
+                <h2>Recipes Catered to You</h2>
                 <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
             </div>
         </div>
@@ -74,43 +78,35 @@
     </div>
 </div>
 
-<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+<div class="px-3 py-4 my-4 text-center">
+    <h1 class="display-5 fw-bold">Check Out Some of Our Recipes</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">We have a catalogue of more than two hundred recipes. Register now to search through them all!</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="button" class="btn btn-lg px-4 gap-3" style="background-color: #E85A4F;color:#FFF">Register Now</button>
+        </div>
+    </div>
+</div>
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" >
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
+        <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'">
+<!--            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
+            <a th:href="@{'/recipe/'} + ${recipe.getIdMeal()}">
+                <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
+            </a>
+<!--            <img alt="..." class="" width="100%" height="100%" >-->
             <div class="container">
-                <div class="carousel-caption text-start">
-                    <h1>Example headline.</h1>
-                    <p>Some representative placeholder content for the first slide of the carousel.</p>
+                <div class="carousel-caption text-start" >
+                    <h1 th:text="${recipe.getStrMeal()}">Example headline.</h1>
                 </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
 
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>Another example headline.</h1>
-                    <p>Some representative placeholder content for the second slide of the carousel.</p>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
-            <div class="container">
-                <div class="carousel-caption text-end">
-                    <h1>One more for good measure.</h1>
-                    <p>Some representative placeholder content for the third slide of this carousel.</p>
-                </div>
-            </div>
-        </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -121,9 +117,6 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-
-
-
 <footer th:insert="partial/partials :: footer"></footer>
 </body>
 </html>

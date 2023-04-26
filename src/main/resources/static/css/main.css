@@ -43,3 +43,8 @@ body{
 .capitalize {
     text-transform: capitalize;
 }
+@media screen and (max-width: 540px){
+    .imgResponse {
+        display: none;
+    }
+}

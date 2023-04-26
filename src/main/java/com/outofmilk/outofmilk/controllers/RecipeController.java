@@ -26,7 +26,13 @@ public class RecipeController {
 
 
     @GetMapping("/")
-    public String landingPage(){
+    public String landingPage(Model model){
+
+        List<Recipe> finalRecipes = new ArrayList<>();
+        finalRecipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
+
+        model.addAttribute("finalRecipes", finalRecipes);
+        finalRecipes.get(0).setShowThis(true);
         return "landing";
     }
     @GetMapping("/search")
@@ -82,8 +88,6 @@ public class RecipeController {
         } else {
             finalRecipes = recipeDao.selectRandomRecipes(Long.valueOf("3"));
         }
-
-        System.out.println(finalRecipes);
 
         model.addAttribute("finalRecipes", finalRecipes);
         finalRecipes.get(0).setShowThis(true);
