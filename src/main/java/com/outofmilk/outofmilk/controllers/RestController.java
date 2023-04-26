@@ -41,9 +41,22 @@ public class RestController {
 
     private long recipeLikes = 0;
 
+    private long recipeLiked = 0;
+
+    private long recipeHidden = 0;
+
     @GetMapping("/recipe/{id}")
     public String callExternalApi(@PathVariable int id, Model model) {
         String jsonResponse = null;
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getReferenceById(loggedInUser.getId());
+
+        if (user == null) {
+            return "/login";
+        }
+
+        model.addAttribute("user", user);
 
         try {
             System.out.println(apiKey);
@@ -356,6 +369,12 @@ public class RestController {
 
                 recipeLikes = recipeRepository.recipeLikes(id);
                 model.addAttribute("recipeLikes", recipeLikes);
+
+                recipeLiked = recipeRepository.findRecipeLiked(user.getId(), idMeal);
+                model.addAttribute("recipeLiked", recipeLiked);
+
+                recipeHidden = recipeRepository.findRecipeHidden(user.getId(), idMeal);
+                model.addAttribute("recipeHidden", recipeHidden);
 
                 Optional<Recipe> existingRecipe = Optional.ofNullable(recipeRepository.findByIdMeal(Long.parseLong(idMeal)));
                 if (!existingRecipe.isPresent()) {

@@ -34,7 +34,6 @@ public class UserController {
     private final IngredientRepository ingredientDao;
     private final EmailService emailService;
 
-
     @GetMapping("/user")
     @Transactional
     public String showProfileForm(Model model) {
@@ -291,6 +290,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}/afr")
+    @Transactional
     public String addFavRecipe(@PathVariable long id, Model model){
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
@@ -302,6 +302,18 @@ public class UserController {
 
         if (user == null) {
             return "/login";
+        }
+
+        long recipeLiked = recipeDao.findRecipeLiked(user.getId(), String.valueOf(id));
+
+        if (recipeLiked > 0) {
+            System.out.println("***********************");
+            System.out.println("We got in ... ");
+            System.out.println("User: " + user.getId());
+            System.out.println("Recipe: " + Long.valueOf(id));
+            System.out.println("***********************");
+            recipePreferenceDao.deleteHiddenRecipeById(user.getId(), Long.valueOf(id));
+            return "redirect:/recipe/" + id;
         }
 
         model.addAttribute("user", user);
@@ -323,12 +335,14 @@ public class UserController {
         allRecipePreferences.add(newFavorite);
 
         user.setRecipePreferences(allRecipePreferences);
+
         userDao.save(user);
 
         return "redirect:/recipe/" + id;
     }
 
     @GetMapping("/user/{id}/ahr")
+    @Transactional
     public String addHiddenRecipe(@PathVariable long id, Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getReferenceById(loggedInUser.getId());
@@ -341,6 +355,13 @@ public class UserController {
 
         if (user == null) {
             return "/login";
+        }
+
+        long recipeHidden = recipeDao.findRecipeHidden(user.getId(), String.valueOf(id));
+
+        if (recipeHidden > 0) {
+            recipePreferenceDao.deleteHiddenRecipeById(user.getId(), Long.valueOf(id));
+            return "redirect:/recipe/" + id;
         }
 
         model.addAttribute("user", user);
@@ -392,7 +413,7 @@ public class UserController {
 
         if (loggedInUser.getId() == user.getId()) {
             emailService.prepareAndSend(user, "Grocery list from: " + user.getUsername(),
-                                                "Your grocery list:" + emailBody);
+                    "Your grocery list:" + emailBody);
         }
 
         return "redirect:/user";
