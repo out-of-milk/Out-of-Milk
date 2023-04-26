@@ -26,7 +26,6 @@
                         </button>
                     </div>
                 </div>
-
             </div>
 
             <div class="container-fluid col-lg-8">
@@ -219,11 +218,42 @@
                                th:value="*{username}" type="text">
                         <label for="username">Change Username:</label>
                     </div>
-                    <br/>
-                    <div class="form-floating" style="width: 30rem;">
-                        <input class="form-control mb-3 g-col-4 field" id="email" name="email"
-                               th:value="*{email}" type="text">
-                        <label for="username">Change Email:</label>
+                    <div class="modal-body">
+                        <form th:action="@{/user}" th:method="post" th:object="${user}">
+                            <div class="form-floating" style="width: 25rem;">
+                                <input class="form-control mb-3 g-col-4 field" id="username" name="username"
+                                       th:value="*{username}" type="text">
+                                <label for="username">Change Username:</label>
+                            </div>
+                            <br/>
+                            <div class="form-floating" style="width: 30rem;">
+                                <input class="form-control mb-3 g-col-4 field" id="email" name="email"
+                                       th:value="*{email}" type="text">
+                                <label for="username">Change Email:</label>
+                            </div>
+                            <br/>
+                            <div class="form-floating" style="width: 30rem;">
+                                <input class="form-control mb-3 g-col-4 field" id="password" name="password" type="text">
+                                <label for="email">Change Password:</label>
+                            </div>
+                            <div class="form-floating" style="width: 30rem;">
+                                <input class="form-control mb-3 g-col-4 field" id="confirmPassword" name="confirmPassword" type="text">
+                                <label for="password">Confirm Password:</label>
+                            </div>
+                            <br/>
+                            <div class="container p-2">
+                                <ul class="list-group no-bullets">
+                                    <li class="list-group-item" th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
+                                        <a class="capitalize" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}" th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></a>
+                                        <div class="d-flex justify-content-end">
+                                            <a class="btn btn-close" th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'" role="button"></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <input class="form-control" type="submit"/>
+                        </form>
                     </div>
                     <br/>
                     <div class="form-floating" style="width: 30rem;">
