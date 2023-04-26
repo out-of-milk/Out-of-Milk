@@ -26,7 +26,8 @@
 
             <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">
                 <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
-                    <a th:href="@{/login}" >
+                    <a th:href="@{'/login/'} + ${recipe.getIdMeal()}">
+<!--                    <a th:href="@{/login}" >-->
                         <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
                     </a>
                     <div class="carousel-caption d-none d-md-block">
