@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/", true) // user's home page, it can be any URL
+                .defaultSuccessUrl("/search", true) // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 .and()
 
@@ -82,14 +82,18 @@ public class SecurityConfiguration {
                         "/recipe/{id}/ari", // only authenticated users can add recipes ingredients to grocery list
                         "/recipe/{id}", // only authenticated users can view recipe details
                         "/user/addItemPantry", // only authenticated users can add ingredients
-                        "/user/addItemGrocery" // only authenticated users can add ingredients
+                        "/user/addItemGrocery",
+                        "/search",
+                        "/recipe/{id}/ari",
+                        "/recipe/{id}"// only authenticated users can add ingredients
                 )
                 .authenticated()
 
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/recipe", "/login", "/login/{id}", "/sign-up", "/css/**", "/img/**", "/js/**","/AboutUs","/error") // anyone can see the home and the posts pages
+                .requestMatchers("/", "/login", "/sign-up", "/css/**", "/img/**", "/js/**","/AboutUs","/error") // anyone can see the home and the posts pages
+
                 .permitAll()
         ;
         return http.build();
