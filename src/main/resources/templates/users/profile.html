@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
 
@@ -17,11 +17,12 @@
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" alt="avatar"
-                             class="rounded-circle img-fluid" style="width: 150px;">
+                        <img alt="avatar" class="rounded-circle img-fluid"
+                             src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" style="width: 150px;">
                         <h5 class="my-3" th:text="${user.username}"></h5>
                         <p class="text-muted mb-1" th:text="${user.email}"></p>
-                        <button type="button" class="btn btn-primary btn-rounded" data-bs-target="#settings" data-bs-toggle="modal">
+                        <button class="btn btn-primary btn-rounded" data-bs-target="#settings" data-bs-toggle="modal"
+                                type="button">
                             Settings
                         </button>
                     </div>
@@ -32,13 +33,17 @@
                 <h3 class="text-center">Favorite Recipes</h3>
                 <div class="row d-flex flex-row flex-nowrap overflow-auto">
                     <div class="card col-5" th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
-                        <img th:src="@{/img/shoppingbasket.jpg}" class="card-img-top"
-                             alt="meal" />
+                        <img alt="meal" class="card-img-top"
+                             th:src="@{/img/shoppingbasket.jpg}"/>
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a class="capitalize" th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
+                                <a class="capitalize"
+                                   th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}"
+                                   th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
                             </h5>
-                            <a class="btn btn-outline-primary" th:href="@{/user/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()} + '/dhr'" role="button">Remove</a>
+                            <a class="btn btn-outline-primary"
+                               role="button"
+                               th:href="@{/user/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()} + '/dhr'">Remove</a>
                         </div>
                     </div>
                 </div>
@@ -50,20 +55,25 @@
 <div class="container my-5">
     <h3 class="text-center">Favorite Categories</h3>
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-<!--        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">-->
-            <form id="update-categories-form" th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
-                <ul class="list-group form-group col" >
-                    <li class="list-group-item d-flex justify-content-between" th:each="category : ${categories}">
-                        <label class="" style="text-align: center;" th:for="${category.getName()}" th:text="${category.getName()}"></label>
-                        <input class="form-check-input me-1" value="" type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
+        <!--        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">-->
+        <form id="update-categories-form" method="post" th:action="@{/user/} + ${user.id} + '/uc'" th:object="${user}">
+            <ul class="list-group form-group col">
+                <li class="list-group-item d-flex justify-content-between" th:each="category : ${categories}">
+                    <label class="" style="text-align: center;" th:for="${category.getName()}"
+                           th:text="${category.getName()}"></label>
+                    <input class="form-check-input me-1" th:checked="${user.getCategories().contains(category)}" th:id="${category.getName()}" th:name="categories"
+                           th:value="${category.getName()}" type="checkbox"
+                           value="">
 
-                    </li>
-                </ul>
-                <div class="justify-content-center">
-                    <button id="update-categories-btn " type="submit" class="btn btn-outline-primary btn-customized mt-4">Update Categories</button>
-                </div>
-            </form>
-<!--        </div>-->
+                </li>
+            </ul>
+            <div class="justify-content-center">
+                <button class="btn btn-outline-primary btn-customized mt-4" id="update-categories-btn " type="submit">
+                    Update Categories
+                </button>
+            </div>
+        </form>
+        <!--        </div>-->
     </div>
 </div>
 
@@ -82,12 +92,7 @@
 <!--</form>-->
 
 
-
-
-
 <!--<div class="container-fluid p-3">-->
-
-
 
 
 <!--                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">-->
@@ -163,7 +168,7 @@
 <!--            </ul>-->
 <!--        </div>-->
 
-        <!--        favorite recipe-->
+<!--        favorite recipe-->
 <!--        <div aria-labelledby="nav-recipe-tab" class="tab-pane fade" id="nav-recipe" role="tabpanel">-->
 <!--            <h4 style="text-align: center;">Favorite Recipe</h4>-->
 
@@ -203,7 +208,7 @@
 <!--            </ul>-->
 
 <!--        </div>-->
-        <!-- Settings Modal -->
+<!-- Settings Modal -->
 <div class="modal fade" id="settings" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -213,67 +218,39 @@
             </div>
             <div class="modal-body">
                 <form th:action="@{/user}" th:method="post" th:object="${user}">
-                    <div class="form-floating" style="width: 30rem;">
+                    <div class="form-floating d-flex align-items-stretch">
                         <input class="form-control mb-3 g-col-4 field" id="username" name="username"
                                th:value="*{username}" type="text">
                         <label for="username">Change Username:</label>
                     </div>
-                    <div class="modal-body">
-                        <form th:action="@{/user}" th:method="post" th:object="${user}">
-                            <div class="form-floating" style="width: 25rem;">
-                                <input class="form-control mb-3 g-col-4 field" id="username" name="username"
-                                       th:value="*{username}" type="text">
-                                <label for="username">Change Username:</label>
-                            </div>
-                            <br/>
-                            <div class="form-floating" style="width: 30rem;">
-                                <input class="form-control mb-3 g-col-4 field" id="email" name="email"
-                                       th:value="*{email}" type="text">
-                                <label for="username">Change Email:</label>
-                            </div>
-                            <br/>
-                            <div class="form-floating" style="width: 30rem;">
-                                <input class="form-control mb-3 g-col-4 field" id="password" name="password" type="text">
-                                <label for="email">Change Password:</label>
-                            </div>
-                            <div class="form-floating" style="width: 30rem;">
-                                <input class="form-control mb-3 g-col-4 field" id="confirmPassword" name="confirmPassword" type="text">
-                                <label for="password">Confirm Password:</label>
-                            </div>
-                            <br/>
-                            <div class="container p-2">
-                                <ul class="list-group no-bullets">
-                                    <li class="list-group-item" th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
-                                        <a class="capitalize" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}" th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></a>
-                                        <div class="d-flex justify-content-end">
-                                            <a class="btn btn-close" th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'" role="button"></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <input class="form-control" type="submit"/>
-                        </form>
+                    <div class="form-floating d-flex align-items-stretch">
+                        <input class="form-control mb-3 g-col-4 field" id="email" name="email"
+                               th:value="*{email}" type="text">
+                        <label for="username">Change Email:</label>
                     </div>
-                    <br/>
-                    <div class="form-floating" style="width: 30rem;">
+                    <div class="form-floating d-flex align-items-stretch">
                         <input class="form-control mb-3 g-col-4 field" id="password" name="password" type="text">
                         <label for="email">Change Password:</label>
                     </div>
-                    <div class="form-floating" style="width: 30rem;">
-                        <input class="form-control mb-3 g-col-4 field" id="confirmPassword" name="confirmPassword" type="text">
+                    <div class="form-floating d-flex align-items-stretch">
+                        <input class="form-control mb-3 g-col-4 field" id="confirmPassword" name="confirmPassword"
+                               type="text">
                         <label for="password">Confirm Password:</label>
                     </div>
-                    <br/>
                     <div class="container p-2">
-                        <ul class="no-bullets">
-                            <li th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
-                                <a class="capitalize" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}" th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></a>
-                                <a class="btn btn-danger" th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'" role="button">Remove</a>
+                        <ul class="list-group no-bullets">
+                            <li class="list-group-item" th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
+                                <a class="capitalize d-flex justify-content-start col-4"
+                                   th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}"
+                                   th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></a>
+                                <div class="d-flex justify-content-end col-3">
+                                    <a class="btn btn-close"
+                                       role="button"
+                                       th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'"></a>
+                                </div>
                             </li>
                         </ul>
                     </div>
-
                     <input class="form-control" type="submit"/>
                 </form>
             </div>
@@ -289,13 +266,15 @@
                 <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
             </div>
             <div class="modal-body">
-                <form th:object="${ingredients}" th:action="@{/user/addItemPantry}" th:method="GET" >
+                <form th:action="@{/user/addItemPantry}" th:method="GET" th:object="${ingredients}">
 
-                    <label for="exampleDataList" class="form-label">Search for Ingredient</label>
-                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." name="selectedIngredient">
+                    <label class="form-label" for="exampleDataList">Search for Ingredient</label>
+                    <input class="form-control" id="exampleDataList" list="datalistOptions"
+                           name="selectedIngredient" placeholder="Type to search...">
 
-                    <datalist id="datalistOptions" >
-                        <option th:value="${ingredient.name}" th:each="ingredient : ${ingredients}" th:text="${ingredient.name}"></option>
+                    <datalist id="datalistOptions">
+                        <option th:each="ingredient : ${ingredients}" th:text="${ingredient.name}"
+                                th:value="${ingredient.name}"></option>
                         <!--                                th:text="${ingredient.name}"-->
                     </datalist>
                     <div class="modal-footer">
@@ -317,13 +296,15 @@
                 <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
             </div>
             <div class="modal-body">
-                <form th:object="${ingredients}" th:action="@{/user/addItemGrocery}" th:method="GET" >
+                <form th:action="@{/user/addItemGrocery}" th:method="GET" th:object="${ingredients}">
 
-                    <label for="exampleDataList" class="form-label">Search for Ingredient</label>
-                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." name="selectedIngredient">
+                    <label class="form-label" for="exampleDataList">Search for Ingredient</label>
+                    <input class="form-control" id="exampleDataList" list="datalistOptions"
+                           name="selectedIngredient" placeholder="Type to search...">
 
-                    <datalist id="datalistOptions" >
-                        <option th:value="${ingredient.name}" th:each="ingredient : ${ingredients}" th:text="${ingredient.name}"></option>
+                    <datalist id="datalistOptions">
+                        <option th:each="ingredient : ${ingredients}" th:text="${ingredient.name}"
+                                th:value="${ingredient.name}"></option>
                         <!--                                th:text="${ingredient.name}"-->
                     </datalist>
                     <div class="modal-footer">
@@ -345,10 +326,11 @@
                 <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/user/tgl}" th:method="GET" >
+                <form th:action="@{/user/tgl}" th:method="GET">
 
-                    <label for="exampleDataList" class="form-label">Phone number to text to</label>
-                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="7778889999" name="phoneNumber">
+                    <label class="form-label" for="exampleDataList">Phone number to text to</label>
+                    <input class="form-control" id="exampleDataList" list="datalistOptions" name="phoneNumber"
+                           placeholder="7778889999">
 
                     <div class="modal-footer">
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
