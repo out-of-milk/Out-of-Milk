@@ -7,7 +7,6 @@
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="container-fluid content">
-    <h2 class="p-2" style="text-align: center;" sec:authorize="!isAuthenticated()">Search for Recipes</h2>
     <h2 class="p-2" style="text-align: center;" sec:authorize="isAuthenticated()">Recommended Recipes for You</h2>
 
     <div class="body d-flex justify-content-evenly">
@@ -25,18 +24,18 @@
                 </div>
             </div>
 
-            <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">
-                <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
-                    <a th:href="@{/login}" >
-                        <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
-                    </a>
-                    <div class="carousel-caption d-none d-md-block">
+<!--            <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">-->
+<!--                <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">-->
+<!--                    <a th:href="@{/login}" >-->
+<!--                        <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">-->
+<!--                    </a>-->
+<!--                    <div class="carousel-caption d-none d-md-block">-->
 
-                        <h2 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3"></h2>
+<!--                        <h2 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3"></h2>-->
 
-                    </div>
-                </div>
-            </div>
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 
@@ -51,7 +50,6 @@
     </div>
 </div>
 <div class="row p-2" >
-    <div>
     <div sec:authorize="isAuthenticated()" class="d-flex justify-content-evenly container">
             <input type="text" id="search" placeholder="Search Meals or Categories" class="w-30 col-6 rounded border border-info">
         <div sec:authorize="isAuthenticated()">
@@ -72,17 +70,17 @@
                 <option value="Vegetarian">Vegetarian</option>
                 <option value="Miscellaneous">Miscellaneous</option>
             </select>
-</div>
-    </div>
-        <div sec:authorize="isAuthenticated()">
-<ul class="list-group p-2">
-    <li class="list-group-item" >
-        <div th:href="@{'/recipe/' + ${idmeal}}" id="recipes"></div>
-    </li>
-</ul>
         </div>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <ul class="list-group p-2">
+            <li class="list-group-item" >
+                <div th:href="@{'/recipe/' + ${idmeal}}" id="recipes"></div>
+            </li>
+        </ul>
+    </div>
+</div>
 
-<!--    <div th:href="@{'/recipe/' + ${idmeal}}" sec:authorize="isAuthenticated()" id="recipes"></div>-->
 <footer th:insert="partial/partials :: footer"></footer>
 <script>
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').sort();
@@ -111,8 +109,11 @@
                     cat.innerText = meal.strCategory;
                     const heading = document.createElement('h1');
                     heading.innerText = meal.strMeal;
+                    const img = document.createElement('img');
+                    img.src = meal.strMealThumb;
 
                     cardHeader.appendChild(ID);
+                    cardHeader.appendChild(img);
                     cardHeader.appendChild(cat);
                     card.appendChild(cardHeader);
 
@@ -161,6 +162,5 @@
         });
     });
 </script>
-
 </body>
 </html>

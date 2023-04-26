@@ -27,14 +27,7 @@
 
 *{
     font-family: 'Playfair Display', serif;
-
-}
-h2 {
-    /*background: -webkit-linear-gradient(#F9F9F9,  #D55E2D);*/
-    /*-webkit-background-clip: text;*/
-    /*-webkit-text-fill-color: transparent;*/
-    filter: brightness(150%);
-
+    color: #6B6A67;
 }
 nav{
     background-color:#E85A4F ;

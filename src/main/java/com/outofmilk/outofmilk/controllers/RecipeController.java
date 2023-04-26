@@ -26,6 +26,10 @@ public class RecipeController {
 
 
     @GetMapping("/")
+    public String landingPage(){
+        return "landing";
+    }
+    @GetMapping("/search")
     public String showFindAllForm(Model model){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
