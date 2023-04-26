@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title id="pageTitle">Find Recipe</title>
 </head>
+
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="container-fluid content">
@@ -18,9 +19,7 @@
                         <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
                     </a>
                     <div class="carousel-caption d-none d-md-block">
-
                         <h2 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3"></h2>
-
                     </div>
                 </div>
             </div>
@@ -32,15 +31,11 @@
                         <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
                     </a>
                     <div class="carousel-caption d-none d-md-block">
-
                         <h2 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3"></h2>
-
                     </div>
                 </div>
             </div>
-
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
@@ -48,6 +43,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+
         </div>
     </div>
 </div>
