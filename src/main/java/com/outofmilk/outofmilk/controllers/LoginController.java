@@ -18,9 +18,6 @@ public class LoginController {
     @GetMapping("/login/{id}")
     public String showLoginFormRecipe(@PathVariable long id, Model model, HttpSession session){
         session.setAttribute("recipeId", id);
-        System.out.println("************************");
-        System.out.println(id);
-        System.out.println("************************");
         return "users/login";
     }
 
