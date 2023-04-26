@@ -108,9 +108,13 @@
                     cat.innerText = meal.strCategory;
                     const heading = document.createElement('h1');
                     heading.innerText = meal.strMeal;
+                    const IMG = document.createElement('img');
+                    IMG.src = meal.strMealThumb;
+
 
                     cardHeader.appendChild(ID);
                     cardHeader.appendChild(cat);
+                    cardHeader.appendChild(IMG);
                     card.appendChild(cardHeader);
 
                     const image = document.createElement('img');
