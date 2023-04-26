@@ -9,7 +9,7 @@
 <div class="container-fluid content">
     <div class="row" style="height: 100vh;">
         <div class="mx-auto col-10 col-md-8 col-lg-6 p-3">
-            <h1>Please Log In</h1>
+            <h1 style="color: #6b6a67">Please Log In</h1>
             <div th:if="${param.error}">
                 Invalid Username and Password.
             </div>
@@ -18,19 +18,17 @@
             </div>
             <form class="form-example" th:action="@{/login}" method="post">
                 <div class="form-group">
-                    <label for="username" class="form-label">Username</label>
-                    <input id="username" class="form-control" name="username" type="text" value="" required/>
+                    <label for="username" class="form-label" style="color:#6b6a67">Username</label>
+                    <input id="username" class="form-control" name="username" type="text" value="Shawn" required/>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label" style="color:#6b6a67;">Password</label>
                     <input id="password" class="form-control" name="password" type="password" value="Test1234!" required/>
                 </div>
-<div class="d-flex flex-row justify-content-evenly">
-
-                    <input type="submit" class="btn btn-primary btn-customized mt-4" value="Log In"/>
-
+                <div class="d-flex flex-row justify-content-between">
+                    <input type="submit" class="btn btn-customized mt-4" style="background-color:#E85A4F;color: #EAE7DC; " value="Log In"/>
                     <a class="nav-link active mt-5 text-decoration-underline link-info" th:href="@{/sign-up}">Click Here to Register</a>
-</div>
+                </div>
             </form>
         </div>
     </div>
