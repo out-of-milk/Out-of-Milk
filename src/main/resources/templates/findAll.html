@@ -52,9 +52,9 @@
 </div>
 <div class="row p-2" >
     <div sec:authorize="isAuthenticated()" class="d-flex justify-content-evenly container">
-            <input type="text" id="search" placeholder="Search Meals or Categories" class="w-30 col-6 rounded" style="border-color:#D8C3A5;border-style: solid;">
+            <input type="text" id="search" placeholder="Search Meals or Categories" class="col-6 rounded" style="width: 25rem; height: 4rem;border-color:#D8C3A5;border-style: solid;">
         <div sec:authorize="isAuthenticated()">
-            <select  class="selectpicker show-tick rounded" id="category" style="width: 15rem; height: 4rem;border-color:#D8C3A5;border-style:solid;">
+            <select  class="selectpicker col-6 show-tick rounded" id="category" style="width: 25rem; height: 4rem;border-color:#D8C3A5;border-style:solid;">
                 <option value="" selected>Show All Categories</option>
                 <option value="Beef">Beef</option>
                 <option value="Breakfast">Breakfast</option>
@@ -73,13 +73,11 @@
             </select>
         </div>
     </div>
-    <div sec:authorize="isAuthenticated()">
-        <ul class="list-group p-2 d-flex flex-wrap ">
-            <li class="list-group-item" >
-                <div th:href="@{'/recipe/' + ${idmeal}}" id="recipes"></div>
-            </li>
-        </ul>
-    </div>
+        <div class="container m-3 " sec:authorize="isAuthenticated()">
+            <div class="p-2  d-flex flex-wrap">
+                <div class="row row-cols-4 py-8 g-4 justify-content-center" id="recipes" th:href="@{'/recipe/' + ${idmeal}}"></div>
+            </div>
+        </div>
 </div>
 
 <footer th:insert="partial/partials :: footer"></footer>
@@ -97,35 +95,42 @@
                 meals.forEach(meal => {
                     const card = document.createElement('div');
                     card.classList.add('card');
-                    card.style.width = '200px';
-                    card.style.margin = '10px';
-
-                    const cardHeader = document.createElement('div');
-                    cardHeader.classList.add('card-body');
-                    cardHeader.classList.add('capitalize');
+                    card.classList.add('col-3');
+                    card.style.width = '15em';
+                    card.style.textAlign = 'center';
 
                     const id = meal.idMeal;
                     const title = meal.strMeal;
                     const category = meal.strCategory;
                     const image = meal.strMealThumb;
 
+                    const img = document.createElement('img');
+                    img.classList.add('card-img-top');
+                    img.src = image;
+                    img.alt = 'Card Image';
+
+                    const cardBody = document.createElement('div');
+                    cardBody.classList.add('card-body');
+                    cardBody.classList.add('capitalize');
+
+                    const cardTitle = document.createElement('h5');
+                    cardTitle.classList.add('card-title');
+                    cardTitle.innerText = title;
+
                     const idLink = document.createElement('a');
                     idLink.href = `/recipe/${id}`;
                     idLink.id = id;
                     idLink.innerText = title;
 
-                    const cat = document.createElement('p');
-                    cat.innerText = category;
+                    const text = document.createElement('p');
+                    text.classList.add('card-text');
+                    text.innerText = category;
 
-                    const img = document.createElement('img');
-                    img.src = image;
-                    img.alt = title;
-                    img.style.width = '100%';
-
-                    cardHeader.appendChild(idLink);
-                    cardHeader.appendChild(cat);
-                    cardHeader.appendChild(img);
-                    card.appendChild(cardHeader);
+                    cardBody.appendChild(cardTitle);
+                    cardBody.appendChild(idLink);
+                    cardBody.appendChild(text);
+                    card.appendChild(img)
+                    card.appendChild(cardBody);
 
                     const ingredients = document.createElement('ul');
                     for (let i = 1; i <= 20; i++) {
