@@ -76,13 +76,6 @@
                         <h1 class="card-title capitalize" th:text="${strMeal}">title/name</h1>
                         <h3 class="card-text opacity-75" th:text="${strCategory}">recipe category</h3>
                         <div class="btn-group" role="group" aria-label="Basic example">
-<!--                            <a th:href="@{/user/} + ${id} + @{/afr}" role="button" class="btn1" th:style="${recipeLiked > 0} ? 'font-size: 2em;color:red; id=heart' : 'font-size: 2em;color:lightpink; id=heart'">-->
-<!--                                <i class="fa-solid fa-heart-circle-plus toggle"></i>-->
-<!--                            </a>-->
-<!--                            <a th:href="@{/user/} + ${id} + @{/ahr}" role="button" class="btn1" th:style="${recipeHidden > 0} ? 'font-size: 2em;color:black; id=bheart' : 'font-size: 2em;color:darkgrey; id=bheart'">-->
-<!--                                <i class="fa-sharp fa-solid fa-heart-crack"></i>-->
-<!--                    ️       </a>-->
-
 
                             <a th:href="@{/user/} + ${id} + @{/afr}" role="button" th:style="${recipeLiked > 0} ? 'font-size: 2em;color:red; id=heart' : 'font-size: 2em;color:lightpink; id=heart'" th:class="${recipeHidden > 0} ? 'btn1 disabled' : 'btn1'">
                                 <i class="fa-solid fa-heart-circle-plus toggle"></i>
@@ -105,37 +98,40 @@
         </div>
     </div>
     <div class="row">
+
         <div class="col-6">
-            <h4 class="border border-info" style="text-align: center">Ingredients</h4>
-            <ul class="list-group border border-info">
-
-                <li th:text="${strIngredient1}+ ' ' + ${strMeasure1}" th:class="${strIngredient1 != null} and ${strIngredient1 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient2}+ ' ' + ${strMeasure2}" th:class="${strIngredient2 != null} and ${strIngredient2 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient3}+ ' ' + ${strMeasure3}" th:class="${strIngredient1 != null} and ${strIngredient3 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient4}+ ' ' + ${strMeasure4}" th:class="${strIngredient1 != null} and ${strIngredient4 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient5}+ ' ' + ${strMeasure5}" th:class="${strIngredient1 != null} and ${strIngredient5 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient6}+ ' ' + ${strMeasure6}" th:class="${strIngredient1 != null} and ${strIngredient6 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient7}+ ' ' + ${strMeasure7}" th:class="${strIngredient1 != null} and ${strIngredient7 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient8}+ ' ' + ${strMeasure8}" th:class="${strIngredient1 != null} and ${strIngredient8 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient9}+ ' ' + ${strMeasure9}" th:class="${strIngredient1 != null} and ${strIngredient9 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient10}+ ' ' + ${strMeasure10}" th:class="${strIngredient1 != null} and ${strIngredient10 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient11}+ ' ' + ${strMeasure11}" th:class="${strIngredient1 != null} and ${strIngredient11 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient12}+ ' ' + ${strMeasure12}" th:class="${strIngredient1 != null} and ${strIngredient12 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient13}+ ' ' + ${strMeasure13}" th:class="${strIngredient1 != null} and ${strIngredient13 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient14}+ ' ' + ${strMeasure14}" th:class="${strIngredient1 != null} and ${strIngredient14 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient15}+ ' ' + ${strMeasure15}" th:class="${strIngredient1 != null} and ${strIngredient15 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient16}+ ' ' + ${strMeasure16}" th:class="${strIngredient1 != null} and ${strIngredient16 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient17}+ ' ' + ${strMeasure17}" th:class="${strIngredient1 != null} and ${strIngredient17 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient18}+ ' ' + ${strMeasure18}" th:class="${strIngredient1 != null} and ${strIngredient18 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient19}+ ' ' + ${strMeasure19}" th:class="${strIngredient1 != null} and ${strIngredient19 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-                <li th:text="${strIngredient20}+ ' ' + ${strMeasure20}" th:class="${strIngredient1 != null} and ${strIngredient20 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
-
-            </ul>
+            <div class="card mb-3 justify-content-center">
+                <div class="card-header d-flex justify-content-center" style="background-color: #E85A4F;"><h5 style="color:#EAE7DC">Ingredients</h5></div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li th:text="${strIngredient1}+ ' ' + ${strMeasure1}" th:class="${strIngredient1 != null} and ${strIngredient1 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient2}+ ' ' + ${strMeasure2}" th:class="${strIngredient2 != null} and ${strIngredient2 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient3}+ ' ' + ${strMeasure3}" th:class="${strIngredient1 != null} and ${strIngredient3 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient4}+ ' ' + ${strMeasure4}" th:class="${strIngredient1 != null} and ${strIngredient4 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient5}+ ' ' + ${strMeasure5}" th:class="${strIngredient1 != null} and ${strIngredient5 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient6}+ ' ' + ${strMeasure6}" th:class="${strIngredient1 != null} and ${strIngredient6 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient7}+ ' ' + ${strMeasure7}" th:class="${strIngredient1 != null} and ${strIngredient7 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient8}+ ' ' + ${strMeasure8}" th:class="${strIngredient1 != null} and ${strIngredient8 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient9}+ ' ' + ${strMeasure9}" th:class="${strIngredient1 != null} and ${strIngredient9 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient10}+ ' ' + ${strMeasure10}" th:class="${strIngredient1 != null} and ${strIngredient10 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient11}+ ' ' + ${strMeasure11}" th:class="${strIngredient1 != null} and ${strIngredient11 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient12}+ ' ' + ${strMeasure12}" th:class="${strIngredient1 != null} and ${strIngredient12 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient13}+ ' ' + ${strMeasure13}" th:class="${strIngredient1 != null} and ${strIngredient13 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient14}+ ' ' + ${strMeasure14}" th:class="${strIngredient1 != null} and ${strIngredient14 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient15}+ ' ' + ${strMeasure15}" th:class="${strIngredient1 != null} and ${strIngredient15 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient16}+ ' ' + ${strMeasure16}" th:class="${strIngredient1 != null} and ${strIngredient16 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient17}+ ' ' + ${strMeasure17}" th:class="${strIngredient1 != null} and ${strIngredient17 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient18}+ ' ' + ${strMeasure18}" th:class="${strIngredient1 != null} and ${strIngredient18 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient19}+ ' ' + ${strMeasure19}" th:class="${strIngredient1 != null} and ${strIngredient19 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                        <li th:text="${strIngredient20}+ ' ' + ${strMeasure20}" th:class="${strIngredient1 != null} and ${strIngredient20 != ''} ? 'list-group-item' : 'list-group-item hide'"></li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="d-flex col-6">
-            <div class="card border-info mb-3 justify-content-center">
-                <div class="card-header d-flex justify-content-center bg-info">How to cook</div>
+            <div class="card mb-3 justify-content-center">
+                <div class="card-header d-flex justify-content-center" style="background-color: #E85A4F;"><h5 style="color:#EAE7DC">How to cook</h5></div>
                 <div class="card-body">
                     <h5 class="card-title">Steps</h5>
                     <p class="card-text" th:text="${strInstructions}"></p>
