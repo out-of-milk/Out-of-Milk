@@ -240,10 +240,10 @@
                     <div class="container p-2">
                         <ul class="list-group no-bullets">
                             <li class="list-group-item" th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
-                                <a class="capitalize"
+                                <a class="capitalize d-flex justify-content-start col-4"
                                    th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}"
                                    th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></a>
-                                <div class="d-flex justify-content-end">
+                                <div class="d-flex justify-content-end col-3">
                                     <a class="btn btn-close"
                                        role="button"
                                        th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'"></a>
