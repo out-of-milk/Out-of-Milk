@@ -51,7 +51,7 @@ public class SecurityConfiguration {
                         session.removeAttribute("recipeId");
                         httpServletResponse.sendRedirect("/recipe/" + recipeId);
                     } else {
-                        httpServletResponse.sendRedirect("/");
+                        httpServletResponse.sendRedirect("/search");
                     }
                 })
                 .permitAll()
