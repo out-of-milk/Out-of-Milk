@@ -20,14 +20,12 @@
     object-fit: cover;
 }
 
-
 .hide {
     display: none;
 }
 
 *{
     font-family: 'Playfair Display', serif;
-    color: #6B6A67;
 }
 nav{
     background-color:#E85A4F ;
@@ -43,8 +41,13 @@ body{
 .capitalize {
     text-transform: capitalize;
 }
+
 @media screen and (max-width: 540px){
     .imgResponse {
         display: none;
     }
+}
+
+.disabled {
+    pointer-events: none;
 }
