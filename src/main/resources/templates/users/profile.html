@@ -51,41 +51,71 @@
 <div class="container my-5">
     <h3 class="text-center">Favorite Categories</h3>
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-<!--        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">-->
-            <form id="update-categories-form" th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
-                <ul class="list-group form-group col" >
-                    <li class="list-group-item d-flex justify-content-between" th:each="category : ${categories}">
-                        <label class="" style="text-align: center;" th:for="${category.getName()}" th:text="${category.getName()}"></label>
-                        <input class="form-check-input me-1" value="" type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
+        <form id="update-categories-form" th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
+            <ul class="list-group form-group col" >
+                <li class="list-group-item d-flex justify-content-between" th:each="category : ${categories}">
+                    <label class="" style="text-align: center;" th:for="${category.getName()}" th:text="${category.getName()}"></label>
+                    <input class="form-check-input me-1" value="" type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
 
-                    </li>
-                </ul>
-                <div class="justify-content-center">
-                    <button id="update-categories-btn " type="submit" class="btn btn-outline-primary btn-customized mt-4">Update Categories</button>
-                </div>
-            </form>
-<!--        </div>-->
+                </li>
+            </ul>
+            <div class="d-flex justify-content-center py-3">
+                <button id="update-categories-btn " type="submit" class="btn btn-outline-primary btn-customized mt-4">Update Categories</button>
+            </div>
+        </form>
     </div>
 </div>
+<div class="container-fluid py-5">
+    <div class="row">
+        <div class="col-lg-6 py-2">
+            <h4 style="text-align: center;">Pantry List Ingredients</h4>
+            <div class="d-flex justify-content-between">
+                <button class="btn" data-bs-target="#addItemPantry" data-bs-toggle="modal" style="float: right"
+                        type="button">Add New Item
+                </button>
+                <form id="delete-pantry-form" th:object="${user}" th:action="@{/user/} + 'dpl'" method="post">
+                    <button id="delete-pantry-btn" type="submit" class="btn btn-outline-primary" >Clear Pantry List</button>
+                </form>
+            </div>
+            <hr>
+            <ul  class="list-group" th:each="ingredient : ${user.getPantryItems()}">
+                <li class="list-group-item d-flex justify-content-between ">
+                    <p style="text-transform: capitalize;" th:text="${ingredient.name}"></p>
+                    <a class="btn btn-outline-primary" th:href="@{/user/} + ${ingredient.id} + '/dpi'" role="button" >Remove</a>
+                </li>
+            </ul>
+        </div>
 
-<!--<h3>Favorite Categories</h3>-->
-<!--<form id="update-categories-form" th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">-->
-<!--    <ul class="list-group form-group" th:each="category : ${categories}">-->
-<!--        <li class="list-group-item two-column d-flex justify-content-between">-->
-<!--            <label class="" style="text-align: center;" th:for="${category.getName()}" th:text="${category.getName()}"></label>-->
-<!--            <input class="form-check-input me-1" value="" type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">-->
+        <div class="col-lg-6 py-2">
+            <h4 style="text-align: center;">Grocery List Ingredients</h4>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-outline-primary" data-bs-target="#addItemGrocery" data-bs-toggle="modal" style="float: right"
+                        type="button">Add New Item
+                </button>
 
-<!--        </li>-->
-<!--    </ul>-->
-<!--    <div class="justify-content-center">-->
-<!--        <button id="update-categories-btn " type="submit" class="btn btn-outline-primary btn-customized mt-4">Update Categories</button>-->
-<!--    </div>-->
-<!--</form>-->
+                <form id="email-grocery-form" th:object="${user}" th:action="@{/user/} + 'egl'" method="post">
+                    <button id="email-grocery-btn" class="btn btn-outline-primary" type="submit">Email Grocery List</button>
+                </form>
 
+                <button class="btn btn-outline-secondary" data-bs-target="#textGroceryList" data-bs-toggle="modal" style="float: right"
+                        type="button">Text Grocery List
+                </button>
 
+                <form id="delete-grocery-form" th:object="${user}" th:action="@{/user/} + 'dgl'" method="post">
+                    <button id="delete-grocery-btn" class="btn btn-outline-primary" type="submit">Clear Grocery List</button>
+                </form>
+            </div>
+            <hr>
 
-
-
+            <ul class="list-group" th:each="ingredient : ${user.getGroceryItems()}">
+                <li class="list-group-item d-flex justify-content-between">
+                    <p style="text-transform: capitalize;" th:class="${user.getPantryItems().contains(ingredient)} ? 'red' : 'green'" th:text="${ingredient.name}" >No ingredients in list</p>
+                    <a class="btn btn-outline-primary" th:href="@{/user/} + ${ingredient.id} + '/dgi'" role="button">Remove</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 <!--<div class="container-fluid p-3">-->
 
 
