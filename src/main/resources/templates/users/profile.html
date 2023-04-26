@@ -15,10 +15,10 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-4">
+                <h3 class="text-center">Profile</h3>
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <img alt="avatar" class="rounded-circle img-fluid"
-                             src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" style="width: 150px;">
+                        <img class="img-fluid" th:src="@{/img/chef-profile2.jpeg}" style="width: 150px;">
                         <h5 class="my-3" th:text="${user.username}"></h5>
                         <p class="text-muted mb-1" th:text="${user.email}"></p>
                         <button class="btn btn-rounded" data-bs-target="#settings" data-bs-toggle="modal" style="background-color: #EAE7DC;color:#6B6A67" type="button">
@@ -32,14 +32,17 @@
             <div class="container-fluid col-lg-8">
                 <h3 class="text-center">Favorite Recipes</h3>
                 <div class="row d-flex flex-row flex-nowrap overflow-auto">
-                    <div class="card col-5" th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
-                        <img alt="meal" class="card-img-top"
-                             th:src="@{/img/shoppingbasket.jpg}"/>
+                    <div class="card col-5 pt-3" th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
+                        <a th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}">
+                            <img alt="..." class="d-block img-fluid w-100" th:src="${recipePreferenceFavorites.getRecipe().getStrMealThumb()}">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a class="capitalize" th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
+                                <a class="capitalize no-decoration" th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
                             </h5>
-                            <a class="btn" style="background-color: #E85A4F;color:#FFF" role="button" th:href="@{/user/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()} + '/dhr'"><i class="fa-solid fa-heart-crack"></i></a>
+                            <div class="text-center">
+                                <a class="btn" style="background-color: #E85A4F;color:#FFF" role="button" th:href="@{/user/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()} + '/dhr'"><i class="fa-solid fa-heart-crack"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -47,16 +50,14 @@
         </div>
     </div>
 </section>
-
 <div class="container my-5">
     <h3 class="text-center">Favorite Categories</h3>
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
         <form id="update-categories-form" th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
-            <ul class="list-group form-group col" >
+            <ul class="list-group form-group col">
                 <li class="list-group-item d-flex justify-content-between" th:each="category : ${categories}">
                     <label class="" style="text-align: center;" th:for="${category.getName()}" th:text="${category.getName()}"></label>
                     <input class="form-check-input me-1" value="" type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
-
                 </li>
             </ul>
             <div class="d-flex justify-content-center py-3">
