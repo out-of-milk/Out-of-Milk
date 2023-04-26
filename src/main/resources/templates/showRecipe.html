@@ -81,12 +81,12 @@
                         <h1 class="card-title capitalize" th:text="${strMeal}">title/name</h1>
                         <h3 class="card-text opacity-75" th:text="${strCategory}">recipe category</h3>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a th:href="@{/user/} + ${id} + @{/afr}" role="button" class="btn1" th:style="${recipeLiked > 0} ? 'font-size: 2em;color:red; id=heart' : 'font-size: 2em;color:lightpink; id=heart'" >
+                            <a th:href="@{/user/} + ${id} + @{/afr}" role="button" class="btn1" th:style="${recipeLiked > 0} ? 'font-size: 2em;color:red; id=heart' : 'font-size: 2em;color:lightpink; id=heart'">
                                 <i class="fa-solid fa-heart-circle-plus toggle"></i>
                             </a>
                             <a th:href="@{/user/} + ${id} + @{/ahr}" role="button" class="btn1" th:style="${recipeHidden > 0} ? 'font-size: 2em;color:black; id=bheart' : 'font-size: 2em;color:darkgrey; id=bheart'">
                                 <i class="fa-sharp fa-solid fa-heart-crack"></i>
-                            ️</a>
+                    ️       </a>
                             <a th:href="@{/recipe/} + ${id} + @{/ari}" role="button" class="btn1" style="font-size: 2em;color:lightblue" id="adding">
                                 <i class="fa-solid fa-file-circle-plus"></i>
                             </a>
