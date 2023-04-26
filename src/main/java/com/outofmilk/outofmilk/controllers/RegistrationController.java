@@ -2,6 +2,9 @@ package com.outofmilk.outofmilk.controllers;
 
 import com.outofmilk.outofmilk.models.User;
 import com.outofmilk.outofmilk.repositories.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,12 +30,14 @@ public class RegistrationController {
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user, Model model){
+    public String saveUser(@ModelAttribute User user, Model model, HttpSession session){
 
         System.out.println(user);
 
         User userNameCheck = userDao.findByUsername(user.getUsername());
         User userEmailCheck = userDao.findByEmail(user.getEmail());
+
+        session.setAttribute("stickyUsername", user.getUsername());
 
         if (userNameCheck != null) {
             model.addAttribute("userExists", true);
