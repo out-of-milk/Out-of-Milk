@@ -48,34 +48,23 @@
     </div>
 </section>
 
-
-
-
 <div class="container my-5">
     <h3 class="text-center">Favorite Categories</h3>
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-
-        <form id="update-categories-form" class="row d-flex col-10" th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
-
-            <div class="col-12 border border-3 d-flex row " >
-                <section class=" col-3  d-flex justify-content-between" th:each="category : ${categories}">
+        <form id="update-categories-form" th:object="${user}" th:action="@{/user/} + ${user.id} + '/uc'" method="post">
+            <ul class="list-group form-group col" >
+                <li class="list-group-item d-flex justify-content-between" th:each="category : ${categories}">
                     <label class="" style="text-align: center;" th:for="${category.getName()}" th:text="${category.getName()}"></label>
                     <input class="form-check-input me-1" value="" type="checkbox" th:id="${category.getName()}" th:name="categories" th:value="${category.getName()}" th:checked="${user.getCategories().contains(category)}">
 
-                </section>
-            </div>
-
-
+                </li>
+            </ul>
             <div class="d-flex justify-content-center py-3">
                 <button id="update-categories-btn " type="submit" class="btn btn-customized mt-4" style="background-color:#6B6A67;color:#D8C3A5">Update Categories</button>
             </div>
         </form>
-
     </div>
 </div>
-
-
-
 <div class="container-fluid py-5">
     <div class="row">
         <div class="col-lg-6 py-2">
@@ -89,6 +78,7 @@
                 </form>
             </div>
             <hr>
+            <div><p>&nbsp;</p></div>
             <ul  class="list-group" th:each="ingredient : ${user.getPantryItems()}">
                 <li class="list-group-item d-flex justify-content-between ">
                     <p style="text-transform: capitalize;" th:text="${ingredient.name}"></p>
@@ -116,10 +106,11 @@
                 </form>
             </div>
             <hr>
+            <div><p>&#x2713 indicates an ingredient that is in your pantry.</p></div>
 
             <ul class="list-group" th:each="ingredient : ${user.getGroceryItems()}">
                 <li class="list-group-item d-flex justify-content-between">
-                    <p style="text-transform: capitalize;" th:class="${user.getPantryItems().contains(ingredient)} ? 'red' : 'green'" th:text="${ingredient.name}" >No ingredients in list</p>
+                    <p style="text-transform: capitalize;" th:text="${user.getPantryItems().contains(ingredient)} ? ${ingredient.name} + ' &#x2713': ${ingredient.name}">No ingredients in list</p>
                     <a class="btn" style="background-color: #EAE7DC;color:#6B6A67" th:href="@{/user/} + ${ingredient.id} + '/dgi'" role="button"><i class="fa-solid fa-square-minus"></i></a>
                 </li>
             </ul>
@@ -163,7 +154,7 @@
                         <li class="list-group-item d-flex justify-content-between" th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
                             <a class="capitalize d-flex justify-content-start col-4">
                                 <label class="" style="text-align: center;" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}"
-                                   th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></label>
+                                       th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></label>
                             </a>
                             <a class="btn" role="button" th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'"><i class="fa-sharp fa-solid fa-heart-crack"></i></a>
                         </li>
@@ -174,7 +165,7 @@
         </div>
     </div>
 </div>
-<!-- Add item Pantry Modal -->
+<!-- Add item Pantry  Modal -->
 <div class="modal fade" id="addItemPantry" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
