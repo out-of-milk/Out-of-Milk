@@ -53,3 +53,9 @@ body{
 .disabled {
     pointer-events: none;
 }
+
+.no-decoration:link, .no-decoration:visited, .no-decoration:hover, .no-decoration:active {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
