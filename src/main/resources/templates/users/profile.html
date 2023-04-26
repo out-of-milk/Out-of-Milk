@@ -33,8 +33,7 @@
                 <h3 class="text-center">Favorite Recipes</h3>
                 <div class="row d-flex flex-row flex-nowrap overflow-auto">
                     <div class="card col-5" th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
-                        <img th:src="@{/img/shoppingbasket.jpg}" class="card-img-top"
-                             alt="meal" />
+                                                        <img alt="..." class="d-block img-fluid w-100" th:src="${recipePreferenceFavorites.getRecipe().getStrMealThumb()}">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <a class="capitalize" th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
