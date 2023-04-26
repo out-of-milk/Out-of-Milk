@@ -3,60 +3,58 @@
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
     <title id="pageTitle">Find Recipe</title>
-<!--    <style>-->
-<!--        .list-group{-->
-<!--            display: flex;-->
-<!--            flex-wrap: wrap;-->
-<!--        }-->
-<!--    </style>-->
 </head>
 
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
-<div class="container-fluid content">
-    <h2 class="p-2" style="text-align: center;" sec:authorize="isAuthenticated()">Recommended Recipes for You</h2>
-
-    <div class="body d-flex justify-content-evenly">
-        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner carousel-container" sec:authorize="isAuthenticated()">
-                <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
-                    <a th:href="@{'/recipe/'} + ${recipe.getIdMeal()}">
-                        <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
-                    </a>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3"></h2>
-                    </div>
-                </div>
+<div class="container my-5">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div class="col p-3 p-lg-5 pt-lg-3">
+            <div class="px-1 py-2 my-2 text-center">
+                <h1 class="display-5 fw-bold" sec:authorize="isAuthenticated()" style="color:#6B6A67">Recommended Recipes for You</h1>
             </div>
 
-            <div class="carousel-inner carousel-container" sec:authorize="!isAuthenticated()">
-                <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'" data-bs-interval="10000">
-                    <a th:href="@{'/login/'} + ${recipe.getIdMeal()}">
-<!--                    <a th:href="@{/login}" >-->
-                        <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
-                    </a>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3"></h2>
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner" sec:authorize="isAuthenticated()">
+                    <div th:each="recipe : ${finalRecipes}" th:class="${recipe.showThis} ? 'carousel-item active' : 'carousel-item'">
+            <!--                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
+                        <a th:href="@{'/recipe/'} + ${recipe.getIdMeal()}">
+                            <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
+                        </a>
+                        <div class="container">
+                            <div class="carousel-caption text-center">
+<!--                                <h2 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3"></h2>-->
+
+                                <h1 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-80 h-50 d-inline-block fs-3">Example headline.</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-
         </div>
     </div>
 </div>
+<div class="px-4 py-3 my-3 text-center">
+    <h1 class="display-5 fw-bold" sec:authorize="isAuthenticated()" style="color:#6B6A67">Search for New Recipes</h1>
+</div>
 <div class="row p-2" >
     <div sec:authorize="isAuthenticated()" class="d-flex justify-content-evenly container">
-            <input type="text" id="search" placeholder="Search Meals or Categories" class="w-30 col-6 rounded border border-info">
+            <input type="text" id="search" placeholder="Search Meals or Categories" class="w-30 col-6 rounded" style="border-color:#D8C3A5;border-style: solid;">
         <div sec:authorize="isAuthenticated()">
-            <select  class="selectpicker show-tick rounded border border-info" id="category" style="width: 15rem; height: 4rem">
+            <select  class="selectpicker show-tick rounded" id="category" style="width: 15rem; height: 4rem;border-color:#D8C3A5;border-style:solid;">
                 <option value="" selected>Show All Categories</option>
                 <option value="Beef">Beef</option>
                 <option value="Breakfast">Breakfast</option>
