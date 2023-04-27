@@ -96,7 +96,8 @@
                     const card = document.createElement('div');
                     card.classList.add('card');
                     card.classList.add('col-3');
-                    card.classList.add('pt-3');
+                    card.classList.add('pt-2');
+                    card.classList.add('px-2');
                     card.style.width = '15em';
                     card.style.textAlign = 'center';
 
@@ -122,12 +123,14 @@
                     idLink.href = `/recipe/${id}`;
                     idLink.id = id;
                     idLink.innerText = title;
+                    idLink.classList.add('no-decoration');
 
                     const text = document.createElement('p');
                     text.classList.add('card-text');
                     text.innerText = category;
+                    text.classList.add('no-decoration');
 
-                    cardBody.appendChild(cardTitle);
+                    // cardBody.appendChild(cardTitle);
                     cardBody.appendChild(idLink);
                     cardBody.appendChild(text);
                     card.appendChild(img)
@@ -139,14 +142,28 @@
                         if (ingredient) {
                             const listItem = document.createElement('li');
                             listItem.innerText = ingredient;
+                            listItem.classList.add('no-decoration');
                             ingredients.appendChild(listItem);
                         }
                     }
 
                     const instructions = document.createElement('p');
                     instructions.innerText = meal.strInstructions;
+                    instructions.classList.add('no-decoration');
 
-                    recipesContainer.appendChild(card);
+                    // recipesContainer.appendChild(card);
+
+                    // create an anchor tag element
+                    const anchorTag = document.createElement('a');
+                    // set the href attribute to the recipe page
+                    anchorTag.href = `/recipe/${id}`;
+                    // append the card to the anchor tag
+                    anchorTag.appendChild(card);
+                    anchorTag.classList.add('no-decoration');
+
+                    // append the anchor tag to the recipes container
+                    recipesContainer.appendChild(anchorTag);
+
                 });
             })
             .catch(error => console.error(error));
