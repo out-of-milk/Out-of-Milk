@@ -4,18 +4,27 @@
 </div>  
 
 
-- ### <div align="center">
-Outofmilk is a Grocery List is a website that helps you make your grocery list in a more organized and convenient way. It allows you to create  a list and categorize your items. You can also search for recipes and add the  ingredients needed for those recipes directly to your list. If you have some ingredients at home already, you can also add them to a pantry tracker to help you avoid buying duplicates. The website may also have some extra features,like showing pricing and nutrition information, letting users share their own recipes.</div>
+Out-of-milk is a full-stack web application that serves as a comprehensive meal planning platform, allowing users to discover new recipes, manage grocery lists, and save their favorite recipes in one convenient location. Built using the TheMealDB API for recipe discovery, as well as Java, SpringBoot, MySQL, CSS, HTML, Javascript, and Bootstrap, Out-of-milk is a feature-rich application that is designed to simplify the meal planning and grocery shopping process for busy individuals.</div>
 
 
 - We used the fallowing languages
 
-. Java
+.Java
 
 .HTML
 
 .JavaScript
 
 .CSS
-  
-  
+
+
+- Meet the Team
+
+.Kevin Fowler
+
+.Jennie Smith
+
+.Mitchell (Emi) Campbell
+
+.Shawn Hardin 
+   
