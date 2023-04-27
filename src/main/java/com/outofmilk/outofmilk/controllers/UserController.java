@@ -52,7 +52,7 @@ public class UserController {
         List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
         List<Category> categories = categoryDao.findAll();
         List<Ingredient> ingredients = (List<Ingredient>) ingredientDao.findAll();
-
+        System.out.println("Hey groceryitems: " + user.getGroceryItems());
 
         model.addAttribute("ingredients", ingredients);
         model.addAttribute("user", user);
