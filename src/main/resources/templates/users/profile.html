@@ -158,7 +158,7 @@
                     <p>Hit the button to unblock recipe</p>
                     <ul class="list-group form-group col mx-2" >
                         <li class="list-group-item d-flex justify-content-between" th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
-                            <a class="capitalize d-flex justify-content-start col-4">
+                            <a class="capitalize d-flex justify-content-start col-4 no-decoration" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}">
                                 <label class="" style="text-align: center;" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}"
                                        th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></label>
                             </a>
