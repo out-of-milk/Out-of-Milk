@@ -106,10 +106,15 @@
                     const category = meal.strCategory;
                     const image = meal.strMealThumb;
 
-                    const img = document.createElement('img');
-                    img.classList.add('card-img-top');
-                    img.src = image;
-                    img.alt = 'Card Image';
+                    // const img = document.createElement('img');
+                    // img.classList.add('card-img-top');
+                    // img.src = image;
+                    // img.alt = 'Card Image';
+
+                    const img = document.createElement('a');
+                    img.href = `/recipe/${id}`;
+                    img.innerHTML = `<img src=${image} class="card-img-top" alt="Card Image"></img>`
+                    img.classList.add('no-decoration');
 
                     const cardBody = document.createElement('div');
                     cardBody.classList.add('card-body');
@@ -151,18 +156,7 @@
                     instructions.innerText = meal.strInstructions;
                     instructions.classList.add('no-decoration');
 
-                    // recipesContainer.appendChild(card);
-
-                    // create an anchor tag element
-                    const anchorTag = document.createElement('a');
-                    // set the href attribute to the recipe page
-                    anchorTag.href = `/recipe/${id}`;
-                    // append the card to the anchor tag
-                    anchorTag.appendChild(card);
-                    anchorTag.classList.add('no-decoration');
-
-                    // append the anchor tag to the recipes container
-                    recipesContainer.appendChild(anchorTag);
+                    recipesContainer.appendChild(card);
 
                 });
             })
