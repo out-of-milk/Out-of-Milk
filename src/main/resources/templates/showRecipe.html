@@ -79,7 +79,7 @@
                 <a class="btn btn-lg px-4 "  th:href="@{/user/} + ${id} + @{/afr}" role="button" th:style="${recipeLiked > 0} ? 'color:#E85A4F; id=heart' : 'color:#E98074; id=heart'" th:class="${recipeHidden > 0} ? 'btn1 disabled' : 'btn1'">
                     <i class="fa-solid fa-heart-circle-plus toggle"></i>
                 </a>
-                <a class="btn btn-lg px-4 "  th:href="@{/user/} + ${id} + @{/ahr}" role="button" th:style="${recipeHidden > 0} ? 'color:#6B6A67; id=bheart' : 'color:#8E8D8A; id=bheart'" th:class="${recipeLiked > 0} ? 'btn1 disabled' : 'btn1'">
+                <a class="btn btn-lg px-4 "  th:href="@{/user/} + ${id} + @{/ahr}" role="button" th:style="${recipeHidden > 0} ? 'color:#000000; id=bheart' : 'color:#8E8D8A; id=bheart'" th:class="${recipeLiked > 0} ? 'btn1 disabled' : 'btn1'">
                     <i class="fa-sharp fa-solid fa-heart-crack"></i>
         ️       </a>
                 <a class="btn btn-lg px-4 btn1" th:href="@{/recipe/} + ${id} + @{/ari}" role="button" style="font-size: 2em;color:#D8C3A5" id="adding">

@@ -47,7 +47,7 @@ public class UserController {
         User user = userDao.getReferenceById(loggedInUser.getId());
 
         List<RecipePreference> recipePreferencesFavorites = (List<RecipePreference>) recipePreferenceDao.findFavoritesById(user);
-        recipePreferencesFavorites.get(0).getRecipe().setShowThis(true);
+//        recipePreferencesFavorites.get(0).getRecipe().setShowThis(true);
 
         List<RecipePreference> recipePreferencesHidden = (List<RecipePreference>) recipePreferenceDao.findHiddenById(user);
         List<Category> categories = categoryDao.findAll();
