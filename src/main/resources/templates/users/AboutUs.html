@@ -6,6 +6,20 @@
 </head>
 
 <body>
+<style>
+    .card-img-top{
+        width: 65%;
+        border-radius: 50%;
+        margin: auto 0;
+        box-shadow: 0 0 10px rgba(0,0,0,.2);
+    }
+    .card{
+        padding: 1.5em .5em .5em;
+        border-radius: 2em;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    }
+</style>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="container col-xxl-8 px-4 py-5">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
@@ -27,22 +41,20 @@
 </div>
 <div class="row row-cols-1 row-cols-md-2 g-4 mx-4">
     <div class="col">
-        <div class="card mb-3" >
+        <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4 pt-5">
-                    <img class="d-block mx-auto mb-4 rounded-circle" th:src="@{/img/Jennie.jpg}" alt="" style="width:10em;height:10em;">
+                    <img class="card-img-top" th:src="@{/img/Jennie.jpg}" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Jennie Smith</h5>
-                        <p class="card-text"> I'm from the small state of Kansas, where I have returned from traveling the world of Oz after defeating the wicked witch of the waste. Now that I have returned to back to normal society, I have taken up coding by recommendation of my older brother. With my newfound coding skills, I hope to make a long lasting career and hope to return to Oz one day to make it an technologic empire.</p>
-                    </div>
-                </div>
-                <div class="container text-center d-flex justify-content-center">
-                    <div class="d-flex align-items-center">
-                        <a href="https://github.com/Jennie-Smith" style="color: gray"><i class="fa-brands fa-github mx-3" style="margin: 0% 1%;"></i></a>
-                        <a href="https://www.linkedin.com/in/jennie-p-smith/" style="color: gray"><i class="fa-brands fa-linkedin mx-3" style="margin: 0% 1%;"></i></a>
-                        <a href="" style="color: gray"><i class="fa-solid fa-graduation-cap mx-3" style="margin: 0% 1%;"></i></a>
+                        <p class="card-text">Full-stack web developer and recent English degree graduate that has fallen in love with writing elegant code and solving challenging problems. Proven track record using principles like object-oriented programming, test-driven development and paired programming. As well as using frameworks and languages like Java, Spring Boot, HTML, CSS and Javascript. Looking to join a diverse team and deliver life changing business value to others, with an added expertise in critical reviewing, writing and editing.</p>
+                        <div class="card-text">
+                            <a href="https://github.com/mcampbell379" style="color: gray"><i class="fa-brands fa-github" style="margin: 0% 1%;"></i></a>
+                            <a href="https://www.linkedin.com/in/mitchelldcampbell/" style="color: gray"><i class="fa-brands fa-linkedin" style="margin: 0% 1%;"></i></a>
+                            <a href="" style="color: gray"><i class="fa-solid fa-graduation-cap" style="margin: 0% 1%;"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,20 +64,18 @@
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4 pt-5">
-                    <img class="d-block mx-auto mb-4 rounded-circle" th:src="@{/img/emi.jpg}" alt="" style="width:10em;height:10em;">
+                    <img class="card-img-top" th:src="@{/img/emi.jpg}" alt="" style="height:65%;">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Mitchell (Emi) Campbell</h5>
                         <p class="card-text">
                             As a junior full-stack web developer, I bring a strong foundation and a hunger for growth to the table. Proficient in HTML, CSS, and JavaScript, I excel in crafting visually appealing and responsive front-end designs. With a solid understanding of back-end technologies such as Node.js and databases like MySQL, I am adept at implementing server-side functionalities. Driven by a relentless desire for growth, I thrive on challenges, constantly expanding my skill set to deliver high-quality web solutions. Let's collaborate to create impactful and dynamic digital experiences.</p>
-                    </div>
-                </div>
-                <div class="container text-center d-flex justify-content-center">
-                    <div class="d-flex align-items-center">
-                        <a href="https://github.com/mcampbell379" style="color: gray"><i class="fa-brands fa-github mx-3" style="margin: 0% 1%;"></i></a>
-                        <a href="https://www.linkedin.com/in/mitchelldcampbell/" style="color: gray"><i class="fa-brands fa-linkedin mx-3" style="margin: 0% 1%;"></i></a>
-                        <a href="" style="color: gray"><i class="fa-solid fa-graduation-cap mx-3" style="margin: 0% 1%;"></i></a>
+                        <div class="card-text">
+                            <a href="https://github.com/mcampbell379" style="color: gray"><i class="fa-brands fa-github" style="margin: 0% 1%;"></i></a>
+                            <a href="https://www.linkedin.com/in/mitchelldcampbell/" style="color: gray"><i class="fa-brands fa-linkedin" style="margin: 0% 1%;"></i></a>
+                            <a href="" style="color: gray"><i class="fa-solid fa-graduation-cap" style="margin: 0% 1%;"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,19 +85,17 @@
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4 pt-5">
-                    <img class="d-block mx-auto mb-4 rounded-circle" th:src="@{/img/kevin.jpg}" alt="" style="width:10em;height:10em;">
+                    <img class="card-img-top" th:src="@{/img/kevin.jpg}" alt="">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Kevin Fowler</h5>
                         <p class="card-text">As a self-motivated software developer, I have a keen eye for detail and a track record of delivering high-quality results on numerous projects. I possess a unique ability to balance my technical skills with strong interpersonal abilities, making me a valuable asset in cross-functional teams. My knack for fast and efficient problem-solving allows me to consistently deliver results in a timely manner.</p>
-                    </div>
-                </div>
-                <div class="container text-center d-flex justify-content-center">
-                    <div class="d-flex align-items-center">
-                        <a href="https://github.com/Kevin-Fowler17" style="color: gray"><i class="fa-brands fa-github mx-3" style="margin: 0% 1%;"></i></a>
-                        <a href="https://www.linkedin.com/in/kevin-fowler-3bb70625/" style="color: gray"><i class="fa-brands fa-linkedin mx-3" style="margin: 0% 1%;"></i></a>
-                        <a href="" style="color: gray"><i class="fa-solid fa-graduation-cap mx-3" style="margin: 0% 1%;"></i></a>
+                        <div class="card-text">
+                            <a href="https://github.com/mcampbell379" style="color: gray"><i class="fa-brands fa-github" style="margin: 0% 1%;"></i></a>
+                            <a href="https://www.linkedin.com/in/mitchelldcampbell/" style="color: gray"><i class="fa-brands fa-linkedin" style="margin: 0% 1%;"></i></a>
+                            <a href="" style="color: gray"><i class="fa-solid fa-graduation-cap" style="margin: 0% 1%;"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,19 +105,17 @@
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4 pt-5">
-                    <img class="d-block mx-auto mb-4 rounded-circle" th:src="@{/img/shawn.jpg}" alt="" style="width:10em;height:10em;">
+                    <img class="card-img-top" th:src="@{/img/shawn.jpg}" alt="" >
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Shawn Hardin</h5>
                         <p class="card-text">As someone born and raised in San Antonio, I've always believed in the importance of staying positive and moving forward, even if the path isn't always clear. That's why I'm excited about my new career, which aligns with my values and provides opportunities for growth. I'm looking forward to the challenges and experiences that lie ahead and am confident that I have the skills and mindset to thrive in pursuit of progress.</p>
-                    </div>
-                </div>
-                <div class="container text-center d-flex justify-content-center">
-                    <div class="d-flex align-items-center">
-                        <a href="https://github.com/Shawnhardin01" style="color: gray"><i class="fa-brands fa-github mx-3" style="margin: 0% 1%;"></i></a>
-                        <a href="https://www.linkedin.com/in/shawn-hardin/" style="color: gray"><i class="fa-brands fa-linkedin mx-3" style="margin: 0% 1%;"></i></a>
-                        <a href="" style="color: gray"><i class="fa-solid fa-graduation-cap mx-3" style="margin: 0% 1%;"></i></a>
+                        <div class="card-text">
+                            <a href="https://github.com/mcampbell379" style="color: gray"><i class="fa-brands fa-github" style="margin: 0% 1%;"></i></a>
+                            <a href="https://www.linkedin.com/in/mitchelldcampbell/" style="color: gray"><i class="fa-brands fa-linkedin" style="margin: 0% 1%;"></i></a>
+                            <a href="" style="color: gray"><i class="fa-solid fa-graduation-cap" style="margin: 0% 1%;"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
