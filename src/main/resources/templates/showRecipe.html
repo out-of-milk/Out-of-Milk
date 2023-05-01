@@ -63,6 +63,7 @@
 <div class="loader">
     <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>
+<div id="snackbar">The ingredients have been added to your grocery list.</div>
 <div class="container col-lg-8 px-2 py-3">
     <div class="row flex-lg-row-reverse align-items-center g-3 py-2">
         <div class="col-10 col-sm-8 col-lg-6  shadow p-3 mb-5 rounded">
@@ -138,6 +139,9 @@
 <script>
     function spinner() {
         document.getElementsByClassName("loader")[0].style.display = "block";
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
     $('#heart').click(function() {
        $("#heart").css({color:'red'},1000);
