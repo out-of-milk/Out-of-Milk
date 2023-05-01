@@ -231,14 +231,14 @@ public class UserController {
             return "redirect:/login";
         }
 
-        Optional<Ingredient> existingIngredient = Optional.ofNullable(ingredientDao.findByName(selectedIngredient));
+        Optional<Ingredient> existingIngredient = Optional.ofNullable(ingredientDao.findByName(selectedIngredient).get(0));
         if (!existingIngredient.isPresent()) {
             Ingredient newIngredient = new Ingredient();
             newIngredient.setName(selectedIngredient);
             ingredientDao.save(newIngredient);
         }
 
-        Ingredient ingredient = ingredientDao.findByName(selectedIngredient);
+        Ingredient ingredient = ingredientDao.findByName(selectedIngredient).get(0);
 
         if (user.getPantryItems().contains(ingredient)) {
             return "redirect:/user";
@@ -265,14 +265,14 @@ public class UserController {
             return "redirect:/login";
         }
 
-        Optional<Ingredient> existingIngredient = Optional.ofNullable(ingredientDao.findByName(selectedIngredient));
+        Optional<Ingredient> existingIngredient = Optional.ofNullable(ingredientDao.findByName(selectedIngredient).get(0));
         if (!existingIngredient.isPresent()) {
             Ingredient newIngredient = new Ingredient();
             newIngredient.setName(selectedIngredient);
             ingredientDao.save(newIngredient);
         }
 
-        Ingredient ingredient = ingredientDao.findByName(selectedIngredient);
+        Ingredient ingredient = ingredientDao.findByName(selectedIngredient).get(0);
 
         if (user.getGroceryItems().contains(ingredient)) {
             return "redirect:/user";
