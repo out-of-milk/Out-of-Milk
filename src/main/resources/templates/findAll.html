@@ -52,7 +52,7 @@
 </div>
 <div class="row p-2" >
     <div sec:authorize="isAuthenticated()" class="d-flex justify-content-evenly container">
-            <input type="text" id="search" placeholder="Search Meals or Categories" class="col-6 rounded" style="width: 25rem; height: 4rem;border-color:#D8C3A5;border-style: solid;">
+            <input type="text" id="search" placeholder="Search Meals or Category" class="col-6 rounded" style="width: 25rem; height: 4rem;border-color:#D8C3A5;border-style: solid;">
         <div sec:authorize="isAuthenticated()">
             <select  class="selectpicker col-6 show-tick rounded" id="category" style="width: 25rem; height: 4rem;border-color:#D8C3A5;border-style:solid;">
                 <option value="" selected>Show All Categories</option>
@@ -106,11 +106,6 @@
                     const category = meal.strCategory;
                     const image = meal.strMealThumb;
 
-                    // const img = document.createElement('img');
-                    // img.classList.add('card-img-top');
-                    // img.src = image;
-                    // img.alt = 'Card Image';
-
                     const img = document.createElement('a');
                     img.href = `/recipe/${id}`;
                     img.innerHTML = `<img src=${image} class="card-img-top" alt="Card Image"></img>`
@@ -127,19 +122,23 @@
                     const idLink = document.createElement('a');
                     idLink.href = `/recipe/${id}`;
                     idLink.id = id;
-                    idLink.innerText = title;
+                    idLink.innerText = 'Read More';
                     idLink.classList.add('no-decoration');
+
 
                     const text = document.createElement('p');
                     text.classList.add('card-text');
                     text.innerText = category;
                     text.classList.add('no-decoration');
 
-                    // cardBody.appendChild(cardTitle);
-                    cardBody.appendChild(idLink);
+                    cardBody.appendChild(cardTitle);
                     cardBody.appendChild(text);
+                    cardBody.appendChild(idLink);
                     card.appendChild(img)
                     card.appendChild(cardBody);
+                    card.appendChild(cardTitle);
+                    card.appendChild(text);
+                    card.appendChild(idLink);
 
                     const ingredients = document.createElement('ul');
                     for (let i = 1; i <= 20; i++) {
@@ -163,19 +162,31 @@
             .catch(error => console.error(error));
     });
 
-    searchInput.addEventListener('input', () => {
+    searchInput.addEventListener('keyup', () => {
         const searchValue = searchInput.value.toLowerCase();
         const cards = recipesContainer.querySelectorAll('.card');
         cards.forEach(card => {
-            const title = card.querySelector('a').innerText.toLowerCase();
-            if (title.includes(searchValue)) {
-                card.style.display = '';
+            const title = card.querySelector('.card-title').innerText.toLowerCase();
+            const text = card.querySelector('.card-text').innerText.toLowerCase();
+            if (title.includes(searchValue) || text.includes(searchValue)) {
+                card.style.display = 'block';
             } else {
                 card.style.display = 'none';
             }
         });
     });
-
+    // searchInput.addEventListener('input', () => {
+    //     const searchValue = searchInput.value.toLowerCase();
+    //     const cards = recipesContainer.querySelectorAll('.card');
+    //     cards.forEach(card => {
+    //         const title = card.querySelector('p').innerText.toLowerCase();
+    //         if (title.includes(searchValue)) {
+    //             card.style.display = '';
+    //         } else {
+    //             card.style.display = 'none';
+    //         }
+    //     });
+    // });
     categoryInput.addEventListener('input', () => {
         const searchValue = categoryInput.value.toLowerCase();
         const cards = recipesContainer.querySelectorAll('.card');
