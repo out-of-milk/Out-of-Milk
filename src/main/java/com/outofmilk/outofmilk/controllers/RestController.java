@@ -154,7 +154,7 @@ public class RestController {
                 }
                 String strIngredient9 = "";
                 Ingredient ingredient9 = null;
-                if (!mealObject.get("strIngredient1").isJsonNull()) {
+                if (!mealObject.get("strIngredient9").isJsonNull()) {
                     strIngredient9 = mealObject.get("strIngredient9").getAsString();
                     ingredient9 = ingredientRepository.findByName(strIngredient9.toLowerCase());
                     ingredients.add(ingredient9);
