@@ -73,9 +73,9 @@
             <h1 class="display-5 fw-bold lh-1 mb-3" style="color:#6B6A67;" th:text="${strMeal}">Title</h1>
             <div class="d-flex justify-content-start" style="width:20em;">
                 <p class="lead mx-5" th:text="${strCategory} " style="color:#6B6A67;"></p>
-                <div class="d-flex justify-content-around">
-                <p class="lead" style="color:#6B6A67;">Likes: </p>
-                <p class="lead" style="color:#6B6A67;" th:text="${recipeLikes}"></p>
+                <div class="d-flex justify-content-around" th:if="${recipeLikes != 0}">
+                    <p class="lead" style="color:#6B6A67;">Likes: </p>
+                    <p class="lead" style="color:#6B6A67;" th:text="${recipeLikes}"></p>
                 </div>
             </div>
             <div class="d-grid gap-2 d-flex justify-content-start">
