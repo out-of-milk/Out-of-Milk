@@ -27,11 +27,11 @@
                             <img alt="..." class="d-block w-100 carousel-image" th:src="${recipe.getStrMealThumb()}">
                         </a>
                         <div class="container">
-                            <div class="carousel-caption text-center">
-<!--                                <h2 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3"></h2>-->
-
-                                <h1 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3">Example headline.</h1>
-                            </div>
+                            <a th:href="@{'/recipe/'} + ${recipe.getIdMeal()}">
+                                <div class="carousel-caption text-center">
+                                    <h1 th:text="${recipe.getStrMeal()}" class="capitalize btn p-3 mb-2 bg-secondary text-white rounded-pill opacity-75 h-50 d-inline-block fs-3">Example headline.</h1>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
