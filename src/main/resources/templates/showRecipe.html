@@ -60,7 +60,11 @@
 
 </style>
 <nav th:insert="partial/partials :: navbar"></nav>
-<div class="container col-lg-8 px-2 py-3">
+<div class="loader">
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<div id="snackbar">The ingredients have been added to your grocery list.</div>
+<div class="container col-lg-8 px-4 py-5">
     <div class="row flex-lg-row-reverse align-items-center g-3 py-2">
         <div class="col-10 col-sm-8 col-lg-6  shadow p-3 mb-5 rounded">
             <img th:src="${strMealThumb}" id="displayMealThumb" class="d-block mx-lg-auto img-fluid rounded" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
@@ -69,12 +73,11 @@
             <h1 class="display-5 fw-bold lh-1 mb-3" style="color:#6B6A67;" th:text="${strMeal}">Title</h1>
             <div class="d-flex justify-content-start" style="width:20em;">
                 <p class="lead mx-5" th:text="${strCategory} " style="color:#6B6A67;"></p>
-                <div class="d-flex justify-content-around">
-                <p class="lead" style="color:#6B6A67;">Likes: </p>
-                <p class="lead" style="color:#6B6A67;" th:text="${recipeLikes}"></p>
+                <div class="d-flex justify-content-around" th:if="${recipeLikes != 0}">
+                    <p class="lead" style="color:#6B6A67;">Likes: </p>
+                    <p class="lead" style="color:#6B6A67;" th:text="${recipeLikes}"></p>
                 </div>
             </div>
-
             <div class="d-grid gap-2 d-flex justify-content-start">
                 <a class="btn btn-lg px-4 "  th:href="@{/user/} + ${id} + @{/afr}" role="button" th:style="${recipeLiked > 0} ? 'color:#E85A4F; id=heart' : 'color:#E98074; id=heart'" th:class="${recipeHidden > 0} ? 'btn1 disabled' : 'btn1'"  data-toggle="tooltip" data-bs-placement="bottom" title="Like Recipe">
                     <i class="fa-solid fa-heart-circle-plus toggle"></i>
@@ -82,52 +85,17 @@
                 <a class="btn btn-lg px-4 "  th:href="@{/user/} + ${id} + @{/ahr}" role="button" th:style="${recipeHidden > 0} ? 'color:#000000; id=bheart' : 'color:#8E8D8A; id=bheart'" th:class="${recipeLiked > 0} ? 'btn1 disabled' : 'btn1'"  data-toggle="tooltip" data-bs-placement="bottom" title="Block Recipe">
                     <i class="fa-sharp fa-solid fa-heart-crack"></i>
         ️       </a>
-                <a class="btn btn-lg px-4 " th:href="@{/recipe/} + ${id} + @{/ari}" role="button" th:style="${recipeHidden > 0} ? 'color:#000000; id=bheart' : 'color:#8E8D8A; id=bheart'" th:class="${recipeLiked > 0} ? 'btn1 disabled' : 'btn1'"  data-toggle="tooltip" data-bs-placement="bottom" title="Add Ingredients">
+
+                <a class="btn btn-lg px-4 " th:href="@{/recipe/} + ${id} + @{/ari}" role="button" th:style="${recipeHidden > 0} ? 'color:#000000; id=bheart' : 'color:#8E8D8A; id=bheart'" th:class="${recipeLiked > 0} ? 'btn1 disabled' : 'btn1'"  data-toggle="tooltip" data-bs-placement="bottom" title="Add Ingredients" onclick="spinner()">
+
                     <i class="fa-solid fa-file-circle-plus"></i>
                 </a>
             </div>
         </div>
     </div>
 </div>
-<div class="container-fluid content">
-
-
-<!--    <div class="d-flex justify-content-center p-3">-->
-<!--        <div class="card mb-3 border border-info" style="max-width: 100%;max-height: 100%;width:60em; height:20em;">-->
-<!--            <div class="row g-0">-->
-<!--                <div class="col-md-4 col-xs-6 col-sm-6 col-lg-4 imgResponse">-->
-<!--                    <img id="displayMealThumb " class="img-fluid card-img rounded-star" th:src="${strMealThumb}" style="width:20em; height:20em;">-->
-<!--                </div>-->
-<!--                <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">-->
-<!--                    <div class="card-body text-center">-->
-<!--                        <h1 class="card-title capitalize" th:text="${strMeal}">title/name</h1>-->
-<!--                        <h3 class="card-text opacity-75" th:text="${strCategory}">recipe category</h3>-->
-<!--                        <div class="btn-group" role="group" aria-label="Basic example">-->
-
-<!--                            <a th:href="@{/user/} + ${id} + @{/afr}" role="button" th:style="${recipeLiked > 0} ? 'font-size: 2em;color:red; id=heart' : 'font-size: 2em;color:lightpink; id=heart'" th:class="${recipeHidden > 0} ? 'btn1 disabled' : 'btn1'">-->
-<!--                                <i class="fa-solid fa-heart-circle-plus toggle"></i>-->
-<!--                            </a>-->
-<!--                            <a th:href="@{/user/} + ${id} + @{/ahr}" role="button" th:style="${recipeHidden > 0} ? 'font-size: 2em;color:black; id=bheart' : 'font-size: 2em;color:darkgrey; id=bheart'" th:class="${recipeLiked > 0} ? 'btn1 disabled' : 'btn1'">-->
-<!--                                <i class="fa-sharp fa-solid fa-heart-crack"></i>-->
-<!--                    ️       </a>-->
-
-
-<!--                            <a th:href="@{/recipe/} + ${id} + @{/ari}" role="button" class="btn1" style="font-size: 2em;color:lightblue" id="adding">-->
-<!--                                <i class="fa-solid fa-file-circle-plus"></i>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-8 col-xs-6 col-sm-6 col-lg-8 d-flex align-items-center justify-content-center">-->
-<!--                            <p>Likes: </p><p th:text="${recipeLikes}"></p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
-
-
-    <div class="row">
+<div class="container-fluid content ">
+    <div class="row mx-5">
         <div class="col-6">
             <div class="card mb-3 justify-content-center">
                 <div class="card-header d-flex justify-content-center" style="background-color: #E98074;"><h5 style="color:#EAE7DC">Ingredients</h5></div>
@@ -189,6 +157,12 @@
 
 <footer class="footer" th:insert="partial/partials :: footer"></footer>
 <script>
+    function spinner() {
+        document.getElementsByClassName("loader")[0].style.display = "block";
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
     $('#heart').click(function() {
        $("#heart").css({color:'red'},1000);
     });

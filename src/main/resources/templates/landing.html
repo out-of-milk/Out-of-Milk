@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:insert="partial/partials :: head">
     <meta charset="UTF-8">
-    <title id="pageTitle">Landing</title>
+    <title id="pageTitle">Out of Milk</title>
 </head>
 <body>
 <nav th:insert="partial/partials :: navbar"></nav>
 <div class="px-4 py-5 my-5 text-center">
     <div class="d-flex justify-content-center">
-        <img class="d-block mx-auto mb-4 rounded-circle" th:src="@{/img/cooking people.jpeg}" alt="" style="width:20em;height:20em;">
+        <img class="d-block mx-auto mb-4 rounded-circle" th:src="@{/img/cooking people2.jpeg}" alt="" style="width:20em;height:20em;">
         <img class="d-block mx-auto mb-4 rounded-circle d-none d-md-block" th:src="@{/img/shoppingbasket.jpg}" alt="" style="width:20em;height:20em;">
         <img class="d-block mx-auto mb-4 rounded-circle d-none d-lg-block" th:src="@{/img/pan.webp}" alt="" style="width:20em;height:20em;">
     </div>
@@ -65,10 +65,10 @@
 
 <div class="container my-5">
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3 text-center">
             <h1 class="display-4 fw-bold lh-1">Meet the Team</h1>
             <p class="lead">Want to know more about Out of Milk and it's wonderful creators? Click below to find out more.</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+            <div class="d-grid gap-2 d-md-flex justify-content-center mb-4 mb-lg-3">
                 <a type="button" class="btn btn-lg px-4 me-md-2 fw-bold" style="background-color: #E85A4F; color: #FFFFFF" th:href="@{/AboutUs}">About Us</a>
             </div>
         </div>
