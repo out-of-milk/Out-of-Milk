@@ -15,7 +15,7 @@ Out-of-milk is a full-stack web application that serves as a comprehensive meal 
 - JavaScript
 
 - CSS
-
+ 
 - BootStrap
 
 
@@ -48,13 +48,18 @@ Out-of-milk is a full-stack web application that serves as a comprehensive meal 
 - Text grocery list
 
 ## How to use 
-- step one 
+* step one 
+
 log in or register
-- step two 
+* step two 
+
 search for a recipe or use recommended recipe
-- step three 
+* step three 
+
 like,block or add ingredients to grocery list
-- step four 
+* step four 
+
 compare pantry list and grocery list
-- step five 
+* step five 
+
 email or text grocery list to user.

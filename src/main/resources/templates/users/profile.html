@@ -38,11 +38,8 @@
                             <img alt="..." class="d-block img-fluid w-100" th:src="${recipePreferenceFavorites.getRecipe().getStrMealThumb()}">
                         </a>
 
-<!--                    <div class="card col-5" th:each="recipePreferenceFavorites : ${recipePreferencesFavorites}">
-                        <img alt="..." class="d-block img-fluid w-100" th:src="${recipePreferenceFavorites.getRecipe().getStrMealThumb()}">  -->
-
                         <div class="card-body">
-                            <h5 class="card-title">
+                            <h5 class="card-title text-center">
                                 <a class="capitalize no-decoration" th:href="@{/recipe/} + ${recipePreferenceFavorites.getRecipe().getIdMeal()}" th:text="${recipePreferenceFavorites.getRecipe().getStrMeal()}"></a>
                             </h5>
                             <div class="text-center">
@@ -126,7 +123,7 @@
 
 <!-- Settings Modal -->
 <div class="modal fade" id="settings" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="settingsLabel">Settings</h1>
@@ -158,8 +155,8 @@
                     <p>Hit the button to unblock recipe</p>
                     <ul class="list-group form-group col mx-2" >
                         <li class="list-group-item d-flex justify-content-between" th:each="recipePreferenceHidden : ${recipePreferencesHidden}">
-                            <a class="capitalize d-flex justify-content-start col-4 no-decoration" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}">
-                                <label class="" style="text-align: center;" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}"
+                            <a class="capitalize d-flex justify-content-start no-decoration text-nowrap" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}">
+                                <label class="text-nowrap" style="text-overflow: ellipsis; text-align: start;" th:href="@{/recipe/} + ${recipePreferenceHidden.getRecipe().getIdMeal()}"
                                        th:text="${recipePreferenceHidden.getRecipe().getStrMeal()}"></label>
                             </a>
                             <a class="btn" role="button" th:href="@{/user/} + ${recipePreferenceHidden.getRecipe().getIdMeal()} + '/dhr'"><i class="fa-sharp fa-solid fa-heart-crack"></i></a>
